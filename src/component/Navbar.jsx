@@ -1,4 +1,5 @@
 import "./Navbar.css";
+import logo from "../assets/logo.png"
 
 function Navbar() {
   return (
@@ -6,7 +7,7 @@ function Navbar() {
       <nav className="navbar navbar-expand-lg d-flex flex-column justify-content-between shadow sticky-top bg-white">
         <div className="container">
           <a className="navbar-brand">
-            <img src="../assets/logo.png" id="logo" alt="Environthink Logo" />
+            <img src={logo} id="logo" alt="Environthink Logo" />
           </a>
           <button
             className="navbar-toggler"
