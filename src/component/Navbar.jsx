@@ -1,14 +1,12 @@
+import "./Navbar.css";
+
 function Navbar() {
   return (
     <>
       <nav className="navbar navbar-expand-lg d-flex flex-column justify-content-between shadow sticky-top bg-white">
         <div className="container">
-          <a className="navbar-brand" href="./index.html">
-            <img
-              src="./assets/images/logo.png"
-              id="logo"
-              alt="Environthink Logo"
-            />
+          <a className="navbar-brand">
+            <img src="../assets/logo.png" id="logo" alt="Environthink Logo" />
           </a>
           <button
             className="navbar-toggler"
