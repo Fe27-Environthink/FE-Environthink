@@ -30,22 +30,26 @@ function Footer() {
                     </div>
                     <div id="medsos" className="col-sm-12 col-md-3">
                         <p>Media Sosial</p>
+                       
+
+                        
                         <Link
-                            className="bg-white fs-4 text-dark pt-1 pb-1 ps-2 pe-2 m-1 border rounded"
+                            className="bg-white fs-4 text-dark  pb-1 ps-2 pe-2 m-1 border rounded"
                             to="https://www.instagram.com/greenpeaceid/">
                                 <i><FaInstagram/></i></Link>
                         <Link
-                            className="bg-white fs-4 pt-1 pb-1 ps-2 pe-2 m-1 border rounded"
+                            className="bg-white fs-4  pb-1 ps-2 pe-2 m-1 border rounded"
                             to="https://www.facebook.com/GreenpeaceIndonesia/">
                             <i><FaFacebook/></i></Link>
                         <Link
-                            className="bg-white fs-4 pt-1 pb-1 ps-2 pe-2 m-1 border rounded"
+                            className="bg-white fs-4 pb-1 ps-2 pe-2 m-1 border rounded"
                             to="https://twitter.com/greenpeaceid">
                             <i><FaTwitter/></i></Link>
                         <Link
-                            className="bg-white fs-4 pt-1 pb-1 ps-2 pe-2 m-1 border rounded text-danger"
+                            className="bg-white fs-4  pb-1 ps-2 pe-2 m-1 border rounded text-danger"
                             to="https://www.youtube.com/greenpeaceindonesia">
                             <i><FaYoutube/></i></Link>
+                    
                     </div>
                 </div>
                 <hr className="mb-2 opacity-100 border border-white" />
