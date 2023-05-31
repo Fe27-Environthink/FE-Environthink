@@ -1,31 +1,36 @@
 import "./Navbar.css";
 import Logo from "../../assets/logo.png";
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import Offcanvas from 'react-bootstrap/Offcanvas';
+
 import { BsSearch } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
 
-function Navbar() {
+function Navbars() {
   return (
-    <nav className="navbar navbar-expand-lg d-flex flex-column justify-content-between shadow sticky-top bg-white">
-      <div className="container">
-        <NavLink className="navbar-brand">
-          <img src={Logo} id="logo" alt="Environthink Logo" />
-        </NavLink>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNavDropdown"
-          aria-controls="navbarNavDropdown"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div
-          className="justify-content-end collapse navbar-collapse"
-          id="navbarNavDropdown"
-        >
-          <ul className="navbar-nav">
+    <>
+      <Navbar key="lg" bg="light" expand="lg" className="mb-3">
+        <Container fluid>
+          <Navbar.Brand href="#"> <img src={Logo} id="logo" alt="Environthink Logo" /></Navbar.Brand>
+          <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-lg`} />
+          <Navbar.Offcanvas
+            id={`offcanvasNavbar-expand-lg`}
+            aria-labelledby={`offcanvasNavbarLabel-expand-lg`}
+            placement="start"
+          >
+            <Offcanvas.Header closeButton>
+              <Offcanvas.Title id={`offcanvasNavbarLabel-expand-lg`}>
+              <img src={Logo} id="logo" alt="Environthink Logo" />
+              </Offcanvas.Title>
+            </Offcanvas.Header>
+            <Offcanvas.Body>
+              <Nav className="justify-content-end flex-grow-1 pe-3">
+              <ul className="navbar-nav">
             <li className="nav-item mt-1">
               <NavLink
                 className="nav-link active"
@@ -69,10 +74,14 @@ function Navbar() {
               </div>
             </li>
           </ul>
-        </div>
-      </div>
-    </nav>
+              </Nav>
+              
+            </Offcanvas.Body>
+          </Navbar.Offcanvas>
+        </Container>
+      </Navbar>
+    </>
   );
 }
 
-export default Navbar;
+export default Navbars;
