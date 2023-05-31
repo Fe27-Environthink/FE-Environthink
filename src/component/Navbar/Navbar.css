@@ -3,9 +3,6 @@
   --color-main: #14ae5c;
 }
 
-/* Font */
-@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600&display=swap");
-
 /* Navbar */
 nav {
   font-family: "Plus Jakarta Sans", sans-serif;

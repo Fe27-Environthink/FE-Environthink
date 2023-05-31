@@ -3,10 +3,6 @@
     --color-main: #14ae5c;
 }
 
-/* Font */
-@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600&display=swap");
-
-
 .bg-main {
     background-color: #14ae5c;
 }
@@ -20,6 +16,10 @@ footer {
 
 .judulDeskripsiEnvironthink {
 color: #25ff01 !important;
+}
+
+.deskripsiEnvironthink {
+    text-align: justify;
 }
 
 .container p {
