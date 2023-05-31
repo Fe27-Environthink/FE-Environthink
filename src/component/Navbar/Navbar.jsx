@@ -1,14 +1,15 @@
 import "./Navbar.css";
 import Logo from "../../assets/logo.png";
 import { BsSearch } from "react-icons/bs";
+import { NavLink } from "react-router-dom";
 
 function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg d-flex flex-column justify-content-between shadow sticky-top bg-white">
       <div className="container">
-        <a className="navbar-brand">
+        <NavLink className="navbar-brand">
           <img src={Logo} id="logo" alt="Environthink Logo" />
-        </a>
+        </NavLink>
         <button
           className="navbar-toggler"
           type="button"
@@ -26,45 +27,45 @@ function Navbar() {
         >
           <ul className="navbar-nav">
             <li className="nav-item mt-1">
-              <a
+              <NavLink
                 className="nav-link active"
                 aria-current="page"
-                href="./index.html"
+                to="/"
               >
                 Home
-              </a>
+              </NavLink>
             </li>
             <li className="nav-item mt-1">
-              <a className="nav-link active" href="aksi.html">
+              <NavLink className="nav-link active" to="aksi.html">
                 Aksi
-              </a>
+              </NavLink>
             </li>
             <li className="nav-item mt-1">
-              <a className="nav-link active" href="article.html">
+              <NavLink className="nav-link active" to="article.html">
                 Artikel
-              </a>
+              </NavLink>
             </li>
             <li className="nav-item mt-2 mb-2 ms-3 me-4">
-              <a className="" href="./searchPage.html">
+              <NavLink className="" to="./searchPage.html">
                 <BsSearch size="1.4em" className="searchIcon text-dark " />
-              </a>
+              </NavLink>
             </li>
             <li className="nav-item m-1">
-              <a
+              <NavLink
                 className="btnDonasi btn nav-link active ps-3 pe-3"
-                href="donasi.html"
+                to="donasi.html"
               >
                 Donasi
-              </a>
+              </NavLink>
             </li>
             <li className="nav-item ">
               <div id="button-login">
-                <a
+                <NavLink
                   className="btnLogin m-1 btn nav-link active ps-3 pe-3"
-                  href="login.html"
+                  to="login.html"
                 >
                   Login
-                </a>
+                </NavLink>
               </div>
             </li>
           </ul>
