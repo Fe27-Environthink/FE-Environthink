@@ -11,7 +11,7 @@ function Footer() {
                 <div className="row pt-3">
                     <div className="col-sm-12 col-md-5">
                         <p className="judulDeskripsiEnvironthink">Environthink</p>
-                        <p className="">
+                        <p className="deskripsiEnvironthink">
                         EnvironThink berfokus pada isu-isu lingkungan dan solusi untuk
                         menjaga keberlanjutan alam. Website ini mengingatkan keterkaitan
                         antara lingkungan dan pemikiran, serta pentingnya mempertimbangkan
