@@ -1,25 +1,24 @@
 import "./Navbar.css";
-import Logo from "../assets/logo.png";
-import { BsSearch } from "react-icons/bs";
 
 function Navbar() {
   return (
-    <nav className="navbar navbar-expand-lg d-flex flex-column justify-content-between shadow sticky-top bg-white">
-      <div className="container">
-        <a className="navbar-brand">
-          <img src={Logo} id="logo" alt="Environthink Logo" />
-        </a>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNavDropdown"
-          aria-controls="navbarNavDropdown"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
+    <>
+      <nav className="navbar navbar-expand-lg d-flex flex-column justify-content-between shadow sticky-top bg-white">
+        <div className="container">
+          <a className="navbar-brand">
+            <img src="../assets/logo.png" id="logo" alt="Environthink Logo" />
+          </a>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
 
         <div
           className="justify-content-end collapse navbar-collapse"
