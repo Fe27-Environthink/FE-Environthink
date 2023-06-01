@@ -1,5 +1,7 @@
 import React from 'react'
 import "./Article.css"
+import Infografis from '../Infografis/Infografis'
+import { Link } from 'react-router-dom'
 
 const Article = () => {
   return (
@@ -13,9 +15,9 @@ const Article = () => {
                         <div className="card card-artikel h-100" >
                             <img src="" className="card-img-top" alt="artikel"/>
                             <div className="card-body">
-                                <a className="wrapperLinkTitleArticles" href="detailArticle.html?id=${data[i].id}">
+                                <Link className="wrapperLinkTitleArticles" to="">
                                     <h5 className="card-title">data</h5>
-                                </a>
+                                </Link>
                                 <p className="card-text" style={{color: "#595959", textAlign: "justify"}}>sdfghj</p>
                                 <p className="fw-bold" style={{color: "#6F7376"}}>
                                     <span className="author">asdf</span> <span id="dot2"></span>
@@ -26,10 +28,12 @@ const Article = () => {
                     </div>
                 </div>
             </div>
-            <div className="d-flex justify-content-center pb-5">
+            <div className="d-flex justify-content-center pb-3">
                 <button className="btn" id="artikel-lainnya">Artikel Lainnya</button>
             </div>
         </div>
+
+        <Infografis />
     </>
   )
 }
