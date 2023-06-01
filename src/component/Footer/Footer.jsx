@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { FaInstagram, FaFacebook, FaTwitter, FaYoutube } from "react-icons/fa";
 import "./Footer.css";
@@ -6,7 +5,7 @@ import "./Footer.css";
 function Footer() {
   return (
     <>
-      <footer id="footer mt-auto">
+      <footer id="footer" className="mt-auto">
         <div className="container">
           <div className="row pt-3">
             <div className="col-sm-12 col-md-5">

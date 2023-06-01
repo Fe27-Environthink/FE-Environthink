@@ -8,15 +8,17 @@ import Search from "./component/Searchpage/Search";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Navbars />
-      <Routes>
-        {/* Isi route nya ya kyk page Homepage, search, aksi, article...contoh  */}
-        <Route path="/" element={<HomePage />} />
-        <Route path="/search" element={<Search />} />
-      </Routes>
-      <Footer />
-    </BrowserRouter>
+    <div className="d-flex flex-column min-vh-100">
+      <BrowserRouter>
+        <Navbars />
+        <Routes>
+          {/* Isi route nya ya kyk page Homepage, search, aksi, article...contoh  */}
+          <Route path="/" element={<HomePage />} />
+          <Route path="/search" element={<Search />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+    </div>
   );
 }
 
