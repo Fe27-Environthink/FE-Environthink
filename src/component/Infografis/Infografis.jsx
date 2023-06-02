@@ -1,7 +1,7 @@
 import React from 'react'
 import "./Infografis.css"
 
-const Infografis = () => {
+function Infografis() {
   return (
     <>
         <div className="container pt-5">

@@ -2,7 +2,7 @@ import React from 'react'
 import { FaClock } from 'react-icons/fa'
 import Komentar from '../Komentar/Komentar'
 
-const DetailArticle = () => {
+function DetailArticle() {
   return (
     <>
         <div id="articlesContent" className="container">

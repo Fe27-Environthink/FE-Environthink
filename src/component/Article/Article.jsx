@@ -3,7 +3,7 @@ import "./Article.css"
 import Infografis from '../Infografis/Infografis'
 import { Link } from 'react-router-dom'
 
-const Article = () => {
+function Article() {
   return (
     <>
         <div className="container">
