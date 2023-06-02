@@ -1,5 +1,7 @@
+import { useParams } from "react-router-dom";
 import "./Aksi.css";
 function DetailAksi() {
+const {key}=useParams();
   return (
     <>
       <div className="container pt-5 detail-aksi">
@@ -11,7 +13,7 @@ function DetailAksi() {
                 <span id="hashTag" >#Nelayan #Perbudakan</span>
               </p>
 
-              <h3 id="title" />
+              <h3 id="title" >Hentikan Perbudakan Modern di Laut!{key}</h3>
               <img
                 className="img-fluid pt-3"
                 width="100%"

@@ -17,7 +17,7 @@ function App() {
           {/* Isi route nya ya kyk page Homepage, search, aksi, article...contoh  */}
           <Route path="/" element={<HomePage />} />
           <Route path="/aksi" element={<Aksi/>}/>
-          <Route path="/aksi/detail" element={<DetailAksi/>}/>
+          <Route path="/aksi/:key" element={<DetailAksi/>}/>
         </Routes>
         <Footer/>
       </BrowserRouter>

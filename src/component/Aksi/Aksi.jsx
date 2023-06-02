@@ -24,7 +24,7 @@ function Aksi() {
                   <p className="card-text sub-title d-flex align-items-center gap-2">
                    <FaUsers/> <span className="fw-medium fs-6"> 2,984 orang mendukung</span>
                   </p>
-                  <Link className="link-aksi" to="/aksi/detail">
+                  <Link className="link-aksi" to={`/aksi/${item}`}>
                                     <h5 className="btn btn-main d-block">Pelajari Selengkapnya</h5>
                                 </Link>
                 
