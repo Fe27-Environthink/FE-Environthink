@@ -1,48 +1,38 @@
 import React from 'react'
+import { FaClock } from 'react-icons/fa'
 
 const DetailArticle = () => {
   return (
     <>
-        <div className="container p-5">
-            <div className="komentar" id="komentar">
-                <h3 className="text-start mb-3">Komentar</h3>
-                <div style={{border: "0.5px solid #bfbfbf"}}></div>
-                <form className="add-post-form">
-                <div className="row pt-5">
-                    <div className="col-lg-8 col-md-8 col-sm-12 field">
-                    <div className="input-group mb-3">
-                        <input
-                        type="email"
-                        id="email-value"
-                        className="form-control form-control-md me-2"
-                        placeholder="Masukkan Alamat Email"
-                        required
-                        />
-                        <input
-                        type="text"
-                        id="name-value"
-                        className="form-control form-control-md"
-                        placeholder="Masukkan Nama"
-                        required
-                        />
-                    </div>
-                    <div className="input-group mb-3">
-                        <textarea
-                        id="komentar-value"
-                        className="form-control form-control-md"
-                        placeholder="Tulis Komentar"
-                        style={{height: "150px; resize: none"}}
-                        required
-                        ></textarea>
-                    </div>
-                    <button type="submit" className="btn btn-primary">Add Comment</button>
-                    </div>
+        <div id="articlesContent" className="container">
+            <div className="row ms-1 me-1">
+                <div className="col-md 12 mb-3">
+                <p className="hashTag m-0 p-0">
+                    <span id="cathegory">Cerita</span> <span id="dot"></span>
+                    <span id="hashTag">#EnergiTerbarukan #Laut</span>
+                </p>
+                <h1 className="titleArticle" id="titleArticle">Proyek Minyak Bumi</h1>
+                <p className="text-dark">
+                    By <span id="author" className="fw-bold"> Sherina Redjo</span>
+                    <i className='ms-1 me-1'><FaClock/></i>
+                    <span id="date" className="fw-bold" style={{color: "#6f7376"}}>12 April 2023</span>
+                </p>
                 </div>
-                </form>
-            </div>
-
-            <div className="row pt-4">
-                <div className="posts-list" id="posts-list"></div>
+                <div className="col-md-12 p-0 me-4 text-center">
+                    <img className="articlesImage img-fluid" src="" alt="" id="images" />
+                </div>
+                <div className="paragraf col-md-12 ps-0 pe-0 pt-5">
+                    <p id="paragraf1" className="text-dark">Di mana ada pengeboran, di situlah terjadi tumpahan minyak</p>
+                    <p id="paragraf2" className="text-dark">Di mana ada pengeboran, di situlah terjadi tumpahan minyak</p>
+                    <p id="paragraf3" className="text-dark">Di mana ada pengeboran, di situlah terjadi tumpahan minyak</p>
+                    <p id="paragraf4" className="text-dark"></p>
+                    <p id="paragraf5" className="text-dark"></p>
+                    <p id="paragraf6" className="text-dark"></p>
+                    <p id="paragraf7" className="text-dark"></p>
+                    <p id="paragraf8" className="text-dark"></p>
+                    <p id="paragraf9" className="text-dark"></p>
+                    <p id="paragraf10" className="text-dark"></p>
+                </div>
             </div>
         </div>
     </>
