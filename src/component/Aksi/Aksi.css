@@ -17,6 +17,9 @@
     text-decoration: none;
    
 }
+.paragraf{
+    color: black !important;
+}
 
 .btn-lainnya {
     border: 2px solid var(--color-main) !important;
