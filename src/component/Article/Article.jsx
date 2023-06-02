@@ -15,7 +15,7 @@ const Article = () => {
                         <div className="card card-artikel h-100" >
                             <img src="" className="card-img-top" alt="artikel"/>
                             <div className="card-body">
-                                <Link className="wrapperLinkTitleArticles" to="">
+                                <Link className="wrapperLinkTitleArticles" to="/detail-article">
                                     <h5 className="card-title">data</h5>
                                 </Link>
                                 <p className="card-text" style={{color: "#595959", textAlign: "justify"}}>sdfghj</p>
