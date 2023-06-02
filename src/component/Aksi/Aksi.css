@@ -2,6 +2,19 @@
    color:#737373 !important;
     
 }
+#dot {
+    height: 7px;
+    width: 7px;
+    background-color: #006dfd;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 0.5em 0.1em 0.5em;
+  }
+
+  .hashTag {
+    color: #006dfd !important;
+    font-family: "Plus Jakarta Sans", sans-serif;
+  }
 .btn-main {
     background-color: var(--color-main) !important;
     color: var(--color-bg) !important;
