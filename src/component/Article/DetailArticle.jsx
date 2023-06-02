@@ -1,12 +1,13 @@
 import React from 'react'
 import { FaClock } from 'react-icons/fa'
+import Komentar from '../Komentar/Komentar'
 
 const DetailArticle = () => {
   return (
     <>
         <div id="articlesContent" className="container">
             <div className="row ms-1 me-1">
-                <div className="col-md 12 mb-3">
+                <div className="col-md-12 mb-3">
                 <p className="hashTag m-0 p-0">
                     <span id="cathegory">Cerita</span> <span id="dot"></span>
                     <span id="hashTag">#EnergiTerbarukan #Laut</span>
@@ -21,7 +22,7 @@ const DetailArticle = () => {
                 <div className="col-md-12 p-0 me-4 text-center">
                     <img className="articlesImage img-fluid" src="" alt="" id="images" />
                 </div>
-                <div className="paragraf col-md-12 ps-0 pe-0 pt-5">
+                <div className="paragraf col-md-12 ps-0 pe-0 pt-5 ps-3">
                     <p id="paragraf1" className="text-dark">Di mana ada pengeboran, di situlah terjadi tumpahan minyak</p>
                     <p id="paragraf2" className="text-dark">Di mana ada pengeboran, di situlah terjadi tumpahan minyak</p>
                     <p id="paragraf3" className="text-dark">Di mana ada pengeboran, di situlah terjadi tumpahan minyak</p>
@@ -34,6 +35,8 @@ const DetailArticle = () => {
                     <p id="paragraf10" className="text-dark"></p>
                 </div>
             </div>
+
+            <Komentar/>
         </div>
     </>
   )
