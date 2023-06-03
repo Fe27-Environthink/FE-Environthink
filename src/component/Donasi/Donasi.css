@@ -17,7 +17,7 @@
 }
 
 .wrapperInputDonasi {
-  padding: 2em;
+  padding: 0em 2em;
   margin-top: 8em;
 }
 
@@ -25,17 +25,6 @@
 .DescDonasi {
   font-family: "Plus Jakarta Sans", sans-serif !important;
   font-weight: 700 !important;
-}
-
-.btnBulanan {
-  font-family: "Plus Jakarta Sans", sans-serif !important;
-  font-weight: 600 !important;
-}
-
-.btnSatuKali {
-  font-family: "Plus Jakarta Sans", sans-serif !important;
-  font-weight: 600 !important;
-  border: 1px solid #14ae5c !important;
 }
 
 .btn-50k,
@@ -61,7 +50,8 @@
 
 .titleInputName,
 .titleInputNoTel,
-.titleInputEmail {
+.titleInputEmail,
+.titleInputNorek {
   font-family: "Plus Jakarta Sans", sans-serif !important;
   font-weight: 600 !important;
 }

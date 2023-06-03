@@ -1,53 +1,87 @@
 import "./Donasi.css";
 import ImgCreditCard from "../../assets/CardCredit.png";
 import { useState } from "react";
+import Swal from "sweetalert2";
+import { useDispatch, useSelector } from "react-redux";
+import { dataDonasi } from "../../Redux/Action/ActionDonasi";
 
 const Donasi = () => {
-  const buttonStyleBackgrouned = {
-    backgroundColor: "#14ae5c",
-    color: "white",
-  };
+  const state = useSelector((state) => state.DonasiReducer.Donasi);
+  const dispatch = useDispatch();
 
-  const buttonOutlined = {
-    border: "1px solid #14ae5c",
-  };
-
-  const [styleButton, setStyleButton] = useState(false);
-  const [titleDonation, setTitleDonation] = useState("Donasi Bulanan");
+  // console.log(state);
 
   const [inputMoney, setInputMoney] = useState("");
 
+  const [formData, setFormData] = useState({
+    inputNama: "",
+    inputTelepon: "",
+    inputEmail: "",
+    inputNorek: "",
+  });
+
+  const [data, setData] = useState({
+    originalValue: null,
+    formattedValue: null,
+  });
+
   const handleInputMoney = (event) => {
-    // console.log(typeof event);
     if (typeof event == "number") {
-      // console.log(event);
       const getButtonValue = event;
       const formattedValue = Number(getButtonValue).toLocaleString("id-ID");
       setInputMoney(formattedValue);
-      // const inputNumber = parseInt(event.replace(/\D/g, ""), 10);
-      // console.log(inputNumber);
+
+      setData({
+        originalValue: getButtonValue,
+        formattedValue: `Rp ${formattedValue}`,
+      });
     } else if (event.target.value == "") {
       setInputMoney("");
-      // const formattedValue = inputNumber.toLocaleString("id-ID");
-      // setInputMoney(formattedValue);
     } else if (typeof event == "object") {
       const inputNumber = parseInt(event.target.value.replace(/\D/g, ""), 10);
       const formattedValue = inputNumber.toLocaleString("id-ID");
       setInputMoney(formattedValue);
+
+      setData({
+        originalValue: inputNumber,
+        formattedValue: `Rp ${formattedValue}`,
+      });
     }
   };
 
-  const handleCathegoryDonation = (cathegoryDonation) => {
-    cathegoryDonation == "Donasi Bulanan"
-      ? setStyleButton(false)
-      : setStyleButton(true);
-    setTitleDonation(cathegoryDonation);
+  const handleFormData = (event) => {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value,
+    });
   };
 
-  const ppp = () => {
-    const formatedNumber = parseInt(inputMoney.replace(/\D/g, ""), 10);
-    console.log(formatedNumber);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (
+      formData.inputEmail == "" ||
+      formData.inputNama == "" ||
+      formData.inputNorek == "" ||
+      formData.inputTelepon == ""
+    ) {
+      Swal.fire({
+        icon: "error",
+        title: "Harap Periksa Inputan Anda !",
+      });
+    } else {
+      setData((prevDatas) => {
+        return {
+          ...prevDatas,
+          ...formData,
+        };
+      });
+      dispatch(dataDonasi(data, formData));
+      Swal.fire("Cek email untuk instruksi pembayaran", "", "success");
+
+      console.log(state);
+    }
   };
+
   return (
     <div className="container-fluid row p-0 m-0">
       <div className="highlight col bg-primary p-0">
@@ -67,91 +101,109 @@ const Donasi = () => {
           </p>
         </div>
       </div>
+
       <div className="colDonasi col p-0 m-0">
         <div className="wrapperInputDonasi ">
-          <div className="wrapperButton mb-5 row">
-            <div className="col bg-warnings">
-              <button
-                style={
-                  styleButton == false ? buttonStyleBackgrouned : buttonOutlined
-                }
-                className="btnBulanan btn w-100"
-                onClick={() => handleCathegoryDonation("Donasi Bulanan")}
-              >
-                Donasi bulanan
+          <form onSubmit={handleSubmit}>
+            <p className="DescDonasi">Masukan jumlah nominal donasi anda :</p>
+            <div className="input-group">
+              <span className="input-group-text text-white" id="basic-addon1">
+                Rp
+              </span>
+              <input
+                type="text"
+                className="form-control m-0 shadow-none inputMoney"
+                placeholder="0"
+                aria-describedby="basic-addon1"
+                onChange={handleInputMoney}
+                value={inputMoney}
+                required
+              />
+            </div>
+            <div className="row mt-4 mb-5">
+              <div className="col text-center ">
+                <button
+                  className="btn-50k btn w-100"
+                  onClick={() => handleInputMoney(50000)}
+                >
+                  Rp 50.000
+                </button>
+              </div>
+              <div className="col text-center ">
+                <button
+                  className="btn-100k btn w-100"
+                  onClick={() => handleInputMoney(100000)}
+                >
+                  Rp 100.000
+                </button>
+              </div>
+              <div className="col text-center">
+                <button
+                  className="btn-150k btn w-100"
+                  onClick={() => handleInputMoney(150000)}
+                >
+                  Rp 150.000
+                </button>
+              </div>
+            </div>
+            <div className="row gy-4">
+              <div className="col-12">
+                <p className="titleInputName mb-1">Nama Lengkap</p>
+                <input
+                  type="text"
+                  className="form-control m-0 shadow-none"
+                  name="inputNama"
+                  value={formData.inputNama}
+                  onChange={handleFormData}
+                  required
+                />
+              </div>
+              <div className="col-12">
+                {" "}
+                <p className="titleInputNoTel mb-1">Nomor Telepon</p>
+                <input
+                  type="number"
+                  className="form-control m-0 shadow-none"
+                  name="inputTelepon"
+                  value={formData.inputTelepon}
+                  onChange={handleFormData}
+                  required
+                />
+              </div>
+              <div className="col-12">
+                {" "}
+                <p className="titleInputEmail mb-1">Alamat Email</p>
+                <input
+                  type="email"
+                  className="form-control m-0 shadow-none"
+                  name="inputEmail"
+                  value={formData.inputEmail}
+                  onChange={handleFormData}
+                  required
+                />
+              </div>
+              <div className="col-12">
+                {" "}
+                <p className="titleInputNorek mb-1">Nomor Rekening</p>
+                <input
+                  type="number"
+                  className="form-control m-0 shadow-none"
+                  name="inputNorek"
+                  value={formData.inputNorek}
+                  onChange={handleFormData}
+                  required
+                />
+              </div>
+            </div>
+            <div className="text-center mt-5 mb-5">
+              <button type="submit" className="btn-lanjut btn text-white">
+                LANJUT
               </button>
             </div>
-            <div className="col bg-dangers">
-              <button
-                className="btnSatuKali btn w-100"
-                style={styleButton ? buttonStyleBackgrouned : buttonOutlined}
-                onClick={() => handleCathegoryDonation("Donasi Satu Kali")}
-              >
-                Donasi satu kali
-              </button>
+            <div className="mb-5 text-center">
+              <img src={ImgCreditCard} alt="Payment via credit card!" />
             </div>
-          </div>
-          <p className="TitleDonasi">{titleDonation}</p>
-          <p className="DescDonasi">Masukan jumlah nominal donasi anda :</p>
-          <div className="input-group">
-            <span className="input-group-text text-white" id="basic-addon1">
-              Rp
-            </span>
-            <input
-              type="text"
-              className="form-control m-0 shadow-none inputMoney"
-              placeholder="0"
-              aria-describedby="basic-addon1"
-              onChange={handleInputMoney}
-              value={inputMoney}
-            />
-          </div>
-          <div className="row mt-4 mb-5">
-            <div className="col text-center ">
-              <button
-                className="btn-50k btn w-100"
-                onClick={() => handleInputMoney(50000)}
-              >
-                Rp 50.000
-              </button>
-            </div>
-            <div className="col text-center ">
-              <button
-                className="btn-100k btn w-100"
-                onClick={() => handleInputMoney(100000)}
-              >
-                Rp 100.000
-              </button>
-            </div>
-            <div className="col text-center">
-              <button
-                className="btn-150k btn w-100"
-                onClick={() => handleInputMoney(150000)}
-              >
-                Rp 150.000
-              </button>
-            </div>
-          </div>
-          <div className="row gy-4">
-            <div className="col-12">
-              <p className="titleInputName mb-1">Nama Lengkap</p>
-              <input type="text" className="form-control m-0 shadow-none" />
-            </div>
-            <div className="col-12">
-              {" "}
-              <p className="titleInputNoTel mb-1">Nomor Telepon</p>
-              <input type="text" className="form-control m-0 shadow-none" />
-            </div>
-            <div className="col-12">
-              {" "}
-              <p className="titleInputEmail mb-1">Alamat Email</p>
-              <input type="text" className="form-control m-0 shadow-none" />
-            </div>
-          </div>
-          <div className="text-center mt-5" onClick={ppp}>
-            <button className="btn-lanjut btn text-white">LANJUT</button>
-          </div>
-          <img src={ImgCreditCard} alt="Payment via credit card!" />
+          </form>
         </div>
       </div>
     </div>
