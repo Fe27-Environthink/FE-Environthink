@@ -27,7 +27,9 @@ function Article() {
                         article.map((item) => (
                             <div key={item.id} 
                                 className="col-md-6 col-lg-4 mb-3 pt-4 pb-4"
-                               
+                                onClick={() => {
+                                    navigate(`/article/detail-article/${item.id}`);
+                                }}
                                 >
                                 <div className="card card-artikel h-100" >
                                     <img src={item.images} className="card-img-top" alt="artikel"/>

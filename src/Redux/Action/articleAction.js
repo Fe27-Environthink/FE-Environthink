@@ -29,6 +29,20 @@ export const getArticle = () => {
     }
 }
 
+export const getArticleDetail = () => {
+    return async (dispatch) => {
+        // mulai loading
+        dispatch(startFetching()) 
+        
+        // ambil data todo
+        const url = `https://644b56f917e2663b9ded34b8.mockapi.io/article/${id}`
+        const result = await axios(url) 
+
+        // kirim todo ke reducer
+        dispatch(successGetArticle(result.data)) 
+    }
+}
+
 // export const addTodo = (newTodo) => async (dispatch) => {
 //     const url = "https://643e1624c72fda4a0bed5b7f.mockapi.io/todo"
 //     await axios.post(url, newTodo)
