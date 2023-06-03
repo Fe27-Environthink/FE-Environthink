@@ -14,7 +14,7 @@ import { NavLink } from "react-router-dom";
 function Navbars() {
   return (
     <>
-      <Navbar key="lg" bg="light" expand="lg" className="mb-3">
+      <Navbar key="lg" bg="light" expand="lg" className="mb-0">
         <Container fluid>
           <Navbar.Brand href="#">
             {" "}
@@ -64,7 +64,7 @@ function Navbars() {
                   <li className="nav-item m-1">
                     <NavLink
                       className="btnDonasi btn nav-link active ps-3 pe-3"
-                      to="donasi.html"
+                      to="/donasi"
                     >
                       Donasi
                     </NavLink>
