@@ -4,12 +4,23 @@ import PeopleLogo from "../../assets/peopleLogo.png";
 import "./Homepage.css";
 import { useDispatch, useSelector } from "react-redux";
 import { FetchActicle } from "../../Redux/Action/HompageAction";
+import { useEffect, useState } from "react";
 
 const HomePage = () => {
   const dispatch = useDispatch();
 
-  const state = useSelector((state) => state.HomepageReducer);
-  console.log(state);
+  const state = useSelector((state) => state.HomepageReducer.article);
+
+  const [saveState, setSaveState] = useState(3);
+
+  useEffect(() => {
+    dispatch(FetchActicle());
+  }, []);
+
+  const handleShowAnotherArticle = () => {
+    dispatch(FetchActicle(saveState));
+    setSaveState(saveState + 3);
+  };
 
   return (
     <>
@@ -37,12 +48,55 @@ const HomePage = () => {
       </div>
 
       <div className="container">
-        <div className="articlesContent" id="articlesContent"></div>
+        {state?.map((item) => (
+          <div className="articlesContent" key={item.id}>
+            <div className="row ms-1 me-1 mt-5 mb-5">
+              <div className="col-md-4 p-0 me-4">
+                <img
+                  className="articlesImage"
+                  src={item.images}
+                  alt="Images "
+                />
+              </div>
+              <div
+                id="detailPreviewArticles"
+                className="col-md-7 ps-0 pe-0 mt-2"
+              >
+                <p className="hashTag mb-1  p-0">
+                  <span id="category">{item.cathegory}</span>{" "}
+                  <span id="dot"></span>
+                  <a href="" className="hashTagArticle text-decoration-none">
+                    {item.hashTag.join(" ")}
+                  </a>
+                </p>
+                <a
+                  className="wrapperLinkTitleArticles"
+                  href="../../detailArticle.html?id=${
+              data[i].id
+            }"
+                >
+                  <h3 className="titleArticles">{item.titleArticle}</h3>
+                </a>
+                <p className="descArticles text-dark">{item.descArticle}</p>
+                <p className="AuthorAndDate ">
+                  <span id="authorArticle"> {item.author}</span>
+                  <span id="dot2"></span>{" "}
+                  <span id="dateArticle">{item.date}</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        ))}
         <div className="d-flex justify-content-start ms-1">
           <button
             className="btn"
             id="artikel-lainnya"
-            onClick={() => dispatch(FetchActicle())}
+            onClick={handleShowAnotherArticle}
+            style={
+              saveState == 9
+                ? { visibility: "hidden" }
+                : { visibility: "visible" }
+            }
           >
             Artikel Lainnya
           </button>

@@ -7,8 +7,9 @@ const initialState = {
 const HomepageReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_DATA:
-      return [...state.article, action.payload];
-
+      return {
+        article: action.payload,
+      };
     default:
       return state;
   }
