@@ -65,9 +65,15 @@ const HomePage = () => {
                 <p className="hashTag mb-1  p-0">
                   <span id="category">{item.cathegory}</span>{" "}
                   <span id="dot"></span>
-                  <a href="" className="hashTagArticle text-decoration-none">
-                    {item.hashTag.join(" ")}
-                  </a>
+                  {item.hashTag.map((hashtag) => (
+                    <a
+                      href=""
+                      className="hashTagArticle text-decoration-none me-2"
+                      key={hashtag}
+                    >
+                      {hashtag}
+                    </a>
+                  ))}
                 </p>
                 <a
                   className="wrapperLinkTitleArticles"
