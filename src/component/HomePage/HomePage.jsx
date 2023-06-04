@@ -2,8 +2,15 @@ import InfoLogo from "../../assets/infoLogo.png";
 import ShareLogo from "../../assets/shareLogo.png";
 import PeopleLogo from "../../assets/peopleLogo.png";
 import "./Homepage.css";
+import { useDispatch, useSelector } from "react-redux";
+import { FetchActicle } from "../../Redux/Action/HompageAction";
 
 const HomePage = () => {
+  const dispatch = useDispatch();
+
+  const state = useSelector((state) => state.HomepageReducer);
+  console.log(state);
+
   return (
     <>
       <div className="container-fluid banner">
@@ -32,7 +39,11 @@ const HomePage = () => {
       <div className="container">
         <div className="articlesContent" id="articlesContent"></div>
         <div className="d-flex justify-content-start ms-1">
-          <button className="btn" id="artikel-lainnya">
+          <button
+            className="btn"
+            id="artikel-lainnya"
+            onClick={() => dispatch(FetchActicle())}
+          >
             Artikel Lainnya
           </button>
         </div>
