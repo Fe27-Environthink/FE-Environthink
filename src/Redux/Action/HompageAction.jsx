@@ -14,7 +14,7 @@ const actionFetch = (data) => {
   };
 };
 
-export const FetchActicle = (index) => {
+export const FetchActicle = (indexs) => {
   return async (dispatch) => {
     axios
       .get("https://644b56f917e2663b9ded34b8.mockapi.io/article")
