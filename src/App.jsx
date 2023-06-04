@@ -5,17 +5,16 @@ import HomePage from "./component/HomePage/HomePage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbars from "./component/Navbar/Navbars";
 
-
 function App() {
   return (
     <>
       <BrowserRouter>
-   <Navbars/>
+        <Navbars />
         <Routes>
           {/* Isi route nya ya kyk page Homepage, search, aksi, article...contoh  */}
           <Route path="/" element={<HomePage />} />
         </Routes>
-        <Footer/>
+        <Footer />
       </BrowserRouter>
     </>
   );
