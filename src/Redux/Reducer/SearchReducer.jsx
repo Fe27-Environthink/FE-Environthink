@@ -7,7 +7,6 @@ const initialState = {
 const SearchReducer = (state = initialState, action) => {
   switch (action.type) {
     case SEARCH_ARTICLE:
-      //   console.log(action.searchResult);
       return {
         result: action.searchResult,
       };

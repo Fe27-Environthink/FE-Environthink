@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import "./Search.css";
 import { useDispatch, useSelector } from "react-redux";
-import { SearchAction, SearchData } from "../../Redux/Action/SearchAction";
-// import { SearchData } from "../../Redux/Action/SearchAction";
+import { SearchData } from "../../Redux/Action/SearchAction";
 
 const Search = () => {
   const [searchValue, setSearchValue] = useState("");
+  const [conditon, setCondition] = useState(false);
   const dispatch = useDispatch();
 
   const { result } = useSelector((state) => state.SearchReducer);
@@ -32,6 +32,9 @@ const Search = () => {
                 className="inputSearch form-control shadow-none border border-2"
                 placeholder="Cari Artikel lainnya!"
                 onChange={(event) => setSearchValue(event.target.value)}
+                onKeyPress={(e) => {
+                  e.key == "Enter" && handleSubmit();
+                }}
               />
             </div>
           </div>
@@ -48,77 +51,61 @@ const Search = () => {
       </div>
 
       <div className="container">
-        <div className="row pt-4" id="articlesContent">
-          {result?.map((item) => (
-            <div
-              className="col-12 col-sm-12 col-md-6 col-lg-4 mb-3 pt-4"
-              key={item.id}
-            >
-              <div className="card card-artikel h-100">
-                <img src={item.images} className="card-img-top" alt="artikel" />
-                <div className="card-body">
-                  <a className="wrapperLinkTitleArticles" href="">
-                    <h5 className="card-title text-break">
-                      {item.titleArticle}
-                    </h5>
-                  </a>
-                  <p
-                    className="card-text"
-                    style={{ color: "#595959", textAlign: "justify" }}
-                  >
-                    {item.descArticle}
-                  </p>
-                  <p className="fw-bold">
-                    <span className="author text-secondary">{item.author}</span>
-                    <span id="dot2"></span>
-                    <span className="date text-secondary">{item.date}</span>
-                  </p>
+        <div
+          className="row pt-4 "
+          style={{ marginBottom: "6em" }}
+          id="articlesContent"
+        >
+          {typeof result == "string" ? (
+            <div className="wrapperNotFound col-md-6 col-11 mx-auto mb-5 pt-3 pb-5 ps-4 pe-4">
+              <p className="titleNotFoundArticle text-dark mb-2">
+                Maaf, kami tidak dapat menemukan apa yang anda cari.
+              </p>
+              <ul className="bg-dangesr m-0">
+                <li className="possibleNotFoundKeyword1 text-secondary">
+                  Cek kesalahan dalam penulisan, dan coba pencarian lagi
+                </li>
+                <li className="possibleNotFoundKeyword2 text-secondary">
+                  Coba lakukan pencarian lain
+                </li>
+              </ul>
+            </div>
+          ) : (
+            result?.map((item) => (
+              <div
+                className="col-12 col-sm-12 col-md-6 col-lg-4 pt-4"
+                key={item.id}
+              >
+                <div className="card card-artikel h-100">
+                  <img
+                    src={item.images}
+                    className="card-img-top"
+                    alt="artikel"
+                  />
+                  <div className="card-body">
+                    <a className="wrapperLinkTitleArticles" href="">
+                      <h5 className="card-title text-break">
+                        {item.titleArticle}
+                      </h5>
+                    </a>
+                    <p
+                      className="card-text"
+                      style={{ color: "#595959", textAlign: "justify" }}
+                    >
+                      {item.descArticle}
+                    </p>
+                    <p className="fw-bold">
+                      <span className="author text-secondary">
+                        {item.author}
+                      </span>
+                      <span id="dot2"></span>
+                      <span className="date text-secondary">{item.date}</span>
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-          {/* {result.map((item) => (
-            <div
-              className="col-12 col-sm-12 col-md-6 col-lg-4 mb-3 pt-4"
-              key={item.id}
-            >
-              <div className="card card-artikel h-100">
-                <img src={item.images} className="card-img-top" alt="artikel" />
-                <div className="card-body">
-                  <a className="wrapperLinkTitleArticles" href="">
-                    <h5 className="card-title text-break">
-                      {item.titleArticle}
-                    </h5>
-                  </a>
-                  <p
-                    className="card-text"
-                    style={{ color: "#595959", textAlign: "justify" }}
-                  >
-                    {item.descArticle}
-                  </p>
-                  <p className="fw-bold">
-                    <span className="author text-secondary">{item.author}</span>
-                    <span id="dot2"></span>
-                    <span className="date text-secondary">{item.date}</span>
-                  </p>
-                </div>
-              </div>
-            </div>
-          ))} */}
-
-          {/* // <div className="wrapperNotFound col-md-6 col-11 mx-auto mb-5 pt-3 pb-5 ps-4 pe-4">
-          //   <p className="titleNotFoundArticle text-dark mb-2">
-          //     Maaf, kami tidak dapat menemukan apa yang anda cari.
-          //   </p>
-          //   <ul className="bg-dangesr m-0">
-          //     <li className="possibleNotFoundKeyword1 text-secondary">
-          //       Cek kesalahan dalam penulisan, dan coba pencarian lagi
-          //     </li>
-          //     <li className="possibleNotFoundKeyword2 text-secondary">
-          //       Coba lakukan pencarian lain
-          //     </li>
-          //   </ul>
-          // </div> */}
+            ))
+          )}
         </div>
       </div>
     </>

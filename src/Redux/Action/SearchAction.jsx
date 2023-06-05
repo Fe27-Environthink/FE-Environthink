@@ -20,7 +20,7 @@ export const SearchAction = (payload, keyword) => {
 
   return {
     type: SEARCH_ARTICLE,
-    searchResult,
+    searchResult: searchResult.length == 0 ? "Not Found" : searchResult,
   };
 };
 
