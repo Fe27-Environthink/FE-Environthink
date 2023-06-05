@@ -15,7 +15,6 @@ const actionFetch = (data, index) => {
       payload,
     };
   } else {
-    // console.log("masuk ke else ");
     const payload = [];
     for (let i = 0; i < 3 + index && i < data.length; i++) {
       payload.push(data[i]);
