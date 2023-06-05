@@ -2,6 +2,16 @@
    color:#737373 !important;
     
 }
+
+.title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
 #dot {
     height: 7px;
     width: 7px;
