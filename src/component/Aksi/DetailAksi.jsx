@@ -1,10 +1,21 @@
 import { useParams } from "react-router-dom";
 import "./Aksi.css";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { getDataAksi, getDetail } from './../../Redux/Reducer/AksiReducer';
 function DetailAksi() {
 const {key}=useParams();
+const dispatch =useDispatch()
+const {detailAksi,listAksi,isLoading} = useSelector((state)=>state.AksiReducer)
+const [detail,setDetail]=useState([])
+useEffect(()=>{
+  dispatch(getDetail(key));
+},[onload])
+console.log("detail on detail",detailAksi);
+console.log("listAksi on detail",listAksi);
   return (
     <>
-      <div className="container pt-5 detail-aksi">
+     <div className="container pt-5 detail-aksi">
         <div className="row">
           <div className="col-md-8">
             <div id="aksi">
@@ -13,43 +24,23 @@ const {key}=useParams();
                 <span id="hashTag" >#Nelayan #Perbudakan</span>
               </p>
 
-              <h3 id="title" >Hentikan Perbudakan Modern di Laut!{key}</h3>
+              <h3 id="title" >{detailAksi.nama}</h3>
               <img
                 className="img-fluid pt-3"
                 width="100%"
-                src="https://i.ibb.co/hVRwTrJ/perbudakan-modern-di-laut-terus-berlanjut-polri-gagal-lindungi-abk-ikan-indonesia.jpg"
+                src= {detailAksi.image}
                 alt="image content"
                 id="image"
               />
               <div className="paragraf pt-4">
                 <p className="mb-4 paragraf">
-                  Para Anak Buah Kapal (ABK) Indonesia yang bekerja di kapal
-                  ikan asing mengalami perlakuan yang sangat buruk meskipun
-                  diimingi upah yang tinggi. Mereka mendapat upah yang ditahan,
-                  jam kerja yang tidak manusiawi, tidak diberi makan dan minum
-                  yang layak, dan bahkan jatuh sakit dan meninggal lalu jasadnya
-                  dilarung ke laut tanpa sepengetahuan keluarga. Perlakuan
-                  menyedihkan ini bukanlah hal yang baru, ABK Indonesia sering
-                  kali menjadi korban kerja paksa dan perbudakan modern di kapal
-                  perikanan asing jarak jauh. Kapal perikanan ilegal semakin
-                  membuat kondisi stok ikan dan ekosistem laut terancam, bahkan
-                  mencederai kemanusiaan.
+                 {detailAksi.paragraf1}
                 </p>
                 <p className="mb-4 paragraf">
-                  Saatnya kita mengakhiri perbudakan modern di laut dan memenuhi
-                  hak-hak ABK dan keluarganya. Mari bersama-sama bersikap tegas
-                  pada seluruh negara bendera kapal ikan yang mempekerjakan ABK
-                  Indonesia, melakukan inspeksi kapal perikanan jarak jauh
-                  secara global, dan menuntaskan benang kusut tata kelola
-                  Pelindungan ABK dengan ratifikasi Konvensi ILO 188 tentang
-                  Pekerjaan dalam Penangkapan Ikan. Kita harus menghentikan
-                  tindakan yang merugikan ABK dan memastikan bahwa mereka
-                  mendapatkan perlindungan yang layak.
+                {detailAksi.paragraf2}
                 </p>
                 <p id="paragraf-konklusi" className="fw-bold paragraf">
-                  Mari kita bersama-sama mendorong Pemerintah Indonesia untuk
-                  mengambil tindakan yang lebih kuat dalam melindungi para Anak
-                  Buah Kapal (ABK) Indonesia dan keluarga mereka.
+                {detailAksi.paragrafKonklusi}
                 </p>
               </div>
             </div>
@@ -76,13 +67,11 @@ const {key}=useParams();
               </div>
               <figcaption className="figure-caption text-end" id="figcaption">
                 <span id="caption-bar" />
-                0/
+                {detailAksi.jumlahDukungan}/{detailAksi.Target}
                 <span id="target" /> dukungan
               </figcaption>
               <p className="fw-semibold paragraf" id="paragarfPetisi">
-                Ayo bergabunglah dengan kami dan menunjukkan dukunganmu terhadap
-                lautan dengan menandatangani petisi dan mendaftarkan namamu
-                sebagai pembela laut.
+              {detailAksi.paragrafPetisi}
               </p>
               <form className="form-group" id="form-petisi">
                 <div className="mb-3">
