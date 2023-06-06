@@ -30,7 +30,7 @@ export const successGetDetail =(payload)=>(
 
 export const getDataAksi = ()=> async(dispatch)=>{
     dispatch(fatchingAksi())
-   const url="https://64506cd6e1f6f1bb22977ba9.mockapi.io/aksi"
+   const url="https://647ef495c246f166da8fbfec.mockapi.io/aksi"
    const result =await axios(url)
    dispatch(success(result.data))
 
@@ -39,7 +39,7 @@ export const getDataAksi = ()=> async(dispatch)=>{
 export const  getDetail=(id)=>async(dispatch)=>{
     console.log("id",id);
     dispatch(fatchingAksi())
-    const url=`https://64506cd6e1f6f1bb22977ba9.mockapi.io/aksi/${id}`
+    const url=`https://647ef495c246f166da8fbfec.mockapi.io/aksi/${id}`
     console.log(url);
     const result =await axios(url)
     dispatch(successGetDetail(result.data))

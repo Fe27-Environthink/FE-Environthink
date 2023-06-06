@@ -45,9 +45,10 @@ function Aksi() {
         <div className="artikel" id="artikel">
           <h3 className="text-start ">Tanpa Aksi, Tidak Ada Perubahan</h3>
           <p className="sub-title">
-            Ayo Bergabung dan Beraksi untuk Masa Depan Bumi yang Lebih Baik!
+          Bergabunglah dengan kami dan tandatangani petisi untuk mendukung perubahan positif. 
           </p>
           <div style={{ border: "0.5px solid #bfbfbf" }}></div>
+          
           <div className="row pt-2" id="articlesContent">
            
             {isLoading?(
@@ -65,12 +66,12 @@ function Aksi() {
                     alt=" "
                   />
                   <div className="card-body">
-                    <h6 className="card-title title title-aksi">{item.nama}</h6>
+                    <h6 className="card-title title title-aksi">{item.title}</h6>
                     <p className="card-text sub-title d-flex align-items-center gap-2">
                       <FaUsers />{" "}
                       <span className="fw-medium fs-6">
                         {" "}
-                        {item.jumlahDukungan}orang mendukung
+                        {item.numberOfSupport} orang mendukung
                       </span>
                     </p>
                     <Link className="link-aksi" to={`/aksi/${item.id}`}>

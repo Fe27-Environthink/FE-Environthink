@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "./Aksi.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
@@ -21,10 +21,17 @@ console.log("listAksi on detail",listAksi);
             <div id="aksi">
               <p className="hashTag  m-0 p-0">
                 <span id="cathegory" >Petisi</span> <span id="dot" > </span>
-                <span id="hashTag" >#Nelayan #Perbudakan</span>
+                {detailAksi!=0&&detailAksi.hashtag.map((item)=>(
+                  <Link to={`/aksi/${item}`  } style={{ textDecoration: 'none' }}>
+                    <span id="hashTag"   className="p-2 hashTag " ># {item}</span>
+                    </Link>
+                ))
+
+                }
+              
               </p>
 
-              <h3 id="title" >{detailAksi.nama}</h3>
+              <h3 id="title" >{detailAksi.title}</h3>
               <img
                 className="img-fluid pt-3"
                 width="100%"
@@ -67,11 +74,11 @@ console.log("listAksi on detail",listAksi);
               </div>
               <figcaption className="figure-caption text-end" id="figcaption">
                 <span id="caption-bar" />
-                {detailAksi.jumlahDukungan}/{detailAksi.Target}
+                {detailAksi.numberOfSupport}/{detailAksi.target}
                 <span id="target" /> dukungan
               </figcaption>
               <p className="fw-semibold paragraf" id="paragarfPetisi">
-              {detailAksi.paragrafPetisi}
+              {detailAksi.textPetisi}
               </p>
               <form className="form-group" id="form-petisi">
                 <div className="mb-3">
