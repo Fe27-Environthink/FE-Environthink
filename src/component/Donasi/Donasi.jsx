@@ -1,15 +1,16 @@
 import "./Donasi.css";
 import ImgCreditCard from "../../assets/CardCredit.png";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Swal from "sweetalert2";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { dataDonasi } from "../../Redux/Action/ActionDonasi";
+import emailjs from "@emailjs/browser";
 
 const Donasi = () => {
-  const state = useSelector((state) => state.DonasiReducer.Donasi);
+  // const state = useSelector((state) => state.DonasiReducer.Donasi);
   const dispatch = useDispatch();
 
-  // console.log(state);
+  const ref = useRef();
 
   const [inputMoney, setInputMoney] = useState("");
 
@@ -76,9 +77,27 @@ const Donasi = () => {
         };
       });
       dispatch(dataDonasi(data, formData));
-      Swal.fire("Cek email untuk instruksi pembayaran", "", "success");
-
-      console.log(state);
+      emailjs
+        .sendForm(
+          "service_coje9kr",
+          "template_u1wvjal",
+          ref.current,
+          "XqGlpCTZBi29jsyGy"
+        )
+        .then(
+          (result) => {
+            Swal.fire("Cek email untuk instruksi pembayaran", "", "success");
+            console.log(result.text);
+          },
+          (error) => {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Terjadi Kesalahan !",
+            });
+            console.log(error.text);
+          }
+        );
     }
   };
 
@@ -104,7 +123,7 @@ const Donasi = () => {
 
       <div className="colDonasi col p-0 m-0">
         <div className="wrapperInputDonasi ">
-          <form onSubmit={handleSubmit}>
+          <form ref={ref} onSubmit={handleSubmit}>
             <p className="DescDonasi">Masukan jumlah nominal donasi anda :</p>
             <div className="input-group">
               <span className="input-group-text text-white" id="basic-addon1">
