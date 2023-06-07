@@ -3,8 +3,9 @@ import thunk from "redux-thunk";
 import Reducer from "./Reducer/Reducer";
 import articleReducer from "./Reducer/articleReducer";
 import infografisReducer from './Reducer/infografisReducer';
+import komentarReducer from './Reducer/komentarReducer';
 
-const rootReducer = combineReducers({ Reducer, articleReducer, infografisReducer });
+const rootReducer = combineReducers({ Reducer, articleReducer, infografisReducer, komentarReducer });
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 

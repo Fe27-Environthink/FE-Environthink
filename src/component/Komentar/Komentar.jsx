@@ -1,7 +1,15 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import {useEffect} from 'react';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getKomentar } from '../../Redux/Action/komentarAction';
 
 function Komentar() {
+    const dispatch = useDispatch();
+    const { komentar, isLoading } = useSelector((state) => state.komentarReducer)
+
+    useEffect(() => {
+        dispatch(getKomentar());
+      }, []);
   return (
     <>
         <div className="container p-5">
@@ -42,18 +50,22 @@ function Komentar() {
                 </form>
             </div>
 
+            {isLoading && <span>Loading...</span>}
             <div className="row pt-4">
-                <div className="posts-list" id="posts-list">
-                    <div className="card bg-light mt-4 mb-5" style={{width: "50rem"}}>
-                        <div className="card-body">
-                            <h5 className="card-title">Farah</h5>
-                            <h6 className="card-subtitle mb-2 text-body-secondary">12.123.34 <span id="dot2"></span> <span> snjxj@gmail.com</span></h6>
-                            <p className="card-text text-dark">sdhbfnfjdj</p>
-                            <Link to="#" className="card-link">Edit</Link>
-                            <Link to="#" className="card-link">Delete</Link>
+                {komentar.length > 0 &&
+                    komentar.map((item) => (
+                    <div key={item.id} className="posts-list" id="posts-list">
+                        <div className="card bg-light mt-2 mb-2" style={{width: "50rem"}}>
+                            <div className="card-body">
+                                <h5 className="card-title">{item.name}</h5>
+                                <h6 className="card-subtitle mb-2 text-body-secondary">{item.createdAt} <span id="dot2"></span> <span> {item.email}</span></h6>
+                                <p className="card-text text-dark">{item.komentar}</p>
+                                <Link to="#" className="card-link">Edit</Link>
+                                <Link to="#" className="card-link">Delete</Link>
+                            </div>
                         </div>
                     </div>
-                </div>
+                ))}
             </div>
 
         </div>
