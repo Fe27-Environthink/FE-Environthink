@@ -22,7 +22,7 @@ function DetailArticle() {
     <>
       <div id="articlesContent" className="container pt-4">
         {isLoading && <span>Loading...</span>}
-        {typeof detailArticle != "undefined" && (
+        
           <div className="row ms-1 me-1">
             <div className="col-md-12 mb-3">
               <p className="hashTag m-0 p-0">
@@ -92,7 +92,7 @@ function DetailArticle() {
               </p>
             </div>
           </div>
-        )}
+        
 
         <Komentar />
       </div>

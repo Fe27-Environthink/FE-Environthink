@@ -15,6 +15,7 @@ function articleReducer(state = initialState, action) {
             };
         case SUCCESS_GET_ARTICLE:
             return {
+                ...state,
                 article: [...action.payload],
                 isLoading: false,
         };
