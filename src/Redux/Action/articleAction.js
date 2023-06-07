@@ -1,6 +1,7 @@
 import axios from "axios";
 export const START_FETCHING = "START_FETCHING"
 export const SUCCESS_GET_ARTICLE = "SUCCESS_GET_ARTICLE"
+export const SUCCESS_GET_DETAIL_ARTICLE = "SUCCESS_GET_DETAIL_ARTICLE"
 
 const startFetching = () => {
     return {
@@ -14,32 +15,29 @@ const successGetArticle = (payload) => {
         payload
     }
 }
+
+export const successGetDetail =(payload)=>(
+    {
+        type:SUCCESS_GET_DETAIL_ARTICLE,
+        payload
+    }
+)
   
 export const getArticle = () => {
     return async (dispatch) => {
-        // mulai loading
         dispatch(startFetching()) 
-        
-        // ambil data todo
         const url = "https://644b56f917e2663b9ded34b8.mockapi.io/article"
         const result = await axios(url) 
-
-        // kirim todo ke reducer
         dispatch(successGetArticle(result.data)) 
     }
 }
 
-export const getArticleDetail = () => {
+export const getArticleDetail = (id) => {
     return async (dispatch) => {
-        // mulai loading
         dispatch(startFetching()) 
-        
-        // ambil data todo
         const url = `https://644b56f917e2663b9ded34b8.mockapi.io/article/${id}`
         const result = await axios(url) 
-
-        // kirim todo ke reducer
-        dispatch(successGetArticle(result.data)) 
+        dispatch(successGetDetail(result.data)) 
     }
 }
 
