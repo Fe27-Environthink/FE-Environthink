@@ -2,7 +2,6 @@ import { useEffect } from 'react'
 import "./Infografis.css"
 import { useDispatch, useSelector } from 'react-redux';
 import { getInfografis } from '../../Redux/Action/infografisAction';
-import infografisReducer from '../../Redux/Reducer/infografisReducer';
 
 function Infografis() {
     const dispatch = useDispatch();
