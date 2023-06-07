@@ -15,7 +15,8 @@ export const SearchAction = (payload, keyword) => {
       obj.paragraf7.toLowerCase().includes(keyword.toLowerCase()) ||
       obj.paragraf8.toLowerCase().includes(keyword.toLowerCase()) ||
       obj.paragraf9.toLowerCase().includes(keyword.toLowerCase()) ||
-      obj.paragraf10.toLowerCase().includes(keyword.toLowerCase())
+      obj.paragraf10.toLowerCase().includes(keyword.toLowerCase()) ||
+      obj.author.toLowerCase().includes(keyword.toLowerCase())
   );
 
   return {

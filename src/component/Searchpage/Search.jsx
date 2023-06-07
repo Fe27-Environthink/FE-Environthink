@@ -1,23 +1,16 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./Search.css";
 import { useDispatch, useSelector } from "react-redux";
 import { SearchData } from "../../Redux/Action/SearchAction";
 
 const Search = () => {
   const [searchValue, setSearchValue] = useState("");
-  const [conditon, setCondition] = useState(false);
   const dispatch = useDispatch();
 
   const { result } = useSelector((state) => state.SearchReducer);
-  // console.log(result);
-
-  // useEffect(() => {
-  //   dispatch(SearchData());
-  // }, []);
 
   const handleSubmit = () => {
     dispatch(SearchData(searchValue));
-    // setSearchValue("");
   };
 
   return (
