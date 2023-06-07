@@ -7,7 +7,7 @@ const startFetching = () => {
         type: START_INFOGRAFIS
     }
 }
-  
+
 const successGetInfografis = (payload) => {
     return {
         type: SUCCESS_GET_INFOGRAFIS,

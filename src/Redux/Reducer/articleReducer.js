@@ -18,14 +18,14 @@ function articleReducer(state = initialState, action) {
                 ...state,
                 article: [...action.payload],
                 isLoading: false,
-        };
+            };
         case SUCCESS_GET_DETAIL_ARTICLE:
             console.log(action.payload)
-            return{
+            return {
                 ...state,
                 detailArticle:action.payload,
                 isLoading:false
-            } 
+            };
         default:
             return state;
         }

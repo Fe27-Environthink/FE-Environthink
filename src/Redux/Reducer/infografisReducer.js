@@ -14,9 +14,10 @@ function infografisReducer(state = initialState, action) {
             };
         case SUCCESS_GET_INFOGRAFIS:
             return {
+                ...state,
                 infografis: [...action.payload],
                 isLoading: false,
-        };
+            };
         default:
             return state;
         }

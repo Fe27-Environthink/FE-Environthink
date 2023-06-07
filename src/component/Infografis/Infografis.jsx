@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import "./Infografis.css"
 import { useDispatch, useSelector } from 'react-redux';
 import { getInfografis } from '../../Redux/Action/infografisAction';
+import infografisReducer from '../../Redux/Reducer/infografisReducer';
 
 function Infografis() {
     const dispatch = useDispatch();
@@ -20,8 +21,8 @@ function Infografis() {
                 {isLoading && <span>Loading...</span>}
 
                 <div className="row pt-4" id="infografisContent">
-                    {infografis.length > 0 && 
-                        infografisReducer.map((item) => (
+                    {infografis.length > 0 &&
+                        infografis.map((item) => (
                             <div key={item.id} className="col-md-6 col-lg-4 mb-3 pb-4">
                                 <div className="card card-infografis h-100">
                                     <img src={item.images} style={{cursor: "pointer"}} className="card-img-top" data-bs-toggle="modal" data-bs-target="#${data[i].id}Backdrop" alt="artikel"/>

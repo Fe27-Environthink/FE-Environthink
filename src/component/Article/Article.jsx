@@ -55,7 +55,7 @@ function Article() {
             </div>
         </div>
 
-        {/* <Infografis /> */}
+        <Infografis />
     </>
   )
 }
