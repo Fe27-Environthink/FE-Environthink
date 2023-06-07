@@ -85,17 +85,15 @@ const Donasi = () => {
           "XqGlpCTZBi29jsyGy"
         )
         .then(
-          (result) => {
+          () => {
             Swal.fire("Cek email untuk instruksi pembayaran", "", "success");
-            console.log(result.text);
           },
           (error) => {
             Swal.fire({
               icon: "error",
-              title: "Oops...",
-              text: "Terjadi Kesalahan !",
+              title: "Terjadi Kesalahan !",
+              text: `${error.text}`,
             });
-            console.log(error.text);
           }
         );
     }
