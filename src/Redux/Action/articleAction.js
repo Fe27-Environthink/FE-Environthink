@@ -37,6 +37,7 @@ export const getArticleDetail = (id) => {
         dispatch(startFetching()) 
         const url = `https://644b56f917e2663b9ded34b8.mockapi.io/article/${id}`
         const result = await axios(url) 
+        console.log(result.data)
         dispatch(successGetDetail(result.data)) 
     }
 }

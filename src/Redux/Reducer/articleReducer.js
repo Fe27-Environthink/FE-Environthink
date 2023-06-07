@@ -19,6 +19,7 @@ function articleReducer(state = initialState, action) {
                 isLoading: false,
         };
         case SUCCESS_GET_DETAIL_ARTICLE:
+            console.log(action.payload)
             return{
                 ...state,
                 detailArticle:action.payload,

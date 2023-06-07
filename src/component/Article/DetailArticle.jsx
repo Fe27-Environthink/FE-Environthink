@@ -12,13 +12,15 @@ function DetailArticle() {
     const {detailArticle,article,isLoading} = useSelector((state)=>state.articleReducer)
     const [detail,setDetail]=useState([])
 
+    console.log(detailArticle)
+
     useEffect(()=>{
         dispatch(getArticleDetail(key));
-    },[onload])
+    },[])
     
-  return (
+  return ( 
     <>
-        <div id="articlesContent" className="container">
+        <div id="articlesContent" className="container pt-4">
         {isLoading && <span>Loading...</span>}
             <div className="row ms-1 me-1">
                 <div className="col-md-12 mb-3">
