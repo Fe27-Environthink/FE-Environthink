@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { FaClock } from "react-icons/fa";
 import Komentar from "../Komentar/Komentar";
 import { getArticleDetail } from "../../Redux/Action/articleAction";
@@ -12,7 +12,6 @@ function DetailArticle() {
   const { detailArticle, article, isLoading } = useSelector(
     (state) => state.articleReducer
   );
-  const [detail, setDetail] = useState([]);
 
   useEffect(() => {
     dispatch(getArticleDetail(key));

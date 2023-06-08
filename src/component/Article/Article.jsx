@@ -53,9 +53,9 @@ function Article() {
                                 <img src={item.images} className="card-img-top" alt="artikel"/>
                                 <div className="card-body">
                                     <Link to={`/article/${item.id}`} className="wrapperLinkTitleArticles">
-                                        <h5 className="card-title">{item.titleArticle}</h5>
+                                        <h5 className="card-title title-article">{item.titleArticle}</h5>
                                     </Link>
-                                    <p className="card-text" style={{color: "#595959", textAlign: "justify"}}>{item.descArticle}</p>
+                                    <p className="card-text desc-article" style={{color: "#595959", textAlign: "justify"}}>{item.descArticle}</p>
                                     <p className="fw-bold" style={{color: "#6F7376"}}>
                                         <span className="author"> {item.author} </span> <span id="dot2"></span>
                                         <span className="date"> {item.date} </span>
@@ -81,7 +81,7 @@ function Article() {
         </div>
 
         <Infografis />
-        
+
     </>
   )
 }
