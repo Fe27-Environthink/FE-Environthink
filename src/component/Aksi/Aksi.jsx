@@ -45,58 +45,74 @@ function Aksi() {
         <div className="artikel" id="artikel">
           <h3 className="text-start ">Tanpa Aksi, Tidak Ada Perubahan</h3>
           <p className="sub-title">
-          Bergabunglah dengan kami dan tandatangani petisi untuk mendukung perubahan positif. 
+            Bergabunglah dengan kami dan tandatangani petisi untuk mendukung
+            perubahan positif.
           </p>
           <div style={{ border: "0.5px solid #bfbfbf" }}></div>
-          
+
           <div className="row pt-2" id="articlesContent">
-           
-            {isLoading?(
+            {isLoading ? (
               <div className="text-center  d-flex justify-content-center align-items-center my-5 py-5">
-                <span className="mx-2 h1" >loading   
-              </span>
-              <Spinner animation="border" variant="dark" />
+                <span className="mx-2 h1">loading</span>
+                <Spinner animation="border" variant="dark" />
               </div>
-            ):filterData.map((item) => (
-              <div className="col-md-4 col-sm-6 mb-4 pt-4 pb-4" key={item.id}>
-                <div className="card card-aksi h-100">
-                  <img
-                    src={item.image}
-                    className="card-img-top h-100"
-                    alt=" "
-                  />
-                  <div className="card-body">
-                    <h6 className="card-title title title-aksi">{item.title}</h6>
-                    <p className="card-text sub-title d-flex align-items-center gap-2">
-                      <FaUsers />{" "}
-                      <span className="fw-medium fs-6">
-                        {" "}
-                        {item.numberOfSupport} orang mendukung
-                      </span>
-                    </p>
-                    <Link className="link-aksi" to={`/aksi/${item.id}`}>
-                      <h5 className="btn btn-main d-block">
-                        Pelajari Selengkapnya
-                      </h5>
-                    </Link>
+            ) : (
+              filterData.map((item) => (
+                <div className="col-md-4 col-sm-6 mb-4 pt-4 pb-4" key={item.id}>
+                  <div className="card card-aksi h-100">
+                    <img
+                      src={item.image}
+                      className="card-img-top h-100"
+                      alt=" "
+                    />
+                    <div className="card-body">
+                      <h6 className="card-title title title-aksi">
+                        {item.title}
+                      </h6>
+                      <p className="card-text sub-title d-flex align-items-center gap-2">
+                        <FaUsers />
+                        {item.numberOfSupport==0? (
+                          <span className="fw-medium fs-6">
+                            Belum ada dukungan
+                          </span>
+                        ) :item.numberOfSupport < item.target ? (
+                          <span className="fw-medium fs-6">
+                            {item.numberOfSupport} orang mendukung
+                          </span>
+                        ): (
+                          <span className="fw-medium fs-6">
+                           Petisi Mencapai Kemenangan
+                          </span>
+                        )
+                        }
+                      </p>
+                      <Link className="link-aksi" to={`/aksi/${item.id}`}>
+                        {item.numberOfSupport<item.target?<h5 className="btn btn-main d-block">
+                          Pelajari Selengkapnya
+                        </h5>:<h5 className="btn btn-secondary d-block">
+                          Pelajari Selengkapnya
+                        </h5>}
+                        
+                      </Link>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))
+            )}
           </div>
         </div>
-        {!isLoading&&
-        <div className="d-flex justify-content-center pb-3">
-          {showButton && (
-            <button
-              className="btn btn-lainnya "
-              onClick={() => setLimit(limit + 3)}
-            >
-              Aksi Lainnya
-            </button>
-          )}
-        </div>
-        }
+        {!isLoading && (
+          <div className="d-flex justify-content-center pb-3">
+            {showButton && (
+              <button
+                className="btn btn-lainnya "
+                onClick={() => setLimit(limit + 3)}
+              >
+                Aksi Lainnya
+              </button>
+            )}
+          </div>
+        )}
       </div>
     </>
   );
