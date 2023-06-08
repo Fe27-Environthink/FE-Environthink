@@ -1,11 +1,29 @@
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getKomentar } from '../../Redux/Action/komentarAction';
+import { getKomentar, addKomentar } from '../../Redux/Action/komentarAction';
 
 function Komentar() {
     const dispatch = useDispatch();
     const { komentar, isLoading } = useSelector((state) => state.komentarReducer)
+    const [inputKomentar, setInputKomentar] = useState("");
+    const [inputEmail, setInputEmail] = useState("");
+    const [inputName, setInputName] = useState("");
+
+    const handleSubmit = (e) => {
+        e.preventDefault(); 
+        let newData = {
+            name: inputName,
+            email: inputEmail,
+            komentar: inputKomentar
+        };
+       
+        dispatch(addKomentar(newData));
+        setInputName("")
+        setInputEmail("")
+        setInputKomentar("");
+        console.log(newData)
+      };
 
     useEffect(() => {
         dispatch(getKomentar());
@@ -16,7 +34,7 @@ function Komentar() {
             <div className="komentar" id="komentar">
                 <h3 className="text-start mb-3">Komentar</h3>
                 <div style={{border: "0.5px solid #bfbfbf"}}></div>
-                <form className="add-post-form">
+                <form onSubmit={handleSubmit} className="add-post-form">
                     <div className="row pt-5">
                         <div className="col-lg-8 col-md-8 col-sm-12 field">
                         <div className="input-group mb-3">
@@ -25,6 +43,8 @@ function Komentar() {
                                 id="email-value"
                                 className="form-control form-control-md me-2"
                                 placeholder="Masukkan Alamat Email"
+                                value={inputEmail}
+                                onChange={(e) => setInputEmail(e.target.value)}
                                 required
                             />
                             <input
@@ -32,6 +52,8 @@ function Komentar() {
                                 id="name-value"
                                 className="form-control form-control-md"
                                 placeholder="Masukkan Nama"
+                                value={inputName}
+                                onChange={(e) => setInputName(e.target.value)}
                                 required
                             />
                         </div>
@@ -41,6 +63,8 @@ function Komentar() {
                                 className="form-control form-control-md"
                                 placeholder="Tulis Komentar"
                                 style={{height: "150px", resize: "none"}}
+                                value={inputKomentar}
+                                onChange={(e) => setInputKomentar(e.target.value)}
                                 required
                             ></textarea>
                         </div>

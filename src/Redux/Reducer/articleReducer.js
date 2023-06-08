@@ -26,6 +26,7 @@ function articleReducer(state = initialState, action) {
                 detailArticle:action.payload,
                 isLoading:false
             };
+            
         default:
             return state;
         }

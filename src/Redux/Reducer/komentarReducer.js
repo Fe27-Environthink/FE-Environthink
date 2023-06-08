@@ -14,7 +14,7 @@ function infografisReducer(state = initialState, action) {
             };
         case SUCCESS_GET_KOMENTAR:
             return {
-                ...state,
+                
                 komentar: [...action.payload],
                 isLoading: false,
             };
