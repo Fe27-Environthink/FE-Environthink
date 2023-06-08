@@ -16,7 +16,6 @@ const successGetKomentar = (payload) => {
     }
 }
 
-
 export const getKomentar = () => {
     return async (dispatch) => {
         dispatch(startKomentar()) 
