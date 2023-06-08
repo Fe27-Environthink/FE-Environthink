@@ -14,7 +14,7 @@ import { NavLink } from "react-router-dom";
 function Navbars() {
   return (
     <>
-      <Navbar key="lg" bg="light" expand="lg" className="mb-3 d-flex flex-column justify-content-between shadow sticky-top bg-white">
+      <Navbar key="lg" bg="light" expand="lg" className="mb-3">
         <Container fluid>
           <Navbar.Brand href="#"> <img src={Logo} id="logo" alt="Environthink Logo" /></Navbar.Brand>
           <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-lg`} />
