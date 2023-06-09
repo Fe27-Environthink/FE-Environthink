@@ -1,17 +1,23 @@
 import { Link, useParams } from "react-router-dom";
 import "./Aksi.css";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import { getDataAksi, getDetail } from "./../../Redux/Reducer/AksiReducer";
+import { useEffect , useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
-import Placeholder from "react-bootstrap/Placeholder";
+import { getDetail } from "../../Redux/Action/AksiAction";
 function DetailAksi() {
   const { key } = useParams();
   const dispatch = useDispatch();
   const { detailAksi, listAksi, isLoading } = useSelector(
     (state) => state.AksiReducer
   );
-  const [detail, setDetail] = useState([]);
+
+  const[petisi,setPetisi] = useState({
+    name:"",
+    email:"",
+    city:"",
+    tlp:"",
+    aksiId:"",
+  })
 
   useEffect(() => {
     dispatch(getDetail(key));
@@ -64,8 +70,17 @@ function DetailAksi() {
     console.log(Persentase);
     return { width: Persentase };
   };
-  console.log("detail on detail", detailAksi);
-  console.log("listAksi on detail", listAksi);
+
+  // handle change petisi
+  const handleChangePetisi =(event)=>{
+    
+      setPetisi ({
+        ...petisi,
+        [event.target.name] : event.target.value,
+      })
+      console.log(event.target);
+  }
+
   return (
     <>
       {isLoading ? (
@@ -168,6 +183,9 @@ function DetailAksi() {
                         className="form-control"
                         id="namaLengkap"
                         required
+                        value ={petisi.name}
+                        name="name"
+                        onChange={handleChangePetisi}
                       />
                     </div>
                     <div className="mb-3">
@@ -179,6 +197,9 @@ function DetailAksi() {
                         className="form-control"
                         id="email"
                         required
+                        value ={petisi.email}
+                        name="email"
+                        onChange={handleChangePetisi}
                       />
                     </div>
                     <div className="mb-3">
@@ -190,6 +211,9 @@ function DetailAksi() {
                         className="form-control"
                         id="nomorTelepone"
                         required
+                        value ={petisi.tlp}
+                        name="tlp"
+                        onChange={handleChangePetisi}
                       />
                     </div>
                     <div className="mb-3">
@@ -201,6 +225,9 @@ function DetailAksi() {
                         className="form-control"
                         id="kota"
                         required
+                        value ={petisi.city}
+                        name="city"
+                        onChange={handleChangePetisi}
                       />
                     </div>
                     <div className="form-check text-secondary">

@@ -3,8 +3,9 @@ import "./Aksi.css";
 import { FaUsers } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { getDataAksi } from "../../Redux/Reducer/AksiReducer";
+
 import Spinner from "react-bootstrap/Spinner";
+import { getDataAksi } from './../../Redux/Action/AksiAction';
 function Aksi() {
   const dispatch = useDispatch();
   const { listAksi, isLoading } = useSelector((state) => state.AksiReducer);
