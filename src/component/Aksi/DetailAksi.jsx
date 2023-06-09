@@ -3,6 +3,8 @@ import "./Aksi.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getDataAksi, getDetail } from "./../../Redux/Reducer/AksiReducer";
+import Spinner from "react-bootstrap/Spinner";
+import Placeholder from "react-bootstrap/Placeholder";
 function DetailAksi() {
   const { key } = useParams();
   const dispatch = useDispatch();
@@ -56,168 +58,183 @@ function DetailAksi() {
       );
     }
   };
-  const renderBar =()=>{
-    let Persentase = (detailAksi.numberOfSupport / detailAksi.target) * 100+"%";
+  const renderBar = () => {
+    let Persentase =
+      (detailAksi.numberOfSupport / detailAksi.target) * 100 + "%";
     console.log(Persentase);
-    return {width: Persentase}
-  }
+    return { width: Persentase };
+  };
   console.log("detail on detail", detailAksi);
   console.log("listAksi on detail", listAksi);
   return (
     <>
-      <div className="container pt-5 detail-aksi">
-        <div className="row">
-          <div className="col-md-8">
-            <div id="aksi">
-              <p className="hashTag  m-0 p-0">
-                <span id="cathegory">Petisi</span> <span id="dot"> </span>
-                {detailAksi != 0 &&
-                  detailAksi.hashtag.map((item) => (
-                    <Link
-                      to={`/aksi/${item}`}
-                      style={{ textDecoration: "none" }}
-                    >
-                      <span id="hashTag" className="p-2 hashTag ">
-                        # {item}
-                      </span>
-                    </Link>
-                  ))}
-              </p>
-
-              <h3 id="title">{detailAksi.title}</h3>
-              <img
-                className="img-fluid pt-3"
-                width="100%"
-                src={detailAksi.image}
-                alt="image content"
-                id="image"
-              />
-              <div className="paragraf pt-4">
-                <p className="mb-4 paragraf">{detailAksi.paragraf1}</p>
-                <p className="mb-4 paragraf">{detailAksi.paragraf2}</p>
-                <p id="paragraf-konklusi" className="fw-bold paragraf">
-                  {detailAksi.paragrafKonklusi}
+      {isLoading ? (
+        <div className="text-center  d-flex justify-content-center align-items-center my-5 py-5">
+          <span className="mx-2 h1">loading</span>
+          <Spinner animation="border" variant="dark" />
+        </div>
+      ) : (
+        <div className="container pt-5 detail-aksi">
+          <div className="row">
+            <div className="col-md-8">
+              <div id="aksi">
+                <p className="hashTag  m-0 p-0">
+                  <Link to={`/aksi/`} style={{ textDecoration: "none" }}>
+                    <span id="cathegory">Petisi</span> <span id="dot"> </span>
+                  </Link>
+                  {detailAksi != 0 &&
+                    detailAksi.hashtag.map((item) => (
+                      <Link
+                        to={`/aksi/${item}`}
+                        style={{ textDecoration: "none" }}
+                      >
+                        <span id="hashTag" className="p-2 hashTag ">
+                          # {item}
+                        </span>
+                      </Link>
+                    ))}
                 </p>
+
+                <h3 id="title">{detailAksi.title}</h3>
+                <img
+                  className="img-fluid pt-3"
+                  width="100%"
+                  src={detailAksi.image}
+                  alt="image content"
+                  id="image"
+                />
+                <div className="paragraf pt-4">
+                  <p className="mb-4 paragraf">{detailAksi.paragraf1}</p>
+                  <p className="mb-4 paragraf">{detailAksi.paragraf2}</p>
+                  <p id="paragraf-konklusi" className="fw-bold paragraf">
+                    {detailAksi.paragrafKonklusi}
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="col-md-4 pt-5">
-            <div id="aksi">
-              {renderHeaderPetisi()}
-              {detailAksi.numberOfSupport < detailAksi.target ? (
-                <div>
-                  <div
-                    className="progress"
-                    id="bar"
-                    role="progressbar"
-                    aria-label="Basic example"
-                    aria-valuenow={10}
-                    aria-valuemin={0}
-                    aria-valuemax={100}
-                  >
+            <div className="col-md-4 pt-5">
+              <div id="aksi">
+                {renderHeaderPetisi()}
+                {detailAksi.numberOfSupport < detailAksi.target ? (
+                  <div>
                     <div
-                      className="progress-bar bg-success"
-                      id="bar-petisi"
-                      style={ renderBar() }
-                    />
+                      className="progress"
+                      id="bar"
+                      role="progressbar"
+                      aria-label="Basic example"
+                      aria-valuenow={10}
+                      aria-valuemin={0}
+                      aria-valuemax={100}
+                    >
+                      <div
+                        className="progress-bar bg-success"
+                        id="bar-petisi"
+                        style={renderBar()}
+                      />
+                    </div>
+                    <figcaption
+                      className="figure-caption text-end"
+                      id="figcaption"
+                    >
+                      <span id="caption-bar" />
+                      {detailAksi.numberOfSupport}/{detailAksi.target}
+                      <span id="target" /> dukungan
+                    </figcaption>
                   </div>
-                  <figcaption
-                    className="figure-caption text-end"
-                    id="figcaption"
-                  >
-                    <span id="caption-bar" />
-                    {detailAksi.numberOfSupport}/{detailAksi.target}
-                    <span id="target" /> dukungan
-                  </figcaption>
-                </div>
-              ) : (
-                <span></span>
-              )}
-              {renderTextPetisi()}
-              
-              {detailAksi.numberOfSupport == detailAksi.target ?  (
-              <button
-                  className="btn btn-petisi btn-main w-100 "
-                  data-bs-toggle="modal1"
-                  data-bs-target="#staticBackdrop1"
-                >
-                  <i className="fa fa-pen-nib me-2"> </i> Ikuti Aksi Yang Lainnya
-                </button>):(
-              <form className="form-group" id="form-petisi">
-              <div className="mb-3">
-                <label htmlFor="namaLengkap" className="form-label">
-                  Nama Lengkap
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="namaLengkap"
-                  required
-                />
+                ) : (
+                  <span></span>
+                )}
+                {renderTextPetisi()}
+
+                {detailAksi.numberOfSupport == detailAksi.target ? (
+                  <Link className="link-aksi" to={`/aksi`}>
+                    <button
+                      className="btn btn-petisi btn-main w-100 mb-4 "
+                      data-bs-toggle="modal1"
+                      data-bs-target="#staticBackdrop1"
+                    >
+                      <i className="fa fa-pen-nib me-2"> </i> Ikuti Aksi Yang
+                      Lainnya
+                    </button>
+                  </Link>
+                ) : (
+                  <form className="form-group mb-4" id="form-petisi">
+                    <div className="mb-3">
+                      <label htmlFor="namaLengkap" className="form-label">
+                        Nama Lengkap
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="namaLengkap"
+                        required
+                      />
+                    </div>
+                    <div className="mb-3">
+                      <label htmlFor="email" className="form-label">
+                        Email address
+                      </label>
+                      <input
+                        type="email"
+                        className="form-control"
+                        id="email"
+                        required
+                      />
+                    </div>
+                    <div className="mb-3">
+                      <label htmlFor="nomorTelepone" className="form-label">
+                        Nomor Telepon
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="nomorTelepone"
+                        required
+                      />
+                    </div>
+                    <div className="mb-3">
+                      <label htmlFor="kota" className="form-label">
+                        Kota
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="kota"
+                        required
+                      />
+                    </div>
+                    <div className="form-check text-secondary">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        defaultValue
+                        id="flexCheckDefault"
+                        required
+                      />
+                      <label
+                        className="form-check-label"
+                        htmlFor="flexCheckDefault"
+                      >
+                        Saya setuju untuk membagikan nama dan alamat email untuk
+                        menerima pemberitahuan pembaruan tentang kampanye ini
+                        dan kampanye lainnya.
+                      </label>
+                    </div>
+                    <button
+                      className="btn btn-petisi btn-danger w-100 "
+                      data-bs-toggle="modal1"
+                      data-bs-target="#staticBackdrop1"
+                    >
+                      <i className="fa fa-pen-nib me-2"> </i> Tanda Tangani
+                      Petisi
+                    </button>
+                  </form>
+                )}
               </div>
-              <div className="mb-3">
-                <label htmlFor="email" className="form-label">
-                  Email address
-                </label>
-                <input
-                  type="email"
-                  className="form-control"
-                  id="email"
-                  required
-                />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="nomorTelepone" className="form-label">
-                  Nomor Telepon
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="nomorTelepone"
-                  required
-                />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="kota" className="form-label">
-                  Kota
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="kota"
-                  required
-                />
-              </div>
-              <div className="form-check text-secondary">
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  defaultValue
-                  id="flexCheckDefault"
-                  required
-                />
-                <label
-                  className="form-check-label"
-                  htmlFor="flexCheckDefault"
-                >
-                  Saya setuju untuk membagikan nama dan alamat email untuk
-                  menerima pemberitahuan pembaruan tentang kampanye ini dan
-                  kampanye lainnya.
-                </label>
-              </div>
-              <button
-                className="btn btn-petisi btn-danger w-100 "
-                data-bs-toggle="modal1"
-                data-bs-target="#staticBackdrop1"
-              >
-                <i className="fa fa-pen-nib me-2"> </i> Tanda Tangani Petisi
-              </button>
-            </form>)}
-             
             </div>
           </div>
         </div>
-      </div>
+      )}
     </>
   );
 }
