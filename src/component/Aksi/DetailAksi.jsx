@@ -3,20 +3,23 @@ import "./Aksi.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect , useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
-import { getDetail } from "../../Redux/Action/AksiAction";
+import { getDetail, submitPetisi } from "../../Redux/Action/AksiAction";
+import Swal from "sweetalert2";
+
 function DetailAksi() {
   const { key } = useParams();
   const dispatch = useDispatch();
-  const { detailAksi, listAksi, isLoading } = useSelector(
+  const { detailAksi, listAksi, isLoading,message } = useSelector(
     (state) => state.AksiReducer
   );
 
   const[petisi,setPetisi] = useState({
+    aksiId:key,
     name:"",
     email:"",
     city:"",
     tlp:"",
-    aksiId:"",
+    
   })
 
   useEffect(() => {
@@ -74,11 +77,49 @@ function DetailAksi() {
   // handle change petisi
   const handleChangePetisi =(event)=>{
     
+    
       setPetisi ({
         ...petisi,
         [event.target.name] : event.target.value,
       })
       console.log(event.target);
+  }
+
+  const handleSubmitPetisi =(e)=>{
+    e.preventDefault()
+     
+Swal.fire({
+  title: 'Konfirmasi Data',
+  text: "Apakah data yang diisi sudah benar?",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Konfirmasi',
+  cancelButtonText: 'Batal'
+}).then((result) => {
+  if (result.isConfirmed) {
+    submitDataPetisi()
+    showModal()
+  }
+})
+ 
+
+  }
+
+  const submitDataPetisi = (e)=>{
+    dispatch(submitPetisi(petisi,key))
+ 
+    
+  }
+  const showModal = ()=>{
+    console.log("pesan",message);
+    if (message=="berhasil") {
+      console.log("berhasil bosku");
+    }
+    else if (message == "gagal") {
+      console.log("gagal mAning bos");
+    }
   }
 
   return (
@@ -173,7 +214,7 @@ function DetailAksi() {
                     </button>
                   </Link>
                 ) : (
-                  <form className="form-group mb-4" id="form-petisi">
+                  <form className="form-group mb-4" id="form-petisi" onSubmit={handleSubmitPetisi}>
                     <div className="mb-3">
                       <label htmlFor="namaLengkap" className="form-label">
                         Nama Lengkap

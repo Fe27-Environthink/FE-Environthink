@@ -1,9 +1,12 @@
-import { FATCHING_AKSI, SUCCESS, SUCCESS_GET_DETAIL } from "../Action/AksiAction";
+import { FATCHING_AKSI, SUBMIT_FAILURE, SUBMIT_SUCCESS, SUCCESS, SUCCESS_GET_DETAIL } from "../Action/AksiAction";
 
 const initialState ={
      listAksi:[],
     isLoading :false,
-    detailAksi:[]
+    detailAksi:[],
+    message :[],
+    isSuccess: false,
+    isFailure: false,
     
 }
 function AksiReducer(state = initialState , action) {
@@ -27,7 +30,19 @@ function AksiReducer(state = initialState , action) {
                     detailAksi:action.payload,
                     isLoading:false
                    
-                }       
+                }
+                case SUBMIT_SUCCESS:
+                    return {
+                      ...state,
+                      isSuccess: true,
+                      isFailure: false,
+                    };
+                  case SUBMIT_FAILURE:
+                    return {
+                      ...state,
+                      isSuccess: false,
+                      isFailure: true,
+                    };
             default:
                 return state;
     }

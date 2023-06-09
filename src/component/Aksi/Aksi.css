@@ -29,6 +29,9 @@
     background-color: var(--color-main) !important;
     color: var(--color-bg) !important;
   }
+  .swal2-confirm {
+    margin-right: 10px;
+  }
   .btn-main:hover {
     background-color: var(--color-main-hover) !important;
     color: var(--color-bg) !important;
