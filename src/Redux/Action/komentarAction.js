@@ -32,14 +32,8 @@ export const addKomentar = (newData) => async (dispatch) => {
 }
 
 export const deleteKomentar = (data) => async (dispatch) => {
-    try {
-      const url = `https://644b56f917e2663b9ded34b8.mockapi.io/komentar/${data}`;
-      await axios.delete(url);
-      console.log("Data deleted successfully");
-      dispatch(getKomentar());
-    } catch (error) {
-      console.log("Error deleting data:", error);
-    }
+    const url = `https://644b56f917e2663b9ded34b8.mockapi.io/komentar/${data}`;
+    await axios.delete(url);
     dispatch(getKomentar());
-  };
+};
 

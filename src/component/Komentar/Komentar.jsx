@@ -87,7 +87,7 @@ function Komentar() {
                                 <h6 className="card-subtitle mb-2 text-body-secondary">{item.createdAt} <span id="dot2"></span> <span> {item.email}</span></h6>
 
                                 <p className="card-text text-dark">{item.komentar}</p>
-                                {
+                                {/* {
                                     userId == item.userId && (
                                         <>
                                             <Link to="#" className="card-link text-decoration-none">Edit</Link>
@@ -95,7 +95,10 @@ function Komentar() {
                                         </>
                                         
                                     )
-                                }
+                                } */}
+
+                                <Link to="#" className="card-link text-decoration-none">Edit</Link>
+                                <Link onClick={() => dispatch(deleteKomentar(item.id))} className="card-link text-decoration-none">Delete</Link>
                                 
                             </div>
                         </div>
