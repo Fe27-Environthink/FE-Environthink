@@ -28,6 +28,6 @@ export const getKomentar = () => {
 export const addKomentar = (newData) => async (dispatch) => {
     const url = "https://644b56f917e2663b9ded34b8.mockapi.io/komentar";
     await axios.post(url, newData);
-    dispatch(addKomentar());
+    dispatch(getKomentar());
 }
 
