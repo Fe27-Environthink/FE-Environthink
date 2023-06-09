@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getKomentar, addKomentar } from '../../Redux/Action/komentarAction';
+import { getKomentar, addKomentar, deleteKomentar } from '../../Redux/Action/komentarAction';
 
 function Komentar() {
     const dispatch = useDispatch();
@@ -84,8 +84,8 @@ function Komentar() {
                                 <h5 className="card-title">{item.name}</h5>
                                 <h6 className="card-subtitle mb-2 text-body-secondary">{item.createdAt} <span id="dot2"></span> <span> {item.email}</span></h6>
                                 <p className="card-text text-dark">{item.komentar}</p>
-                                <Link to="#" className="card-link">Edit</Link>
-                                <Link to="#" className="card-link">Delete</Link>
+                                <Link to="#" className="card-link text-decoration-none">Edit</Link>
+                                <Link onClick={() => dispatch(deleteKomentar(item.id))} className="card-link text-decoration-none">Delete</Link>
                             </div>
                         </div>
                     </div>
