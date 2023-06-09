@@ -27,7 +27,7 @@ function DetailArticle() {
               <p className="hashTag m-0 p-0">
                 <span id="cathegory">{detailArticle.cathegory}</span>{" "}
                 <span id="dot"></span>
-                <span id="hashTag">{detailArticle.hashTag}</span>
+                <span id="hashTag">{detailArticle.hashTag} </span>
               </p>
               <h1 className="titleArticle" id="titleArticle">
                 {detailArticle.titleArticle}{" "}

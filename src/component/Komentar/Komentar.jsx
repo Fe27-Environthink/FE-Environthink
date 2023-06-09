@@ -10,6 +10,8 @@ function Komentar() {
     const [inputEmail, setInputEmail] = useState("");
     const [inputName, setInputName] = useState("");
 
+    const [userId] = useState("33")
+
     const handleSubmit = (e) => {
         e.preventDefault(); 
         let newData = {
@@ -83,9 +85,18 @@ function Komentar() {
                             <div className="card-body">
                                 <h5 className="card-title">{item.name}</h5>
                                 <h6 className="card-subtitle mb-2 text-body-secondary">{item.createdAt} <span id="dot2"></span> <span> {item.email}</span></h6>
+
                                 <p className="card-text text-dark">{item.komentar}</p>
-                                <Link to="#" className="card-link text-decoration-none">Edit</Link>
-                                <Link onClick={() => dispatch(deleteKomentar(item.id))} className="card-link text-decoration-none">Delete</Link>
+                                {
+                                    userId == item.userId && (
+                                        <>
+                                            <Link to="#" className="card-link text-decoration-none">Edit</Link>
+                                            <Link onClick={() => dispatch(deleteKomentar(item.id))} className="card-link text-decoration-none">Delete</Link>
+                                        </>
+                                        
+                                    )
+                                }
+                                
                             </div>
                         </div>
                     </div>
