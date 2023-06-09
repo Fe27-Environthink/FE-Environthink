@@ -1,7 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import "./Aksi.css";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect , useState } from "react";
+import { useEffect, useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import { getDetail, submitPetisi } from "../../Redux/Action/AksiAction";
 import Swal from "sweetalert2";
@@ -9,18 +9,17 @@ import Swal from "sweetalert2";
 function DetailAksi() {
   const { key } = useParams();
   const dispatch = useDispatch();
-  const { detailAksi, listAksi, isLoading,message } = useSelector(
+  const { detailAksi, listAksi, isLoading, isSuccess, isFailure } = useSelector(
     (state) => state.AksiReducer
   );
 
-  const[petisi,setPetisi] = useState({
-    aksiId:key,
-    name:"",
-    email:"",
-    city:"",
-    tlp:"",
-    
-  })
+  const [petisi, setPetisi] = useState({
+    aksiId: key,
+    name: "",
+    email: "",
+    city: "",
+    tlp: "",
+  });
 
   useEffect(() => {
     dispatch(getDetail(key));
@@ -75,52 +74,41 @@ function DetailAksi() {
   };
 
   // handle change petisi
-  const handleChangePetisi =(event)=>{
-    
-    
-      setPetisi ({
-        ...petisi,
-        [event.target.name] : event.target.value,
-      })
-      console.log(event.target);
-  }
+  const handleChangePetisi = (event) => {
+    setPetisi({
+      ...petisi,
+      [event.target.name]: event.target.value,
+    });
+    console.log(event.target);
+  };
 
-  const handleSubmitPetisi =(e)=>{
-    e.preventDefault()
-     
-Swal.fire({
-  title: 'Konfirmasi Data',
-  text: "Apakah data yang diisi sudah benar?",
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'Konfirmasi',
-  cancelButtonText: 'Batal'
-}).then((result) => {
-  if (result.isConfirmed) {
-    submitDataPetisi()
-    showModal()
-  }
-})
- 
+  const handleSubmitPetisi = (e) => {
+    e.preventDefault();
 
-  }
+    Swal.fire({
+      title: "Konfirmasi Data",
+      text: "Apakah data yang diisi sudah benar?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Konfirmasi",
+      cancelButtonText: "Batal",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        submitDataPetisi();
+      }
+      if (isSuccess) {
+        console.log("berhasil bosku");
+      } else if (isFailure) {
+        console.log("gagal mAning bos");
+      }
+    });
+  };
 
-  const submitDataPetisi = (e)=>{
-    dispatch(submitPetisi(petisi,key))
- 
-    
-  }
-  const showModal = ()=>{
-    console.log("pesan",message);
-    if (message=="berhasil") {
-      console.log("berhasil bosku");
-    }
-    else if (message == "gagal") {
-      console.log("gagal mAning bos");
-    }
-  }
+  const submitDataPetisi = () => {
+    dispatch(submitPetisi(petisi, key));
+  };
 
   return (
     <>
@@ -214,7 +202,11 @@ Swal.fire({
                     </button>
                   </Link>
                 ) : (
-                  <form className="form-group mb-4" id="form-petisi" onSubmit={handleSubmitPetisi}>
+                  <form
+                    className="form-group mb-4"
+                    id="form-petisi"
+                    onSubmit={handleSubmitPetisi}
+                  >
                     <div className="mb-3">
                       <label htmlFor="namaLengkap" className="form-label">
                         Nama Lengkap
@@ -224,7 +216,7 @@ Swal.fire({
                         className="form-control"
                         id="namaLengkap"
                         required
-                        value ={petisi.name}
+                        value={petisi.name}
                         name="name"
                         onChange={handleChangePetisi}
                       />
@@ -238,7 +230,7 @@ Swal.fire({
                         className="form-control"
                         id="email"
                         required
-                        value ={petisi.email}
+                        value={petisi.email}
                         name="email"
                         onChange={handleChangePetisi}
                       />
@@ -252,7 +244,7 @@ Swal.fire({
                         className="form-control"
                         id="nomorTelepone"
                         required
-                        value ={petisi.tlp}
+                        value={petisi.tlp}
                         name="tlp"
                         onChange={handleChangePetisi}
                       />
@@ -266,7 +258,7 @@ Swal.fire({
                         className="form-control"
                         id="kota"
                         required
-                        value ={petisi.city}
+                        value={petisi.city}
                         name="city"
                         onChange={handleChangePetisi}
                       />

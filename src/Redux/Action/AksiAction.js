@@ -41,7 +41,7 @@ export const getDataAksi = ()=> async(dispatch)=>{
 export const submitSuccess = () => {
     Swal.fire('Sukses', 'Petisi Berhasil Ditandatangani', 'success');
     return {
-      type: 'POST_SUCCESS',
+      type: SUBMIT_SUCCESS
     };
   };
   
@@ -49,7 +49,7 @@ export const submitSuccess = () => {
   export const submitFailure = () => {
     Swal.fire('Email Sudah Digunakan', 'Silahkan gunakan email yang lain untuk menandatangai petisi ini', 'error');
     return {
-      type: 'POST_FAILURE',
+      type: SUBMIT_FAILURE
     };
   };
 
