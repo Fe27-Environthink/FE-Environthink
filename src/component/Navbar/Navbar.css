@@ -1,6 +1,10 @@
 :root {
   --color-bg: #ffffff;
   --color-main: #14ae5c;
+  --color-main-hover: #00833d;
+  --color-secondary: #AFAFAF;
+  --color-variant: #FF4D4F;
+  --color-variant-hover:#ca3133;
 }
 
 /* Navbar */
