@@ -19,17 +19,7 @@ function Aksi() {
   useEffect(() => {
     setFilterData(listAksi.slice(0, 3));
   }, [listAksi]);
-  console.log("filter", filterData);
-  // const handleMore = () => {
-  //   setFilterData(listAksi.slice(0, ));
-  //   console.log("limit",limit,",listaksi:",listAksi.length);
-  //   if (limit>=listAksi.length) {
-  //     // setShoeButton(false)
-  //     console.log("cek");
-  //   }else{
-  //     console.log("gagal coi");
-  //   }
-  // };
+
 
   useEffect(() => {
     setFilterData(listAksi.slice(0, limit));

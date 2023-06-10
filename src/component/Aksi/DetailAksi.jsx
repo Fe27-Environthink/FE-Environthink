@@ -97,18 +97,22 @@ function DetailAksi() {
     }).then((result) => {
       if (result.isConfirmed) {
         submitDataPetisi();
+      
       }
-      if (isSuccess) {
-        console.log("berhasil bosku");
-      } else if (isFailure) {
-        console.log("gagal mAning bos");
-      }
+     
     });
   };
 
   const submitDataPetisi = () => {
     dispatch(submitPetisi(petisi, key));
+
   };
+  useEffect(()=>{
+    if (isSuccess) {
+      setPetisi("")
+    } 
+    
+  },[submitDataPetisi])
 
   return (
     <>
