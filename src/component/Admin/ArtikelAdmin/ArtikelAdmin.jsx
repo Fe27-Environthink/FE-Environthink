@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./ArtikelAdmin.css";
+import { FaTrashAlt, FaPen, FaSave } from "react-icons/fa";
 
 function ArtikelAdmin() {
   return (
@@ -58,20 +59,20 @@ function ArtikelAdmin() {
                     <td>12 April 2023</td>
                     <td>
                       <div className="row">
-                        <div className="col-6 px-1">
+                        <div className="col-4 px-1">
                           <Link
                             to="/"
                             className="btn bg-success btn-update text-sm me-4 text-white w-100 px-2"
                           >
-                            Update
+                            <FaPen />
                           </Link>
                         </div>
-                        <div className="col-6 px-1">
+                        <div className="col-4 px-1">
                           <Link
                             to="/"
                             className="btn bg-danger btn-delete text-sm me-4 text-white w-100 px-2"
                           >
-                            Delete
+                            <FaTrashAlt />
                           </Link>
                         </div>
                       </div>
