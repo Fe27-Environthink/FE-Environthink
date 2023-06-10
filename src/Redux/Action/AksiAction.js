@@ -79,7 +79,6 @@ export const submitPetisi=(data,id)=>async(dispatch)=>{
   
     }
     else{
-        
              //    mengupdate jumlah orang yang mendukung
     const dataUpdate ={
         numberOfSupport:result.data.numberOfSupport+1
