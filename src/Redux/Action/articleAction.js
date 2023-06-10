@@ -41,9 +41,3 @@ export const getArticleDetail = (id) => {
   };
 };
 
-// export const addTodo = (newTodo) => async (dispatch) => {
-//     const url = "https://643e1624c72fda4a0bed5b7f.mockapi.io/todo"
-//     await axios.post(url, newTodo)
-
-//     dispatch(getTodo())
-// }

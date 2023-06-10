@@ -4,9 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getKomentar, addKomentar, deleteKomentar, editKomentar } from '../../Redux/Action/komentarAction';
 import { Spinner } from 'react-bootstrap';
 import Swal from 'sweetalert2';
+import { useParams } from 'react-router-dom';
 
 function Komentar() {
     const dispatch = useDispatch();
+    const { key } = useParams();
     const { komentar, isLoading } = useSelector((state) => state.komentarReducer)
     const [inputKomentar, setInputKomentar] = useState("");
     const [inputEmail, setInputEmail] = useState("");
@@ -26,7 +28,7 @@ function Komentar() {
                 email: inputEmail,
                 komentar: inputKomentar,
             }
-            dispatch(editKomentar(editedKomentar));
+            dispatch(editKomentar(editedKomentar, key));
             setEditingId(null);
             Swal.fire({
                 position: 'top',
@@ -41,7 +43,7 @@ function Komentar() {
                 email: inputEmail,
                 komentar: inputKomentar
             };
-            dispatch(addKomentar(newData));
+            dispatch(addKomentar(newData, key));
             Swal.fire({
                 position: 'top',
                 icon: 'success',
@@ -77,7 +79,7 @@ function Komentar() {
         })
         .then((result) => {
             if (result.isConfirmed) {
-                dispatch(deleteKomentar(id))
+                dispatch(deleteKomentar(id, key))
                 Swal.fire({
                     position: 'top',
                     icon: 'success',
@@ -90,8 +92,8 @@ function Komentar() {
     }
 
     useEffect(() => {
-        dispatch(getKomentar());
-    }, [dispatch]);
+        dispatch(getKomentar(key));
+    }, []);
 
     return (
     <>

@@ -15,29 +15,30 @@ const successGetKomentar = (payload) => {
     }
 }
 
-export const getKomentar = () => {
+export const getKomentar = (id) => {
     return async (dispatch) => {
+        console.log(id)
         dispatch(startKomentar()) 
-        const url = "https://644b56f917e2663b9ded34b8.mockapi.io/komentar"
+        const url = `https://644b56f917e2663b9ded34b8.mockapi.io/article/${id}/komentar`
         const result = await axios(url) 
         dispatch(successGetKomentar(result.data)) 
     }
 }
 
-export const addKomentar = (newData) => async (dispatch) => {
-    const url = "https://644b56f917e2663b9ded34b8.mockapi.io/komentar";
+export const addKomentar = (newData, id) => async (dispatch) => {
+    const url = `https://644b56f917e2663b9ded34b8.mockapi.io/article/${id}/komentar`;
     await axios.post(url, newData);
     dispatch(getKomentar());
 }
 
-export const deleteKomentar = (data) => async (dispatch) => {
-    const url = `https://644b56f917e2663b9ded34b8.mockapi.io/komentar/${data}`;
+export const deleteKomentar = (data, id) => async (dispatch) => {
+    const url = `https://644b56f917e2663b9ded34b8.mockapi.io/article/${data}/komentar`;
     await axios.delete(url);
     dispatch(getKomentar());
 };
 
-export const editKomentar = (data) => async (dispatch) => {
-    const url = `https://644b56f917e2663b9ded34b8.mockapi.io/komentar/${data.id}`;
+export const editKomentar = (data, id) => async (dispatch) => {
+    const url = `https://644b56f917e2663b9ded34b8.mockapi.io/article/${data.id}/komentar`;
     await axios.put(url, data);
     dispatch(getKomentar());
 };
