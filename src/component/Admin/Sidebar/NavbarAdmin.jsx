@@ -41,7 +41,7 @@ function NavbarAdmin() {
                     </NavLink>
                   </li>
                   <li className="nav-item mt-1">
-                    <NavLink className="nav-link active" to="/admin-article">
+                    <NavLink className="nav-link active" to="/admin/article">
                       Artikel
                     </NavLink>
                   </li>
@@ -63,7 +63,7 @@ function NavbarAdmin() {
 
                   <li className="nav-item ">
                     <div id="button-login">
-                      <NavLink
+                       <NavLink
                         className="btnLogin m-1 btn nav-link active ps-3 pe-3"
                         to="login.html"
                       >
