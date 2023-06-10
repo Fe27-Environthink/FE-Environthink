@@ -41,8 +41,23 @@ function NavbarAdmin() {
                     </NavLink>
                   </li>
                   <li className="nav-item mt-1">
-                    <NavLink className="nav-link active" to="article.html">
+                    <NavLink className="nav-link active" to="/admin-article">
                       Artikel
+                    </NavLink>
+                  </li>
+                  <li className="nav-item mt-1">
+                    <NavLink className="nav-link active" to="aksi.html">
+                      Komentar
+                    </NavLink>
+                  </li>
+                  <li className="nav-item mt-1">
+                    <NavLink className="nav-link active" to="aksi.html">
+                      Infografis
+                    </NavLink>
+                  </li>
+                  <li className="nav-item mt-1">
+                    <NavLink className="nav-link active" to="aksi.html">
+                      Donasi
                     </NavLink>
                   </li>
 
