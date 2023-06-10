@@ -68,4 +68,12 @@
     box-shadow: 0px 8px 28px rgba(1, 1, 1, 0.15);
     border-radius: 8px;
 }
+
+.title-infografis {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
   
