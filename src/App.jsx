@@ -7,6 +7,7 @@ import Navbars from "./component/Navbar/Navbars";
 import Aksi from "./component/Aksi/Aksi";
 import DetailAksi from "./component/Aksi/DetailAksi";
 import Search from "./component/Searchpage/Search";
+import Donasi from "./component/Donasi/Donasi";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/aksi" element={<Aksi />} />
           <Route path="/aksi/:key" element={<DetailAksi />} />
           <Route path="/search" element={<Search />} />
+          <Route path="/donasi" element={<Donasi />} />
         </Routes>
         <Footer />
       </BrowserRouter>
