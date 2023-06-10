@@ -2,6 +2,8 @@ import {useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getKomentar, addKomentar, deleteKomentar, editKomentar } from '../../Redux/Action/komentarAction';
+import { Spinner } from 'react-bootstrap';
+import Swal from 'sweetalert2';
 
 function Komentar() {
     const dispatch = useDispatch();
@@ -9,9 +11,6 @@ function Komentar() {
     const [inputKomentar, setInputKomentar] = useState("");
     const [inputEmail, setInputEmail] = useState("");
     const [inputName, setInputName] = useState("");
-
-    // const [editTodoId, setEditTodoId] = useState(null);
-    // const [editTodoText, setEditTodoText] = useState("");
 
     const [editingId, setEditingId] = useState(null);
     const [showModal, setShowModal] = useState(false);
@@ -29,6 +28,13 @@ function Komentar() {
             }
             dispatch(editKomentar(editedKomentar));
             setEditingId(null);
+            Swal.fire({
+                position: 'top',
+                icon: 'success',
+                title: 'Edit sukses',
+                showConfirmButton: false,
+                timer: 1500
+            });
         } else {
             let newData = {
                 name: inputName,
@@ -36,8 +42,13 @@ function Komentar() {
                 komentar: inputKomentar
             };
             dispatch(addKomentar(newData));
-            
-            
+            Swal.fire({
+                position: 'top',
+                icon: 'success',
+                title: 'Menambahkan komentar',
+                showConfirmButton: false,
+                timer: 1500
+            });
         }
         setInputName("")
         setInputEmail("")
@@ -53,6 +64,30 @@ function Komentar() {
         setEditingId(id);
         setShowModal(true);
     };
+
+    const deleteHandler = (id) => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You want to delete this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        })
+        .then((result) => {
+            if (result.isConfirmed) {
+                dispatch(deleteKomentar(id))
+                Swal.fire({
+                    position: 'top',
+                    icon: 'success',
+                    title: 'Delete komentar',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }  
+        })
+    }
 
     useEffect(() => {
         dispatch(getKomentar());
@@ -106,95 +141,100 @@ function Komentar() {
                 </form>
             </div>
 
-            {isLoading && <span>Loading...</span>}
             <div className="row pt-4">
-                {komentar.length > 0 &&
-                    komentar.map((item) => (
-                    <div key={item.id} className="posts-list" id="posts-list">
-                        <div className="card bg-light mt-2 mb-2" style={{width: "50rem"}}>
-                            <div className="card-body">
-                                <h5 className="card-title">{item.name}</h5>
-                                <h6 className="card-subtitle mb-2 text-body-secondary">{item.createdAt} <span id="dot2"></span> <span> {item.email}</span></h6>
+            {isLoading?(
+                <div className="text-center  d-flex justify-content-center align-items-center my-5 py-5">
+                    <span className="mx-2 h1" >loading   
+                </span>
+                <Spinner animation="border" variant="dark" />
+                </div>
+                ):komentar.length > 0 &&
+                komentar.map((item) => (
+                <div key={item.id} className="posts-list" id="posts-list">
+                    <div className="card bg-light mt-2 mb-2" style={{width: "50rem"}}>
+                        <div className="card-body">
+                            <h5 className="card-title">{item.name}</h5>
+                            <h6 className="card-subtitle mb-2 text-body-secondary">{item.createdAt} 
+                                <span id="dot2"></span> 
+                                <span> {item.email}</span>
+                            </h6>
+                            <p className="card-text text-dark">{item.komentar}</p>
+                            {/* {
+                                userId == item.userId && (
+                                    <>
+                                        <Link to="#" className="card-link text-decoration-none">Edit</Link>
+                                        <Link onClick={() => dispatch(deleteKomentar(item.id))} className="card-link text-decoration-none">Delete</Link>
+                                    </>
+                                    
+                                )
+                            } */}
 
-                                <p className="card-text text-dark">{item.komentar}</p>
-                                {/* {
-                                    userId == item.userId && (
-                                        <>
-                                            <Link to="#" className="card-link text-decoration-none">Edit</Link>
-                                            <Link onClick={() => dispatch(deleteKomentar(item.id))} className="card-link text-decoration-none">Delete</Link>
-                                        </>
-                                        
-                                    )
-                                } */}
-
-                                <Link onClick={() => handleEdit(item.id)} className="card-link text-decoration-none">Edit</Link>
-                                <Link onClick={() => dispatch(deleteKomentar(item.id))} className="card-link text-decoration-none">Delete</Link>
-                                
-
-                                {/* Modal */}
-                                {showModal && (
-                                    <div className="modal" tabIndex="-1" role="dialog" style={{ display: "block", backgroundColor: "rgba(0, 0, 0, 0.5)" }}>
-                                        <div className="modal-dialog" role="document">
-                                            <div className="modal-content">
-                                            <div className="modal-header">
-                                                <h5 className="modal-title">Edit Comment</h5>
-                                                <button type="button" className="btn-close" aria-label="Close" onClick={() => setShowModal(false)}></button>
+                            <Link onClick={() => handleEdit(item.id)} className="card-link text-decoration-none">Edit</Link>
+                            <Link onClick={() => deleteHandler(item.id)} className="card-link text-decoration-none">Delete</Link>
+                            
+                            {/* Modal */}
+                            {showModal && (
+                                <div className="modal" tabIndex="-1" role="dialog" style={{ display: "block", backgroundColor: "rgba(0, 0, 0, 0.5)" }}>
+                                    <div className="modal-dialog" role="document">
+                                        <div className="modal-content">
+                                        <div className="modal-header">
+                                            <h5 className="modal-title">Edit Comment</h5>
+                                            <button type="button" className="btn-close" aria-label="Close" onClick={() => setShowModal(false)}></button>
+                                        </div>
+                                        <div className="modal-body">
+                                            <form onSubmit={handleSubmit}>
+                                            <div className="form-group">
+                                                <label htmlFor="edit-name">Name</label>
+                                                <input
+                                                type="text"
+                                                className="form-control"
+                                                id="edit-name"
+                                                value={inputName}
+                                                onChange={(e) => setInputName(e.target.value)}
+                                                required
+                                                />
                                             </div>
-                                            <div className="modal-body">
-                                                <form onSubmit={handleSubmit}>
-                                                <div className="form-group">
-                                                    <label htmlFor="edit-name">Name</label>
-                                                    <input
-                                                    type="text"
-                                                    className="form-control"
-                                                    id="edit-name"
-                                                    value={inputName}
-                                                    onChange={(e) => setInputName(e.target.value)}
-                                                    required
-                                                    />
-                                                </div>
-                                                <div className="form-group">
-                                                    <label htmlFor="edit-email">Email</label>
-                                                    <input
-                                                    type="email"
-                                                    className="form-control"
-                                                    id="edit-email"
-                                                    value={inputEmail}
-                                                    onChange={(e) => setInputEmail(e.target.value)}
-                                                    required
-                                                    />
-                                                </div>
-                                                <div className="form-group">
-                                                    <label htmlFor="edit-komentar">Komentar</label>
-                                                    <textarea
-                                                    className="form-control"
-                                                    id="edit-komentar"
-                                                    rows="3"
-                                                    value={inputKomentar}
-                                                    onChange={(e) => setInputKomentar(e.target.value)}
-                                                    required
-                                                    ></textarea>
-                                                </div>
-                                                <div className="modal-footer">
-                                                    <button type="button" className="btn btn-secondary" onClick={() => setShowModal(false)}>
-                                                    Close
-                                                    </button>
-                                                    <button type="submit" className="btn btn-primary">
-                                                    Save Changes
-                                                    </button>
-                                                </div>
-                                                </form>
+                                            <div className="form-group">
+                                                <label htmlFor="edit-email">Email</label>
+                                                <input
+                                                type="email"
+                                                className="form-control"
+                                                id="edit-email"
+                                                value={inputEmail}
+                                                onChange={(e) => setInputEmail(e.target.value)}
+                                                required
+                                                />
                                             </div>
+                                            <div className="form-group">
+                                                <label htmlFor="edit-komentar">Komentar</label>
+                                                <textarea
+                                                className="form-control"
+                                                id="edit-komentar"
+                                                rows="3"
+                                                value={inputKomentar}
+                                                onChange={(e) => setInputKomentar(e.target.value)}
+                                                required
+                                                ></textarea>
                                             </div>
+                                            <div className="modal-footer">
+                                                <button type="button" className="btn btn-secondary" onClick={() => setShowModal(false)}>
+                                                Close
+                                                </button>
+                                                <button type="submit" className="btn btn-primary">
+                                                Save Changes
+                                                </button>
+                                            </div>
+                                            </form>
+                                        </div>
                                         </div>
                                     </div>
-                                )}
-                            </div>
+                                </div>
+                            )}
                         </div>
                     </div>
-                ))}
+                </div>
+            ))}
             </div>
-
         </div>
     </>
   )
