@@ -3,19 +3,9 @@ import "./Infografis.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getInfografis } from "../../Redux/Action/infografisAction";
 import Spinner from "react-bootstrap/Spinner";
-import { Modal, Button } from "react-bootstrap";
+import Swal from "sweetalert2";
 
 function Infografis() {
-  const [showModal, setShowModal] = useState(false);
-
-  const handleImageClick = () => {
-    setShowModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setShowModal(false);
-  };
-
   const dispatch = useDispatch();
   const { infografis, isLoading } = useSelector(
     (state) => state.infografisReducer
@@ -39,6 +29,23 @@ function Infografis() {
     }
   }, [limit]);
 
+  const handleClickInfografis = (imgURL) => {
+    Swal.fire({
+      imageUrl: imgURL,
+      imageWidth: "100%",
+      imageHeight: "auto",
+      imageAlt: "Your Image",
+      showCloseButton: true,
+      showConfirmButton: false,
+      showCancelButton: false,
+      customClass: {
+        image: "my-custom-image-class",
+        closeButton: "my-custom-close-button-class",
+        popup: "my-custom-popup-class",
+      },
+    });
+  };
+
   return (
     <>
       <div className="container pt-5">
@@ -59,36 +66,57 @@ function Infografis() {
                       src={item.images}
                       style={{ cursor: "pointer" }}
                       className="card-img-top"
-                      onClick={handleImageClick}
+                      data-bs-toggle="modal"
+                      data-bs-target={`#${item.id}Backdrop`}
                       alt="infografis"
+                      onClick={() => handleClickInfografis(item.images)}
                     />
                     <div className="card-body">
                       <h1
                         className="card-title fs-6 title-infografis"
-                        onClick={handleImageClick}
+                        data-bs-toggle="modal"
+                        data-bs-target="#staticBackdrop"
                       >
                         {item.titleInfografis}
                       </h1>
+
+                      <div
+                        className="modal fade"
+                        id={`${item.id}Backdrop`}
+                        data-bs-backdrop="static"
+                        data-bs-keyboard="false"
+                        tabIndex="-1"
+                        aria-labelledby="staticBackdropLabel"
+                        aria-hidden="true"
+                      >
+                        <div className="modal-dialog">
+                          <div className="modal-content">
+                            <div className="modal-header">
+                              <h1
+                                className="modal-title fs-5"
+                                id="staticBackdropLabel"
+                              >
+                                {item.titleInfografis}
+                              </h1>
+                              <button
+                                type="button"
+                                className="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"
+                              ></button>
+                            </div>
+                            <div className="modal-body">
+                              <img
+                                src={item.images}
+                                className="card-img-top"
+                                alt="infografis"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
-
-                  <Modal show={showModal} onHide={handleCloseModal}>
-                    <Modal.Header closeButton>
-                      <Modal.Title>{item.titleInfografis}</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                      <img
-                        src={item.images}
-                        className="card-img-top"
-                        alt="infografis"
-                      />
-                    </Modal.Body>
-                    <Modal.Footer>
-                      <Button variant="secondary" onClick={handleCloseModal}>
-                        Close
-                      </Button>
-                    </Modal.Footer>
-                  </Modal>
                 </div>
               ))
             )}
