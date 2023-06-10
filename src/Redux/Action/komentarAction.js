@@ -17,7 +17,6 @@ const successGetKomentar = (payload) => {
 
 export const getKomentar = (id) => {
     return async (dispatch) => {
-        console.log(id)
         dispatch(startKomentar()) 
         const url = `https://644b56f917e2663b9ded34b8.mockapi.io/article/${id}/komentar`
         const result = await axios(url) 
@@ -28,17 +27,17 @@ export const getKomentar = (id) => {
 export const addKomentar = (newData, id) => async (dispatch) => {
     const url = `https://644b56f917e2663b9ded34b8.mockapi.io/article/${id}/komentar`;
     await axios.post(url, newData);
-    dispatch(getKomentar());
+    dispatch(getKomentar(id));
 }
 
 export const deleteKomentar = (data, id) => async (dispatch) => {
-    const url = `https://644b56f917e2663b9ded34b8.mockapi.io/article/${data}/komentar`;
+    const url = `https://644b56f917e2663b9ded34b8.mockapi.io/article/${id}/komentar/${data}`;
     await axios.delete(url);
-    dispatch(getKomentar());
+    dispatch(getKomentar(id));
 };
 
 export const editKomentar = (data, id) => async (dispatch) => {
-    const url = `https://644b56f917e2663b9ded34b8.mockapi.io/article/${data.id}/komentar`;
+    const url = `https://644b56f917e2663b9ded34b8.mockapi.io/article/${id}/komentar/${data.id}`;
     await axios.put(url, data);
-    dispatch(getKomentar());
+    dispatch(getKomentar(id));
 };

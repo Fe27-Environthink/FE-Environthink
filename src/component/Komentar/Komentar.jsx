@@ -58,6 +58,13 @@ function Komentar() {
         setShowModal(false);
     };
 
+    const handleCloseModal = () => {
+        setInputName("")
+        setInputEmail("")
+        setInputKomentar("");
+        setShowModal(false);
+    }
+
     const handleEdit = (id) => {
         const selectedKomentar = komentar.find((item) => item.id === id);
         setInputName(selectedKomentar.name);
@@ -181,7 +188,7 @@ function Komentar() {
                                         <div className="modal-content">
                                         <div className="modal-header">
                                             <h5 className="modal-title">Edit Comment</h5>
-                                            <button type="button" className="btn-close" aria-label="Close" onClick={() => setShowModal(false)}></button>
+                                            <button type="button" className="btn-close" aria-label="Close" onClick={handleCloseModal}></button>
                                         </div>
                                         <div className="modal-body">
                                             <form onSubmit={handleSubmit}>
@@ -219,7 +226,7 @@ function Komentar() {
                                                 ></textarea>
                                             </div>
                                             <div className="modal-footer">
-                                                <button type="button" className="btn btn-secondary" onClick={() => setShowModal(false)}>
+                                                <button type="button" className="btn btn-secondary" onClick={handleCloseModal}>
                                                 Close
                                                 </button>
                                                 <button type="submit" className="btn btn-primary">
