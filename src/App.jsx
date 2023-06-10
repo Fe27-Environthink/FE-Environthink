@@ -19,7 +19,7 @@ function App() {
           {/* Isi route nya ya kyk page Homepage, search, aksi, article...contoh  */}
           <Route path="/" element={<HomePage />} />
           <Route path="/admin" element={<ArtikelAdmin />} />
-          <Route path="/admin-article" element={<ArtikelAdmin />} />
+          <Route path="/admin/article" element={<ArtikelAdmin />} />
         </Routes>
         {/* <Footer/> */}
       </BrowserRouter>
