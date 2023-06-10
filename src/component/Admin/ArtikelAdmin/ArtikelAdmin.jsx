@@ -1,7 +1,6 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import "./ArtikelAdmin.css";
-import { FaTrashAlt, FaPen, FaSave } from "react-icons/fa";
+import { FaTrashAlt, FaPen } from "react-icons/fa";
 
 function ArtikelAdmin() {
   return (

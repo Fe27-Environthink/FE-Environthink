@@ -1,5 +1,4 @@
 import "./App.css";
-// import Artikel from "./component/Artikel/Artikel";
 import Footer from "./component/Footer/Footer";
 import HomePage from "./component/HomePage/HomePage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -10,16 +9,16 @@ import Search from "./component/Searchpage/Search";
 import Donasi from "./component/Donasi/Donasi";
 import Article from "./component/Article/Article";
 import DetailArticle from "./component/Article/DetailArticle";
-import Artikel from "./component/Admin/ArtikelAdmin/ArtikelAdmin";
 import NavbarAdmin from "./component/Admin/Sidebar/NavbarAdmin";
 import ArtikelAdmin from "./component/Admin/ArtikelAdmin/ArtikelAdmin";
 import HomepageAdmin from "./component/Admin/HomepageAdmin/HomepageAdmin";
 
 function App() {
+  const isAdminRoute = window.location.pathname === "/admin";
   return (
     <div className="d-flex flex-column min-vh-100">
       <BrowserRouter>
-        <Navbars />
+        {isAdminRoute ? <NavbarAdmin /> : <Navbars />}
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/aksi" element={<Aksi />} />
@@ -31,7 +30,8 @@ function App() {
           <Route path="/admin" element={<HomepageAdmin />} />
           <Route path="/admin/article" element={<ArtikelAdmin />} />
         </Routes>
-        <Footer />
+        {/* <Footer /> */}
+        {!isAdminRoute && <Footer />}
       </BrowserRouter>
     </div>
   );

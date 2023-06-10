@@ -14,7 +14,12 @@ import { NavLink } from "react-router-dom";
 function Navbars() {
   return (
     <>
-      <Navbar key="lg" bg="light" expand="lg" className="mb-0">
+      <Navbar
+        key="lg"
+        bg="light"
+        expand="lg"
+        className="mb-0 d-flex flex-column justify-content-between shadow sticky-top bg-white"
+      >
         <Container fluid>
           <Navbar.Brand href="#">
             {" "}

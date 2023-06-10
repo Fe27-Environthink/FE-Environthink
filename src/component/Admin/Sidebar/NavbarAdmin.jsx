@@ -45,11 +45,7 @@ function NavbarAdmin() {
                       Artikel
                     </NavLink>
                   </li>
-                  <li className="nav-item mt-1">
-                    <NavLink className="nav-link active" to="aksi.html">
-                      Komentar
-                    </NavLink>
-                  </li>
+
                   <li className="nav-item mt-1">
                     <NavLink className="nav-link active" to="aksi.html">
                       Infografis
@@ -63,7 +59,7 @@ function NavbarAdmin() {
 
                   <li className="nav-item ">
                     <div id="button-login">
-                       <NavLink
+                      <NavLink
                         className="btnLogin m-1 btn nav-link active ps-3 pe-3"
                         to="login.html"
                       >
