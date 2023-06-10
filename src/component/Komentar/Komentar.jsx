@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getKomentar, addKomentar, deleteKomentar } from '../../Redux/Action/komentarAction';
+import { getKomentar, addKomentar, deleteKomentar, editKomentar } from '../../Redux/Action/komentarAction';
 
 function Komentar() {
     const dispatch = useDispatch();
@@ -10,27 +10,55 @@ function Komentar() {
     const [inputEmail, setInputEmail] = useState("");
     const [inputName, setInputName] = useState("");
 
+    // const [editTodoId, setEditTodoId] = useState(null);
+    // const [editTodoText, setEditTodoText] = useState("");
+
+    const [editingId, setEditingId] = useState(null);
+    const [showModal, setShowModal] = useState(false);
+
     const [userId] = useState("33")
 
     const handleSubmit = (e) => {
         e.preventDefault(); 
-        let newData = {
-            name: inputName,
-            email: inputEmail,
-            komentar: inputKomentar
-        };
-       
-        dispatch(addKomentar(newData));
+        if (editingId) {
+            let editedKomentar = {
+                id: editingId,
+                name: inputName,
+                email: inputEmail,
+                komentar: inputKomentar,
+            }
+            dispatch(editKomentar(editedKomentar));
+            setEditingId(null);
+        } else {
+            let newData = {
+                name: inputName,
+                email: inputEmail,
+                komentar: inputKomentar
+            };
+            dispatch(addKomentar(newData));
+            
+            
+        }
         setInputName("")
         setInputEmail("")
         setInputKomentar("");
-        console.log(newData)
-      };
+        setShowModal(false);
+    };
+
+    const handleEdit = (id) => {
+        const selectedKomentar = komentar.find((item) => item.id === id);
+        setInputName(selectedKomentar.name);
+        setInputEmail(selectedKomentar.email);
+        setInputKomentar(selectedKomentar.komentar);
+        setEditingId(id);
+        setShowModal(true);
+    };
 
     useEffect(() => {
         dispatch(getKomentar());
-      }, []);
-  return (
+    }, [dispatch]);
+
+    return (
     <>
         <div className="container p-5">
             <div className="komentar" id="komentar">
@@ -70,7 +98,9 @@ function Komentar() {
                                 required
                             ></textarea>
                         </div>
-                        <button type="submit" className="btn btn-primary">Add Comment</button>
+                        <button type="submit" className="btn btn-primary">
+                        {editingId ? "Edit Comment" : "Add Comment"}
+                        </button>
                     </div>
                 </div>
                 </form>
@@ -97,9 +127,68 @@ function Komentar() {
                                     )
                                 } */}
 
-                                <Link to="#" className="card-link text-decoration-none">Edit</Link>
+                                <Link onClick={() => handleEdit(item.id)} className="card-link text-decoration-none">Edit</Link>
                                 <Link onClick={() => dispatch(deleteKomentar(item.id))} className="card-link text-decoration-none">Delete</Link>
                                 
+
+                                {/* Modal */}
+                                {showModal && (
+                                    <div className="modal" tabIndex="-1" role="dialog" style={{ display: "block", backgroundColor: "rgba(0, 0, 0, 0.5)" }}>
+                                        <div className="modal-dialog" role="document">
+                                            <div className="modal-content">
+                                            <div className="modal-header">
+                                                <h5 className="modal-title">Edit Comment</h5>
+                                                <button type="button" className="btn-close" aria-label="Close" onClick={() => setShowModal(false)}></button>
+                                            </div>
+                                            <div className="modal-body">
+                                                <form onSubmit={handleSubmit}>
+                                                <div className="form-group">
+                                                    <label htmlFor="edit-name">Name</label>
+                                                    <input
+                                                    type="text"
+                                                    className="form-control"
+                                                    id="edit-name"
+                                                    value={inputName}
+                                                    onChange={(e) => setInputName(e.target.value)}
+                                                    required
+                                                    />
+                                                </div>
+                                                <div className="form-group">
+                                                    <label htmlFor="edit-email">Email</label>
+                                                    <input
+                                                    type="email"
+                                                    className="form-control"
+                                                    id="edit-email"
+                                                    value={inputEmail}
+                                                    onChange={(e) => setInputEmail(e.target.value)}
+                                                    required
+                                                    />
+                                                </div>
+                                                <div className="form-group">
+                                                    <label htmlFor="edit-komentar">Komentar</label>
+                                                    <textarea
+                                                    className="form-control"
+                                                    id="edit-komentar"
+                                                    rows="3"
+                                                    value={inputKomentar}
+                                                    onChange={(e) => setInputKomentar(e.target.value)}
+                                                    required
+                                                    ></textarea>
+                                                </div>
+                                                <div className="modal-footer">
+                                                    <button type="button" className="btn btn-secondary" onClick={() => setShowModal(false)}>
+                                                    Close
+                                                    </button>
+                                                    <button type="submit" className="btn btn-primary">
+                                                    Save Changes
+                                                    </button>
+                                                </div>
+                                                </form>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>

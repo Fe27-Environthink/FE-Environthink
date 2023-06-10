@@ -13,9 +13,9 @@ function infografisReducer(state = initialState, action) {
                 isLoading: true,
             };
         case SUCCESS_GET_KOMENTAR:
-            
+
             return {
-                
+                ...state,
                 komentar: [...action.payload],
                 isLoading: false,
             };

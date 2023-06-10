@@ -1,7 +1,6 @@
 import axios from "axios";
 export const START_KOMENTAR = "START_KOMENTAR"
 export const SUCCESS_GET_KOMENTAR = "SUCCESS_GET_KOMENTAR"
-export const SET_DATA = "SET_DATA";
 
 const startKomentar = () => {
     return {
@@ -37,3 +36,8 @@ export const deleteKomentar = (data) => async (dispatch) => {
     dispatch(getKomentar());
 };
 
+export const editKomentar = (data) => async (dispatch) => {
+    const url = `https://644b56f917e2663b9ded34b8.mockapi.io/komentar/${data.id}`;
+    await axios.put(url, data);
+    dispatch(getKomentar());
+};
