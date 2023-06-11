@@ -18,26 +18,26 @@ const successGetKomentar = (payload) => {
 export const getKomentar = (id) => {
     return async (dispatch) => {
         dispatch(startKomentar()) 
-        const url = `https://644b56f917e2663b9ded34b8.mockapi.io/article/${id}/komentar`
+        const url = `${import.meta.env.VITE_API_ARTICLE}/${id}/komentar`
         const result = await axios(url) 
         dispatch(successGetKomentar(result.data)) 
     }
 }
 
 export const addKomentar = (newData, id) => async (dispatch) => {
-    const url = `https://644b56f917e2663b9ded34b8.mockapi.io/article/${id}/komentar`;
+    const url = `${import.meta.env.VITE_API_ARTICLE}/${id}//komentar`;
     await axios.post(url, newData);
     dispatch(getKomentar(id));
 }
 
 export const deleteKomentar = (data, id) => async (dispatch) => {
-    const url = `https://644b56f917e2663b9ded34b8.mockapi.io/article/${id}/komentar/${data}`;
+    const url = `${import.meta.env.VITE_API_ARTICLE}/${id}/komentar/${data}`;
     await axios.delete(url);
     dispatch(getKomentar(id));
 };
 
 export const editKomentar = (data, id) => async (dispatch) => {
-    const url = `https://644b56f917e2663b9ded34b8.mockapi.io/article/${id}/komentar/${data.id}`;
+    const url = `${import.meta.env.VITE_API_ARTICLE}/${id}//komentar/${data.id}`;
     await axios.put(url, data);
     dispatch(getKomentar(id));
 };

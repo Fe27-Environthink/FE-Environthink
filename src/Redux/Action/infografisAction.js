@@ -18,7 +18,7 @@ const successGetInfografis = (payload) => {
 export const getInfografis = () => {
     return async (dispatch) => {
         dispatch(startInfografis()) 
-        const url = "https://644d177e57f12a1d3dd777a1.mockapi.io/infografis"
+        const url = import.meta.env.VITE_API_INFOGRAFIS
         const result = await axios(url) 
         dispatch(successGetInfografis(result.data)) 
     }
