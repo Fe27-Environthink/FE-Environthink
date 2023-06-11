@@ -34,7 +34,7 @@ function Aksi() {
     <>
       <div className="container">
         <div className="artikel" id="artikel">
-          <h3 className="text-start ">Tanpa Aksi, Tidak Ada Perubahan</h3>
+          <h3 className="text-start ">Tanpa Aksi, Tidak Ada Perubahan </h3>
           <p className="sub-title">
             Bergabunglah dengan kami dan tandatangani petisi untuk mendukung
             perubahan positif.
