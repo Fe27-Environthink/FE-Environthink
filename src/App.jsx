@@ -15,6 +15,7 @@ import HomepageAdmin from "./component/Admin/HomepageAdmin/HomepageAdmin";
 
 function App() {
   const isAdminRoute = window.location.pathname === "/admin";
+
   return (
     <div className="d-flex flex-column min-vh-100">
       <BrowserRouter>

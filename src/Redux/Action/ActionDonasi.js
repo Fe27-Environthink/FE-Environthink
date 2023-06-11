@@ -26,9 +26,6 @@ const getFormatedDate = () => {
 };
 
 export const dataDonasi = (DetailDonation, dataForm) => {
-  //   console.log(getFormatedDate());
-  //   console.log(DetailDonation);
-  //   console.log(dataForm);
   return {
     type: DONASI,
     data: {
