@@ -2,13 +2,11 @@ import "./Donasi.css";
 import ImgCreditCard from "../../assets/CardCredit.png";
 import { useState, useRef } from "react";
 import Swal from "sweetalert2";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { dataDonasi } from "../../Redux/Action/ActionDonasi";
 import emailjs from "@emailjs/browser";
 
 const Donasi = () => {
-  // const state = useSelector((state) => state.DonasiReducer);
-  // console.log(state);
   const dispatch = useDispatch();
 
   const ref = useRef();
