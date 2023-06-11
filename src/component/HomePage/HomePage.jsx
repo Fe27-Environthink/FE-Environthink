@@ -5,9 +5,12 @@ import "./Homepage.css";
 import { useDispatch, useSelector } from "react-redux";
 import { FetchActicle } from "../../Redux/Action/HompageAction";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   const state = useSelector((state) => state.HomepageReducer.article);
 
@@ -49,7 +52,11 @@ const HomePage = () => {
 
       <div className="container">
         {state?.map((item) => (
-          <div className="articlesContent" key={item.id}>
+          <div
+            className="articlesContent"
+            key={item.id}
+            onClick={() => navigate(`/article/${item.id}`)}
+          >
             <div className="row ms-1 me-1 mt-5 mb-5">
               <div className="col-md-4 p-0 me-4">
                 <img
@@ -71,15 +78,13 @@ const HomePage = () => {
                       className="hashTagArticle text-decoration-none me-2"
                       key={hashtag}
                     >
-                      {hashtag}
+                      #{hashtag}
                     </a>
                   ))}
                 </p>
                 <a
                   className="wrapperLinkTitleArticles"
-                  href="../../detailArticle.html?id=${
-              data[i].id
-            }"
+                  onClick={() => navigate(`/article/${item.id}`)}
                 >
                   <h3 className="titleArticles">{item.titleArticle}</h3>
                 </a>

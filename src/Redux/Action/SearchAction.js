@@ -22,11 +22,6 @@ export const SearchAction = (payload, keyword) => {
       ) ||
       obj.author.toLowerCase().includes(keyword.toLowerCase())
   );
-  const testing = payload.filter((obj) =>
-    obj.hashTag.some((tag) => tag.toLowerCase().includes(keyword.toLowerCase()))
-  );
-  // obj.author.toLowerCase().includes(keyword.toLowerCase())
-  console.log(testing);
 
   return {
     type: SEARCH_ARTICLE,
@@ -36,10 +31,8 @@ export const SearchAction = (payload, keyword) => {
 
 export const SearchData = (keywordSearch) => {
   return async (dispatch) => {
-    axios
-      .get("https://644b56f917e2663b9ded34b8.mockapi.io/article")
-      .then((response) => {
-        dispatch(SearchAction(response.data, keywordSearch));
-      });
+    axios.get(import.meta.env.VITE_API_ARTICLE).then((response) => {
+      dispatch(SearchAction(response.data, keywordSearch));
+    });
   };
 };
