@@ -33,7 +33,14 @@ function DetailArticle() {
             <p className="hashTag m-0 p-0">
               <span id="cathegory">{detailArticle.cathegory}</span>{" "}
               <span id="dot"></span>
-              <span id="hashTag">{detailArticle.hashTag} </span>
+              {detailArticle.hashTag.map((hashTag) => (
+                <span 
+                  id="hashTag" 
+                  key={hashTag}
+                  className="hashTagArticle text-decoration-none me-2">
+                    #{hashTag}
+                </span>
+              ))}
             </p>
             <h1 className="titleArticle" id="titleArticle">
               {detailArticle.titleArticle}{" "}
