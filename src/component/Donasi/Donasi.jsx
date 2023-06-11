@@ -2,12 +2,13 @@ import "./Donasi.css";
 import ImgCreditCard from "../../assets/CardCredit.png";
 import { useState, useRef } from "react";
 import Swal from "sweetalert2";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { dataDonasi } from "../../Redux/Action/ActionDonasi";
 import emailjs from "@emailjs/browser";
 
 const Donasi = () => {
-  // const state = useSelector((state) => state.DonasiReducer.Donasi);
+  // const state = useSelector((state) => state.DonasiReducer);
+  // console.log(state);
   const dispatch = useDispatch();
 
   const ref = useRef();
@@ -15,10 +16,10 @@ const Donasi = () => {
   const [inputMoney, setInputMoney] = useState("");
 
   const [formData, setFormData] = useState({
-    inputNama: "",
-    inputTelepon: "",
-    inputEmail: "",
-    inputNorek: "",
+    Nama: "",
+    Nomor_Telepon: "",
+    Email: "",
+    Nomor_Rekening: "",
   });
 
   const [data, setData] = useState({
@@ -60,10 +61,10 @@ const Donasi = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (
-      formData.inputEmail == "" ||
-      formData.inputNama == "" ||
-      formData.inputNorek == "" ||
-      formData.inputTelepon == ""
+      formData.Email == "" ||
+      formData.Nama == "" ||
+      formData.Nomor_Rekening == "" ||
+      formData.Nomor_Telepon == ""
     ) {
       Swal.fire({
         icon: "error",
@@ -169,8 +170,8 @@ const Donasi = () => {
                 <input
                   type="text"
                   className="form-control m-0 shadow-none"
-                  name="inputNama"
-                  value={formData.inputNama}
+                  name="Nama"
+                  value={formData.Nama}
                   onChange={handleFormData}
                   required
                 />
@@ -181,32 +182,32 @@ const Donasi = () => {
                 <input
                   type="number"
                   className="form-control m-0 shadow-none"
-                  name="inputTelepon"
-                  value={formData.inputTelepon}
+                  name="Nomor_Telepon"
+                  value={formData.Nomor_Telepon}
                   onChange={handleFormData}
                   required
                 />
               </div>
               <div className="col-12">
                 {" "}
-                <p className="titleInputEmail mb-1">Alamat Email</p>
+                <p className="titleEmail mb-1">Alamat Email</p>
                 <input
                   type="email"
                   className="form-control m-0 shadow-none"
-                  name="inputEmail"
-                  value={formData.inputEmail}
+                  name="Email"
+                  value={formData.Email}
                   onChange={handleFormData}
                   required
                 />
               </div>
               <div className="col-12">
                 {" "}
-                <p className="titleInputNorek mb-1">Nomor Rekening</p>
+                <p className="titleNomorRekening mb-1">Nomor Rekening</p>
                 <input
                   type="number"
                   className="form-control m-0 shadow-none"
-                  name="inputNorek"
-                  value={formData.inputNorek}
+                  name="Nomor_Rekening"
+                  value={formData.Nomor_Rekening}
                   onChange={handleFormData}
                   required
                 />

@@ -25,11 +25,11 @@ const getFormatedDate = () => {
   return formattedDate;
 };
 
-export const dataDonasi = (DetailDonation, dataForm) => {
+export const dataDonasi = (donationAmount, dataForm) => {
   return {
     type: DONASI,
     data: {
-      DetailDonation,
+      donationAmount,
       dataForm,
       createdAt: getFormatedDate(),
     },
