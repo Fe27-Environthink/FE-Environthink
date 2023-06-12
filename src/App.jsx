@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbars from "./component/Navbar/Navbars";
 import Aksi from "./component/Aksi/Aksi";
 import DetailAksi from "./component/Aksi/DetailAksi";
+import AksiTerkait from "./component/Aksi/AksiTerkait";
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           {/* Isi route nya ya kyk page Homepage, search, aksi, article...contoh  */}
           <Route path="/" element={<HomePage />} />
           <Route path="/aksi" element={<Aksi/>}/>
+          <Route path="/aksi/terkait/:hashtag" element={<AksiTerkait/>}/>
           <Route path="/aksi/:key" element={<DetailAksi/>}/>
         </Routes>
         <Footer/>

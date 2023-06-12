@@ -1,16 +1,16 @@
 import { Link, useParams } from "react-router-dom";
 import "./Aksi.css";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Spinner from "react-bootstrap/Spinner";
-import { getDetail, submitPetisi } from "../../Redux/Action/AksiAction";
-import Swal from "sweetalert2";
+import { getDetail,  } from "../../Redux/Action/AksiAction";
+
 import FormPetisi from "./FormPetisi";
 
 function DetailAksi() {
   const { key } = useParams();
   const dispatch = useDispatch();
-  const { detailAksi, listAksi, isLoading, isSuccess, isFailure } = useSelector(
+  const { detailAksi, isLoading } = useSelector(
     (state) => state.AksiReducer
   );
 
@@ -20,7 +20,7 @@ function DetailAksi() {
       if (detailAksi.numberOfSupport == 0) {
         return (
           <h5 className="fw-bold" id="heading-form">
-            Belum ada dukungan
+            Belum ada dukungan 
           </h5>
         );
       } else if (detailAksi.numberOfSupport < detailAksi.target) {
@@ -84,7 +84,7 @@ function DetailAksi() {
                   {detailAksi != 0 &&
                     detailAksi.hashtag.map((item) => (
                       <Link
-                        to={`/aksi/${item}`}
+                        to={`/aksi/terkait/${item}`}
                         style={{ textDecoration: "none" }}
                       >
                         <span id="hashTag" className="p-2 hashTag ">
