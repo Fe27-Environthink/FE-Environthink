@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { FetchActicle } from "../../Redux/Action/HompageAction";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Spinner } from "react-bootstrap";
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -27,7 +28,7 @@ const HomePage = () => {
 
   return (
     <>
-      <div className="container-fluid banner">
+      <div className="container-fluid banner ">
         <div className="container banner-content col-lg-9">
           <div>
             <h1 className="titleHighlight1 text-white">
@@ -54,7 +55,12 @@ const HomePage = () => {
       </div>
 
       <div className="container">
-        {state?.map((item) => (
+        {state.length==0 ? (
+              <div className="text-center  d-flex justify-content-center align-items-center my-5 py-5">
+                <span className="mx-2 h1">loading</span>
+                <Spinner animation="border" variant="dark" />
+              </div>
+            ) : (state?.map((item) => (
           <div
             className="articlesContent"
             key={item.id}
@@ -96,7 +102,7 @@ const HomePage = () => {
               </div>
             </div>
           </div>
-        ))}
+        )))}
         <div className="d-flex justify-content-start ms-1">
           <button
             className="btn"
