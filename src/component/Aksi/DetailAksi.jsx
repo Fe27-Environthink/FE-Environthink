@@ -68,20 +68,23 @@ function DetailAksi() {
   useEffect(() => {
     dispatch(getDetail(key));
     dispatch(getDataAksi());
-  }, []);
-
+  }, [key]);
+console.log("ini key",key);
   useEffect(() => {
     setAkasiLainnya(
-      listAksi.filter((item) => item.title != detailAksi.title).slice(0, 3)
+      listAksi.filter((item) => item.id != key)
     );
-  }, [listAksi]);
+  }, [listAksi,key]);
 
   return (
     <>
       {isLoading ? (
         <div className="text-center  d-flex justify-content-center align-items-center my-5 py-5">
-          <span className="mx-2 h1">loading</span>
-          <Spinner animation="border" variant="dark" />
+           <Spinner className="mx-4" animation="grow" size="sm" variant="success" />
+                <Spinner className="mx-4" animation="grow" size="sm" variant="success" />
+                <Spinner className="mx-4" animation="grow" size="sm" variant="success" />
+                <Spinner className="mx-4" animation="grow" size="sm" variant="success" />
+                <Spinner className="mx-4" animation="grow" size="sm" variant="success" />
         </div>
       ) : (
         <div className="container pt-5 detail-aksi">
@@ -184,8 +187,11 @@ function DetailAksi() {
           <div className="row pt-2">
             {isLoading ? (
               <div className="text-center  d-flex justify-content-center align-items-center my-5 py-5">
-                <span className="mx-2 h1">loading</span>
-                <Spinner animation="border" variant="dark" />
+                   <Spinner className="mx-4" animation="grow" size="sm" variant="success" />
+                <Spinner className="mx-4" animation="grow" size="sm" variant="success" />
+                <Spinner className="mx-4" animation="grow" size="sm" variant="success" />
+                <Spinner className="mx-4" animation="grow" size="sm" variant="success" />
+                <Spinner className="mx-4" animation="grow" size="sm" variant="success" />
               </div>
             ) : (
               aksiLainnya.map((item) => (
@@ -200,7 +206,7 @@ function DetailAksi() {
                           <span id="cathegory">Petisi</span>{" "}
                           <span id="dot"> </span>
                         </Link>
-                        {/* {item != 0 &&
+                        {item != 0 &&
                           item.hashtag.map((item) => (
                             <Link
                               to={`/aksi/terkait/${item}`}
@@ -210,13 +216,13 @@ function DetailAksi() {
                                 # {item}
                               </span>
                             </Link>
-                          ))} */}
+                          ))}
                       </p>
                       <a
                         className="wrapperLinkTitleAksi"
-                        onClick={() => navigate(`/aksi/${item.id}`)}
+                       
                       >
-                        <h3 className="titleAksi">{item.title}</h3>
+                        <h3 className="titleAksi"  onClick={() => navigate(`/aksi/${item.id}`)}>{item.title}</h3>
                       </a>
                       <p className="descAksi text-dark wrapText">
                         {item.paragraf1}

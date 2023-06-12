@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
 import Spinner from "react-bootstrap/Spinner";
-import { getDataAksi } from './../../Redux/Action/AksiAction';
+import { getDataAksi } from "./../../Redux/Action/AksiAction";
 function Aksi() {
   const dispatch = useDispatch();
   const { listAksi, isLoading } = useSelector((state) => state.AksiReducer);
@@ -19,7 +19,6 @@ function Aksi() {
   useEffect(() => {
     setFilterData(listAksi.slice(0, 3));
   }, [listAksi]);
-
 
   useEffect(() => {
     setFilterData(listAksi.slice(0, limit));
@@ -44,8 +43,14 @@ function Aksi() {
           <div className="row pt-2" id="articlesContent">
             {isLoading ? (
               <div className="text-center  d-flex justify-content-center align-items-center my-5 py-5">
-                <span className="mx-2 h1">loading</span>
-                <Spinner animation="border" variant="dark" />
+                {/* <span className="mx-2 h1">loading</span>
+                <Spinner animation="border" variant="dark" /> */}
+                <Spinner className="mx-4" animation="grow" size="sm" variant="success" />
+                <Spinner className="mx-4" animation="grow" size="sm" variant="success" />
+                <Spinner className="mx-4" animation="grow" size="sm" variant="success" />
+                <Spinner className="mx-4" animation="grow" size="sm" variant="success" />
+                <Spinner className="mx-4" animation="grow" size="sm" variant="success" />
+              
               </div>
             ) : (
               filterData.map((item) => (
@@ -62,28 +67,30 @@ function Aksi() {
                       </h6>
                       <p className="card-text sub-title d-flex align-items-center gap-2">
                         <FaUsers />
-                        {item.numberOfSupport==0? (
+                        {item.numberOfSupport == 0 ? (
                           <span className="fw-medium fs-6">
                             Belum ada dukungan
                           </span>
-                        ) :item.numberOfSupport < item.target ? (
+                        ) : item.numberOfSupport < item.target ? (
                           <span className="fw-medium fs-6">
                             {item.numberOfSupport} orang mendukung
                           </span>
-                        ): (
+                        ) : (
                           <span className="fw-medium fs-6">
-                           Petisi Mencapai Kemenangan
+                            Petisi Mencapai Kemenangan
                           </span>
-                        )
-                        }
+                        )}
                       </p>
                       <Link className="link-aksi" to={`/aksi/${item.id}`}>
-                        {item.numberOfSupport<item.target?<h5 className="btn btn-main d-block">
-                          Pelajari Selengkapnya
-                        </h5>:<h5 className="btn btn-secondary d-block">
-                          Pelajari Selengkapnya
-                        </h5>}
-                        
+                        {item.numberOfSupport < item.target ? (
+                          <h5 className="btn btn-main d-block">
+                            Pelajari Selengkapnya
+                          </h5>
+                        ) : (
+                          <h5 className="btn btn-secondary d-block">
+                            Pelajari Selengkapnya
+                          </h5>
+                        )}
                       </Link>
                     </div>
                   </div>

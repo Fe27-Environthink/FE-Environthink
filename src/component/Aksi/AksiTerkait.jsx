@@ -31,8 +31,11 @@ function AksiTerkait() {
           <div className="row pt-2">
             {isLoading ? (
               <div className="text-center  d-flex justify-content-center align-items-center my-5 py-5">
-                <span className="mx-2 h1">loading</span>
-                <Spinner animation="border" variant="dark" />
+                  <Spinner className="mx-4" animation="grow" size="sm" variant="success" />
+                <Spinner className="mx-4" animation="grow" size="sm" variant="success" />
+                <Spinner className="mx-4" animation="grow" size="sm" variant="success" />
+                <Spinner className="mx-4" animation="grow" size="sm" variant="success" />
+                <Spinner className="mx-4" animation="grow" size="sm" variant="success" />
               </div>
             ) : (
               aksiTerkait.map((item) => (
