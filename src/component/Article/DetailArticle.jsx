@@ -5,6 +5,7 @@ import { getArticleDetail } from "../../Redux/Action/articleAction";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router";
 import { Spinner } from "react-bootstrap";
+import { Link } from 'react-router-dom';
 
 function DetailArticle() {
   const { key } = useParams();
@@ -34,7 +35,12 @@ function DetailArticle() {
                   <p className="hashTag m-0 p-0">
                     <span id="cathegory">{detailArticle.cathegory}</span>{" "}
                     <span id="dot"></span>
+                    
                     {detailArticle.hashTag.map((hashTag) => (
+                         <Link
+                         to={`/article/terkait/${hashTag}`}
+                         style={{ textDecoration: "none" }}
+                       >
                       <span
                         id="hashTag"
                         key={hashTag}
@@ -42,6 +48,7 @@ function DetailArticle() {
                       >
                         #{hashTag}
                       </span>
+                      </Link>
                     ))}
                   </p>
                   <h1 className="titleArticle" id="titleArticle">

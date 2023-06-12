@@ -15,13 +15,10 @@ function AksiTerkait() {
   useEffect(() => {
     dispatch(getDataAksi());
   }, []);
+   
   useEffect(() => {
-    // setFilterData  (listAksi.filter((item)=>item.hashtag.include({hashtag})))
-    // console.log(filterData);
     setAkasiTerkait(listAksi.filter((item) => item.hashtag.includes(hashtag)));
-
-    console.log(aksiTerkait);
-  }, [listAksi]);
+  }, [listAksi,hashtag]);
 
   return (
     <>

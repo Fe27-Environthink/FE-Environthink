@@ -8,7 +8,6 @@ import DetailAksi from "./component/Aksi/DetailAksi";
 
 import AksiTerkait from "./component/Aksi/AksiTerkait";
 
-
 import Search from "./component/Searchpage/Search";
 import Donasi from "./component/Donasi/Donasi";
 import Article from "./component/Article/Article";
@@ -18,6 +17,7 @@ import ArtikelAdmin from "./component/Admin/ArtikelAdmin/ArtikelAdmin";
 import HomepageAdmin from "./component/Admin/HomepageAdmin/HomepageAdmin";
 import DetailArtikelAdmin from "./component/Admin/ArtikelAdmin/DetailArtikelAdmin";
 import AddArtikelAdmin from "./component/Admin/ArtikelAdmin/AddArtikelAdmin";
+import ArticleTerkait from "./component/Article/ArticleTerkait";
 
 function App() {
   const isAdminRoute = window.location.pathname === "/admin";
@@ -29,9 +29,8 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
 
-          <Route path="/aksi/terkait/:hashtag" element={<AksiTerkait/>}/>
-
           <Route path="/aksi" element={<Aksi />} />
+          <Route path="/aksi/terkait/:hashtag" element={<AksiTerkait />} />
           <Route path="/aksi/:key" element={<DetailAksi />} />
           <Route path="/search" element={<Search />} />
           <Route path="/donasi" element={<Donasi />} />
@@ -39,10 +38,12 @@ function App() {
           <Route path="/article/:key" element={<DetailArticle />} />
           <Route path="/admin" element={<HomepageAdmin />} />
           <Route path="/admin/article" element={<ArtikelAdmin />} />
-          <Route path="/admin/article/:key" element={<DetailArtikelAdmin/>} />
-          <Route path="/admin/article/add-article" element={<AddArtikelAdmin/>} />
-
-
+          <Route path="/article/terkait/:tag" element={<ArticleTerkait />} />
+          <Route path="/admin/article/:key" element={<DetailArtikelAdmin />} />
+          <Route
+            path="/admin/article/add-article"
+            element={<AddArtikelAdmin />}
+          />
         </Routes>
         {/* <Footer /> */}
         {!isAdminRoute && <Footer />}
