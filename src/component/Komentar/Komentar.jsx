@@ -104,7 +104,7 @@ function Komentar() {
 
     return (
     <>
-        <div className="container p-5">
+        <div className="container pt-2">
             <div className="komentar" id="komentar">
                 <h3 className="text-start mb-3">Komentar</h3>
                 <div style={{border: "0.5px solid #bfbfbf"}}></div>
@@ -160,7 +160,7 @@ function Komentar() {
                 ):komentar.length > 0 &&
                 komentar.map((item) => (
                 <div key={item.id} className="posts-list" id="posts-list">
-                    <div className="card bg-light mt-2 mb-2" style={{width: "50rem"}}>
+                    <div className="card bg-light mt-2 mb-2" style={{width: 'fitContent' }}>
                         <div className="card-body">
                             <h5 className="card-title">{item.name}</h5>
                             <h6 className="card-subtitle mb-2 text-body-secondary">{item.createdAt} 
