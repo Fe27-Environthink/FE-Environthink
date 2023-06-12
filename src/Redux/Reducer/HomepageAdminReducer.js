@@ -4,6 +4,7 @@ const initialState = {
   totalArticle: null,
   totalAksi: null,
   totalInfografis: null,
+  totalDonasi: null,
 };
 
 const HomepageAdminReducer = (state = initialState, action) => {
@@ -14,6 +15,7 @@ const HomepageAdminReducer = (state = initialState, action) => {
         totalArticle: action.data.lengthArticle,
         totalAksi: action.data.lengthAksi,
         totalInfografis: action.data.lengthInfografis,
+        totalDonasi: action.data.lengthDonasi,
       };
 
     default:

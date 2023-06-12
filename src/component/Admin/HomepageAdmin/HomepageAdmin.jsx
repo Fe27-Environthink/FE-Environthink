@@ -8,7 +8,7 @@ import Spinner from "react-bootstrap/Spinner";
 import { Link } from "react-router-dom";
 
 function HomepageAdmin() {
-  const { totalAksi, totalArticle, totalInfografis } = useSelector(
+  const { totalAksi, totalArticle, totalInfografis, totalDonasi } = useSelector(
     (state) => state.HomepageAdminReducer
   );
 
@@ -57,7 +57,14 @@ function HomepageAdmin() {
               Infografis
             </Card.Subtitle>
             <Card.Subtitle className="fs-3">
-              Total Donasi : Gatau 😂 | belum bkin API DONASI
+              Total Donasi :{" "}
+              <Link
+                to="/admin/infografis"
+                style={{ color: "#14ae5c", textDecoration: "none" }}
+              >
+                {totalDonasi}{" "}
+              </Link>
+              Donasi
             </Card.Subtitle>
             <Card.Title
               className="titleAdminEnvironthink text-center mt-5 fs-1"
