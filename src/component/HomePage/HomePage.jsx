@@ -28,7 +28,7 @@ const HomePage = () => {
 
   return (
     <>
-      <div className="container-fluid banner">
+      <div className="container-fluid banner ">
         <div className="container banner-content col-lg-9">
           <div>
             <h1 className="titleHighlight1 text-white">

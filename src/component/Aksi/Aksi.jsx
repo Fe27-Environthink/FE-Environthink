@@ -32,7 +32,7 @@ function Aksi() {
 
   return (
     <>
-      <div className="container">
+      <div className="container mt-4">
         <div className="artikel" id="artikel">
           <h3 className="text-start ">Tanpa Aksi, Tidak Ada Perubahan </h3>
           <p className="sub-title">

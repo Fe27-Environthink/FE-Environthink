@@ -31,7 +31,7 @@ function Article() {
 
   return (
     <>
-        <div className="container">
+        <div className="container mt-4">
             <div className="artikel" id="artikel">
                 <h3 className="text-start mb-3">Artikel</h3>
                 <div style={{border: "0.5px solid #bfbfbf"}}></div>
