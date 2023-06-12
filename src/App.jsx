@@ -12,6 +12,7 @@ import DetailArticle from "./component/Article/DetailArticle";
 import NavbarAdmin from "./component/Admin/Sidebar/NavbarAdmin";
 import ArtikelAdmin from "./component/Admin/ArtikelAdmin/ArtikelAdmin";
 import HomepageAdmin from "./component/Admin/HomepageAdmin/HomepageAdmin";
+import DetailArtikelAdmin from "./component/Admin/ArtikelAdmin/DetailArtikelAdmin";
 
 function App() {
   const isAdminRoute = window.location.pathname === "/admin";
@@ -30,6 +31,7 @@ function App() {
           <Route path="/article/:key" element={<DetailArticle />} />
           <Route path="/admin" element={<HomepageAdmin />} />
           <Route path="/admin/article" element={<ArtikelAdmin />} />
+          <Route path="/admin/article/:key" element={<DetailArtikelAdmin/>} />
         </Routes>
         {/* <Footer /> */}
         {!isAdminRoute && <Footer />}
