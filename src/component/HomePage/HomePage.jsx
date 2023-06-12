@@ -38,7 +38,10 @@ const HomePage = () => {
               Jangan tunggu sampai terlambat, mari kita bertindak <br />
               sekarang untuk menyelamatkan planet kita.
             </p>
-            <a className="btn btnHighlight1 mb-5" href="aksi.html">
+            <a
+              className="btn btnHighlight1 mb-5"
+              onClick={() => navigate("/aksi")}
+            >
               Ikuti Aksi
             </a>
           </div>
