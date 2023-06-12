@@ -63,13 +63,13 @@ function Infografis() {
                 <div key={item.id} className="col-md-6 col-lg-4 mb-3 pb-4">
                   <div className="card card-infografis h-100">
                     <img
-                      src={item.images}
+                      src={item.url}
                       style={{ cursor: "pointer" }}
-                      className="card-img-top"
+                      className="card-img-top img-infografis h-100"
                       data-bs-toggle="modal"
                       data-bs-target={`#${item.id}Backdrop`}
                       alt="infografis"
-                      onClick={() => handleClickInfografis(item.images)}
+                      onClick={() => handleClickInfografis(item.url)}
                     />
                     <div className="card-body">
                       <h1
@@ -77,7 +77,7 @@ function Infografis() {
                         data-bs-toggle="modal"
                         data-bs-target="#staticBackdrop"
                       >
-                        {item.titleInfografis}
+                        {item.judul}
                       </h1>
 
                       <div
@@ -96,7 +96,7 @@ function Infografis() {
                                 className="modal-title fs-5"
                                 id="staticBackdropLabel"
                               >
-                                {item.titleInfografis}
+                                {item.judul}
                               </h1>
                               <button
                                 type="button"
@@ -107,7 +107,7 @@ function Infografis() {
                             </div>
                             <div className="modal-body">
                               <img
-                                src={item.images}
+                                src={item.url}
                                 className="card-img-top"
                                 alt="infografis"
                               />

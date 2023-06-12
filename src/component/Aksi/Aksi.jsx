@@ -32,7 +32,7 @@ function Aksi() {
 
   return (
     <>
-      <div className="container">
+      <div className="container mt-4">
         <div className="artikel" id="artikel">
           <h3 className="text-start ">Tanpa Aksi, Tidak Ada Perubahan </h3>
           <p className="sub-title">
@@ -49,7 +49,7 @@ function Aksi() {
               </div>
             ) : (
               filterData.map((item) => (
-                <div className="col-md-4 col-sm-6 mb-4 pt-4 pb-4" key={item.id}>
+                <div className="col-md-4 col-sm-6  pt-4 pb-4" key={item.id}>
                   <div className="card card-aksi h-100">
                     <img
                       src={item.image}

@@ -1,16 +1,16 @@
 import { Link, useParams } from "react-router-dom";
 import "./Aksi.css";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Spinner from "react-bootstrap/Spinner";
-import { getDetail, submitPetisi } from "../../Redux/Action/AksiAction";
-import Swal from "sweetalert2";
+import { getDetail,  } from "../../Redux/Action/AksiAction";
+
 import FormPetisi from "./FormPetisi";
 
 function DetailAksi() {
   const { key } = useParams();
   const dispatch = useDispatch();
-  const { detailAksi, listAksi, isLoading, isSuccess, isFailure } = useSelector(
+  const { detailAksi, isLoading } = useSelector(
     (state) => state.AksiReducer
   );
 
@@ -20,7 +20,7 @@ function DetailAksi() {
       if (detailAksi.numberOfSupport == 0) {
         return (
           <h5 className="fw-bold" id="heading-form">
-            Belum ada dukungan
+            Belum ada dukungan 
           </h5>
         );
       } else if (detailAksi.numberOfSupport < detailAksi.target) {
@@ -84,7 +84,7 @@ function DetailAksi() {
                   {detailAksi != 0 &&
                     detailAksi.hashtag.map((item) => (
                       <Link
-                        to={`/aksi/${item}`}
+                        to={`/aksi/terkait/${item}`}
                         style={{ textDecoration: "none" }}
                       >
                         <span id="hashTag" className="p-2 hashTag ">
@@ -158,93 +158,7 @@ function DetailAksi() {
                   </Link>
                 ) : (
                   <FormPetisi />
-                  // <form
-                  //   className="form-group mb-4"
-                  //   id="form-petisi"
-                  //   onSubmit={handleSubmitPetisi}
-                  // >
-                  //   <div className="mb-3">
-                  //     <label htmlFor="namaLengkap" className="form-label">
-                  //       Nama Lengkap
-                  //     </label>
-                  //     <input
-                  //       type="text"
-                  //       className="form-control"
-                  //       id="namaLengkap"
-                  //       required
-                  //       value={petisi.name}
-                  //       name="name"
-                  //       onChange={handleChangePetisi}
-                  //     />
-                  //   </div>
-                  //   <div className="mb-3">
-                  //     <label htmlFor="email" className="form-label">
-                  //       Email address
-                  //     </label>
-                  //     <input
-                  //       type="email"
-                  //       className="form-control"
-                  //       id="email"
-                  //       required
-                  //       value={petisi.email}
-                  //       name="email"
-                  //       onChange={handleChangePetisi}
-                  //     />
-                  //   </div>
-                  //   <div className="mb-3">
-                  //     <label htmlFor="nomorTelepone" className="form-label">
-                  //       Nomor Telepon
-                  //     </label>
-                  //     <input
-                  //       type="text"
-                  //       className="form-control"
-                  //       id="nomorTelepone"
-                  //       required
-                  //       value={petisi.tlp}
-                  //       name="tlp"
-                  //       onChange={handleChangePetisi}
-                  //     />
-                  //   </div>
-                  //   <div className="mb-3">
-                  //     <label htmlFor="kota" className="form-label">
-                  //       Kota
-                  //     </label>
-                  //     <input
-                  //       type="text"
-                  //       className="form-control"
-                  //       id="kota"
-                  //       required
-                  //       value={petisi.city}
-                  //       name="city"
-                  //       onChange={handleChangePetisi}
-                  //     />
-                  //   </div>
-                  //   <div className="form-check text-secondary">
-                  //     <input
-                  //       className="form-check-input"
-                  //       type="checkbox"
-                  //       defaultValue
-                  //       id="flexCheckDefault"
-                  //       required
-                  //     />
-                  //     <label
-                  //       className="form-check-label"
-                  //       htmlFor="flexCheckDefault"
-                  //     >
-                  //       Saya setuju untuk membagikan nama dan alamat email untuk
-                  //       menerima pemberitahuan pembaruan tentang kampanye ini
-                  //       dan kampanye lainnya.
-                  //     </label>
-                  //   </div>
-                  //   <button
-                  //     className="btn btn-petisi btn-danger w-100 "
-                  //     data-bs-toggle="modal1"
-                  //     data-bs-target="#staticBackdrop1"
-                  //   >
-                  //     <i className="fa fa-pen-nib me-2"> </i> Tanda Tangani
-                  //     Petisi
-                  //   </button>
-                  // </form>
+                  
                 )}
               </div>
             </div>
