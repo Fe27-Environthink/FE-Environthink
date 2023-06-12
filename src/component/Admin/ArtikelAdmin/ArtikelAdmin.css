@@ -1,0 +1,11 @@
+.imagesAdmin {
+  width: 100px !important;
+}
+
+.btn-update:hover {
+  background-color: #14ae5c !important;
+}
+
+.btn-delete:hover {
+  background-color: #ff2d2d !important;
+}
