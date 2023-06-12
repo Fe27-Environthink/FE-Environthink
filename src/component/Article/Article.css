@@ -1,14 +1,14 @@
 #artikel-lainnya,
 #infografis-lainnya {
-    border: 2px solid var(--color-main) !important;
-    color: var(--color-main) !important;
+    border: 2px solid #14ae5c !important;
+    color: #14ae5c !important;
 }
 
 #artikel-lainnya:hover,
 #infografis-lainnya:hover {
     background-color: #14ae5c;
-    border: 2px solid var(--color-main) !important;
-    color: var(--color-bg) !important;
+    border: 2px solid #14ae5c !important;
+    color: #ffffff !important;
 }
 
 .wrapperLinkTitleArticles {
@@ -26,8 +26,8 @@
 }
 
 .btnDonasi {
-    background-color: var(--color-main) !important;
-    color: var(--color-bg) !important;
+    background-color: #14ae5c !important;
+    color: #ffffff !important;
 }
 
 .card-artikel {

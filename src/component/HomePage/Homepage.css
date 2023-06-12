@@ -44,7 +44,7 @@
 }
 
 .btnHighlight1 {
-  background-color: var(--color-main) !important;
+  background-color: #14ae5c !important;
   color: var(--color-bg) !important;
   padding: 0.6em 3em !important;
   font-family: "Plus Jakarta Sans", sans-serif !important;
@@ -116,18 +116,14 @@
 }
 
 #artikel-lainnya {
-  border: 2px solid var(--color-main) !important;
-  font-family: "Plus Jakarta Sans", sans-serif !important;
-  font-weight: 600;
-  color: var(--color-main) !important;
+    border: 2px solid #14ae5c !important;
+    color: #14ae5c !important;
 }
 
 #artikel-lainnya:hover {
-  background-color: #14ae5c;
-  border: 2px solid var(--color-main) !important;
-  font-family: "Plus Jakarta Sans", sans-serif !important;
-  font-weight: 600;
-  color: var(--color-bg) !important;
+    background-color: #14ae5c;
+    border: 2px solid #14ae5c !important;
+    color: #ffffff !important;
 }
 
 .Highlight2 {
