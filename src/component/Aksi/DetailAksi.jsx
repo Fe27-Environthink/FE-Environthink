@@ -200,7 +200,7 @@ function DetailAksi() {
                           <span id="cathegory">Petisi</span>{" "}
                           <span id="dot"> </span>
                         </Link>
-                        {item != 0 &&
+                        {/* {item != 0 &&
                           item.hashtag.map((item) => (
                             <Link
                               to={`/aksi/terkait/${item}`}
@@ -210,7 +210,7 @@ function DetailAksi() {
                                 # {item}
                               </span>
                             </Link>
-                          ))}
+                          ))} */}
                       </p>
                       <a
                         className="wrapperLinkTitleAksi"
