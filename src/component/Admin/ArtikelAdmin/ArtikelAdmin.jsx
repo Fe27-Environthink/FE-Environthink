@@ -1,8 +1,19 @@
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 import "./ArtikelAdmin.css";
 import { FaTrashAlt, FaPen } from "react-icons/fa";
+import { getArticle } from "../../../Redux/Action/articleAction";
+import { useDispatch, useSelector } from 'react-redux';
+import Spinner from "react-bootstrap/Spinner";
 
 function ArtikelAdmin() {
+  const dispatch = useDispatch();
+  const { article, isLoading } = useSelector((state) => state.articleReducer)
+
+  useEffect(() => {
+    dispatch(getArticle());
+  }, []);
+
   return (
     <>
       <div className="container">
@@ -31,7 +42,6 @@ function ArtikelAdmin() {
                     </th>
                     <th scope="col-md-2">Title Article</th>
                     <th scope="col-md-2">Cathegory</th>
-                    <th scope="col-md-2">HashTag</th>
                     <th scope="col-md-2">Author</th>
                     <th scope="col-md-2">Date</th>
                     <th scope="col-md-2" className="text-center">
@@ -40,40 +50,47 @@ function ArtikelAdmin() {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td className="me-5">
-                      <img
-                        src="https://alamendah.files.wordpress.com/2014/08/kerusakan-lingkungan-1.jpg?w=300&h=225&zoom=2"
-                        alt="name"
-                        className="img-artikel w-100"
-                      />
-                    </td>
-                    <td>Proyek Minyak Bumi dan Kesalahan yang Berulang</td>
-                    <td>Cerita</td>
-                    <td>#EnergiTerbarukan</td>
-                    <td>Sherina Redjo</td>
-                    <td>12 April 2023</td>
-                    <td>
-                      <div className="row">
-                        <div className="col-4 px-1">
-                          <Link
-                            to="/"
-                            className="btn bg-success btn-update text-sm me-4 text-white w-100 px-2"
-                          >
-                            <FaPen />
-                          </Link>
+                  {isLoading?(
+                    <div className="text-center  d-flex justify-content-center align-items-center my-5 py-5">
+                        <span className="mx-2 h1" >loading   
+                    </span>
+                    <Spinner animation="border" variant="dark" />
+                    </div>
+                  ):article.map((item) => (
+                    <tr  key={item.id}>
+                      <td className="me-5">
+                        <img
+                          src={item.images}
+                          alt="name"
+                          className="img-artikel w-100"
+                        />
+                      </td>
+                      <td>{item.titleArticle}</td>
+                      <td>{item.cathegory}</td>
+                      <td>{item.author}</td>
+                      <td>{item.date}</td>
+                      <td>
+                        <div className="row">
+                          <div className="col-4 px-1">
+                            <Link
+                              to="/"
+                              className="btn bg-success btn-update text-sm me-4 text-white w-100 px-2"
+                            >
+                              <FaPen />
+                            </Link>
+                          </div>
+                          <div className="col-4 px-1">
+                            <Link
+                              to="/"
+                              className="btn bg-danger btn-delete text-sm me-4 text-white w-100 px-2"
+                            >
+                              <FaTrashAlt />
+                            </Link>
+                          </div>
                         </div>
-                        <div className="col-4 px-1">
-                          <Link
-                            to="/"
-                            className="btn bg-danger btn-delete text-sm me-4 text-white w-100 px-2"
-                          >
-                            <FaTrashAlt />
-                          </Link>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
