@@ -1,15 +1,12 @@
 import "./Navbar.css";
 import Logo from "../../assets/logo.png";
-import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
-import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import Offcanvas from "react-bootstrap/Offcanvas";
 
 import { BsSearch } from "react-icons/bs";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 function Navbars() {
   return (
@@ -21,7 +18,7 @@ function Navbars() {
         className="mb-0 d-flex flex-column justify-content-between shadow sticky-top bg-white"
       >
         <Container fluid>
-          <Navbar.Brand href="#">
+          <Navbar.Brand as={Link} to="/">
             {" "}
             <img src={Logo} id="logo" alt="Environthink Logo" />
           </Navbar.Brand>

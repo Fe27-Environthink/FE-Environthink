@@ -59,11 +59,7 @@ const HomePage = () => {
           >
             <div className="row ms-1 me-1 mt-5 mb-5">
               <div className="col-md-4 p-0 me-4">
-                <img
-                  className="articlesImage"
-                  src={item.images}
-                  alt="Images "
-                />
+                <img id="articlesImage" src={item.images} alt="Images " />
               </div>
               <div
                 id="detailPreviewArticles"
