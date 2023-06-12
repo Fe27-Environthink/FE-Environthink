@@ -9,21 +9,21 @@ function AksiTerkait() {
     const {hashtag}=useParams()
     const dispatch = useDispatch()
     const {listAksi,isLoading} = useSelector(state=>state.AksiReducer)
-    const [filterData,setFilterData] =useState([])
+    const [aksiTerkait,setAksiTerkait] =useState([])
     useEffect(()=>{
         dispatch(getDataAksi())
     },[])
     useEffect(()=>{
         // setFilterData  (listAksi.filter((item)=>item.hashtag.include({hashtag})))
         // console.log(filterData);
-        setFilterData(listAksi.filter(item =>item.hashtag.includes(hashtag)))
+        setAksiTerkait(listAksi.filter(item =>item.hashtag.includes(hashtag)))
         
-        console.log(filterData);
+       
     },[listAksi])
   return (
 
     <>
-     <div className="container">
+     <div className="container mt-4">
         <div className="artikel" id="artikel">
           <h3 className="text-start ">Aksi terkait &quot;{hashtag}&quot; </h3>
           
@@ -36,7 +36,7 @@ function AksiTerkait() {
                 <Spinner animation="border" variant="dark" />
               </div>
             ) : (
-              filterData.map((item) => (
+                aksiTerkait.map((item) => (
                 <div className="col-md-4 col-sm-6  pt-4 pb-4" key={item.id}>
                   <div className="card card-aksi h-100">
                     <img
