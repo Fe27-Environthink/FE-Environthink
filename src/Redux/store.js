@@ -8,6 +8,7 @@ import articleReducer from "./Reducer/articleReducer";
 import infografisReducer from "./Reducer/infografisReducer";
 import komentarReducer from "./Reducer/komentarReducer";
 import HomepageAdminReducer from "./Reducer/HomepageAdminReducer";
+import AuthReducer from './Reducer/AuthReducer';
 
 const rootReducer = combineReducers({
   SearchReducer,
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   infografisReducer,
   komentarReducer,
   HomepageAdminReducer,
+  AuthReducer
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunk));

@@ -19,6 +19,7 @@ import DetailArtikelAdmin from "./component/Admin/ArtikelAdmin/DetailArtikelAdmi
 import AddArtikelAdmin from "./component/Admin/ArtikelAdmin/AddArtikelAdmin";
 import ArticleTerkait from "./component/Article/ArticleTerkait";
 import Login from "./component/Auth/Login";
+import Register from "./component/Auth/Register";
 
 function App() {
   const isAdminRoute = window.location.pathname === "/admin";
@@ -31,6 +32,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
 
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/aksi" element={<Aksi />} />
           <Route path="/aksi/terkait/:hashtag" element={<AksiTerkait />} />
           <Route path="/aksi/:key" element={<DetailAksi />} />
