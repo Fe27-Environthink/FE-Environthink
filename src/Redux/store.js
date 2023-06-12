@@ -7,6 +7,7 @@ import DonasiReducer from "./Reducer/DonasiReducer";
 import articleReducer from "./Reducer/articleReducer";
 import infografisReducer from "./Reducer/infografisReducer";
 import komentarReducer from "./Reducer/komentarReducer";
+import HomepageAdminReducer from "./Reducer/HomepageAdminReducer";
 
 const rootReducer = combineReducers({
   SearchReducer,
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   articleReducer,
   infografisReducer,
   komentarReducer,
+  HomepageAdminReducer,
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunk));

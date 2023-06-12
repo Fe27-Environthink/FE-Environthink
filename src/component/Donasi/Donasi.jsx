@@ -2,12 +2,15 @@ import "./Donasi.css";
 import ImgCreditCard from "../../assets/CardCredit.png";
 import { useState, useRef } from "react";
 import Swal from "sweetalert2";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { dataDonasi } from "../../Redux/Action/ActionDonasi";
 import emailjs from "@emailjs/browser";
 
 const Donasi = () => {
   const dispatch = useDispatch();
+
+  const { Donasi } = useSelector((state) => state.DonasiReducer);
+  console.log(Donasi);
 
   const ref = useRef();
 
@@ -139,6 +142,7 @@ const Donasi = () => {
             <div className="row mt-4 mb-5">
               <div className="col text-center ">
                 <button
+                  type="button"
                   className="btn-50k btn w-100"
                   onClick={() => handleInputMoney(50000)}
                 >
@@ -148,6 +152,7 @@ const Donasi = () => {
               <div className="col text-center ">
                 <button
                   className="btn-100k btn w-100"
+                  type="button"
                   onClick={() => handleInputMoney(100000)}
                 >
                   Rp 100.000
@@ -156,6 +161,7 @@ const Donasi = () => {
               <div className="col text-center">
                 <button
                   className="btn-150k btn w-100"
+                  type="button"
                   onClick={() => handleInputMoney(150000)}
                 >
                   Rp 150.000

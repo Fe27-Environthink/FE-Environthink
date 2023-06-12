@@ -9,7 +9,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import Offcanvas from "react-bootstrap/Offcanvas";
 
 import { BsSearch } from "react-icons/bs";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 function NavbarAdmin() {
   return (
@@ -21,7 +21,7 @@ function NavbarAdmin() {
         className="mb-3 d-flex flex-column justify-content-between shadow sticky-top bg-white"
       >
         <Container fluid>
-          <Navbar.Brand href="#">
+          <Navbar.Brand as={Link} to="/admin">
             {" "}
             <img src={Logo} id="logo" alt="Environthink Logo" />
           </Navbar.Brand>
