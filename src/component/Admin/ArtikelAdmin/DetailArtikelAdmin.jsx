@@ -37,7 +37,7 @@ function DetailArtikelAdmin() {
                 </div>
             </div>
             {isLoading ? (
-                <div className="text-center  d-flex justify-content-center align-items-center my-5 py-5">
+                <div className="text-center d-flex justify-content-center align-items-center my-5 py-5">
                     <span className="mx-2 h1">loading</span>
                     <Spinner animation="border" variant="dark" />
                 </div>

@@ -33,9 +33,15 @@ export const getArticle = () => {
 
 export const getArticleDetail = (id) => {
   return async (dispatch) => {
-    const url = `https://644b56f917e2663b9ded34b8.mockapi.io/article/${id}`;
+    const url = `${import.meta.env.VITE_API_ARTICLE}/${id}`;
     dispatch(startFetching());
     const result = await axios(url);
     dispatch(successGetDetail(result.data));
   };
 };
+
+export const addArticle = (newData, id) => async (dispatch) => {
+  const url = `${import.meta.env.VITE_API_ARTICLE}/${id}`;
+  await axios.post(url, newData);
+  dispatch(getKomentar(id));
+}

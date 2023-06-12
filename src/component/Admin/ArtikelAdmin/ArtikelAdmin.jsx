@@ -21,9 +21,9 @@ function ArtikelAdmin() {
       <div className="container">
         <div className="row pt-4">
           <div className="col-md-12 d-flex justify-content-end">
-            <button to="" className="btn bg-primary text-white text-sm px-5 py-2">
+            <Link to="/admin/article/add-article" className="btn bg-primary text-white text-sm px-5 py-2">
               Add Artikel
-            </button>
+            </Link>
           </div>
         </div>
 

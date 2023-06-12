@@ -25,7 +25,7 @@ export const getKomentar = (id) => {
 }
 
 export const addKomentar = (newData, id) => async (dispatch) => {
-    const url = `${import.meta.env.VITE_API_ARTICLE}/${id}//komentar`;
+    const url = `${import.meta.env.VITE_API_ARTICLE}/${id}/komentar`;
     await axios.post(url, newData);
     dispatch(getKomentar(id));
 }
@@ -37,7 +37,7 @@ export const deleteKomentar = (data, id) => async (dispatch) => {
 };
 
 export const editKomentar = (data, id) => async (dispatch) => {
-    const url = `${import.meta.env.VITE_API_ARTICLE}/${id}//komentar/${data.id}`;
+    const url = `${import.meta.env.VITE_API_ARTICLE}/${id}/komentar/${data.id}`;
     await axios.put(url, data);
     dispatch(getKomentar(id));
 };
