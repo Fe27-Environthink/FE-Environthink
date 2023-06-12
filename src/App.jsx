@@ -18,6 +18,7 @@ import HomepageAdmin from "./component/Admin/HomepageAdmin/HomepageAdmin";
 import DetailArtikelAdmin from "./component/Admin/ArtikelAdmin/DetailArtikelAdmin";
 import AddArtikelAdmin from "./component/Admin/ArtikelAdmin/AddArtikelAdmin";
 import ArticleTerkait from "./component/Article/ArticleTerkait";
+import Login from "./component/Auth/Login";
 
 function App() {
   const isAdminRoute = window.location.pathname === "/admin";
@@ -29,6 +30,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
 
+          <Route path="/login" element={<Login />} />
           <Route path="/aksi" element={<Aksi />} />
           <Route path="/aksi/terkait/:hashtag" element={<AksiTerkait />} />
           <Route path="/aksi/:key" element={<DetailAksi />} />
