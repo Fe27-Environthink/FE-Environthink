@@ -29,6 +29,15 @@
     background-color: var(--color-main) !important;
     color: var(--color-bg) !important;
   }
+  .btn-aksen {
+    background-color: var(--color-variant) !important;
+    color: var(--color-bg) !important;
+  }
+  .btn-aksen:hover {
+    background-color: var(--color-variant-hover) !important;
+    color: var(--color-bg) !important;
+    
+  }
   .swal2-confirm {
     margin-right: 10px;
   }

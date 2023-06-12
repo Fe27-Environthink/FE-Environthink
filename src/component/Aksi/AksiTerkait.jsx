@@ -1,44 +1,32 @@
-import { Link } from "react-router-dom";
-import "./Aksi.css";
-import { FaUsers } from "react-icons/fa";
-import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-
-import Spinner from "react-bootstrap/Spinner";
-import { getDataAksi } from './../../Redux/Action/AksiAction';
-function Aksi() {
-  const dispatch = useDispatch();
-  const { listAksi, isLoading } = useSelector((state) => state.AksiReducer);
-  const [limit, setLimit] = useState(3);
-  const [showButton, setShowButton] = useState(true);
-  const [filterData, setFilterData] = useState([]);
-  useEffect(() => {
-    dispatch(getDataAksi());
-  }, []);
-
-  useEffect(() => {
-    setFilterData(listAksi.slice(0, 3));
-  }, [listAksi]);
-
-
-  useEffect(() => {
-    setFilterData(listAksi.slice(0, limit));
-    console.log("limit", limit, ",listaksi:", listAksi.length);
-    if (listAksi.length > 0 && limit >= listAksi.length) {
-      console.log("berhasil");
-      setShowButton(false);
-    }
-  }, [limit]);
-
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useParams } from "react-router-dom";
+import { getDataAksi } from "../../Redux/Action/AksiAction";
+import { FaUsers } from "react-icons/fa";
+import "./Aksi.css"
+import { Spinner } from "react-bootstrap";
+function AksiTerkait() {
+    const {hashtag}=useParams()
+    const dispatch = useDispatch()
+    const {listAksi,isLoading} = useSelector(state=>state.AksiReducer)
+    const [filterData,setFilterData] =useState([])
+    useEffect(()=>{
+        dispatch(getDataAksi())
+    },[])
+    useEffect(()=>{
+        // setFilterData  (listAksi.filter((item)=>item.hashtag.include({hashtag})))
+        // console.log(filterData);
+        setFilterData(listAksi.filter(item =>item.hashtag.includes(hashtag)))
+        
+        console.log(filterData);
+    },[listAksi])
   return (
+
     <>
-      <div className="container">
+     <div className="container">
         <div className="artikel" id="artikel">
-          <h3 className="text-start ">Tanpa Aksi, Tidak Ada Perubahan </h3>
-          <p className="sub-title">
-            Bergabunglah dengan kami dan tandatangani petisi untuk mendukung
-            perubahan positif.
-          </p>
+          <h3 className="text-start ">Aksi terkait &quot;{hashtag}&quot; </h3>
+          
           <div style={{ border: "0.5px solid #bfbfbf" }}></div>
 
           <div className="row pt-2" id="articlesContent">
@@ -92,20 +80,10 @@ function Aksi() {
             )}
           </div>
         </div>
-        {!isLoading && (
-          <div className="d-flex justify-content-center pb-3">
-            {showButton && (
-              <button
-                className="btn btn-lainnya "
-                onClick={() => setLimit(limit + 3)}
-              >
-                Aksi Lainnya
-              </button>
-            )}
-          </div>
-        )}
+       
       </div>
     </>
   );
 }
-export default Aksi;
+
+export default AksiTerkait;

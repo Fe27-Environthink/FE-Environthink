@@ -5,6 +5,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbars from "./component/Navbar/Navbars";
 import Aksi from "./component/Aksi/Aksi";
 import DetailAksi from "./component/Aksi/DetailAksi";
+
+import AksiTerkait from "./component/Aksi/AksiTerkait";
+
+
 import Search from "./component/Searchpage/Search";
 import Donasi from "./component/Donasi/Donasi";
 import Article from "./component/Article/Article";
@@ -22,6 +26,9 @@ function App() {
         {isAdminRoute ? <NavbarAdmin /> : <Navbars />}
         <Routes>
           <Route path="/" element={<HomePage />} />
+
+          <Route path="/aksi/terkait/:hashtag" element={<AksiTerkait/>}/>
+
           <Route path="/aksi" element={<Aksi />} />
           <Route path="/aksi/:key" element={<DetailAksi />} />
           <Route path="/search" element={<Search />} />
@@ -30,6 +37,7 @@ function App() {
           <Route path="/article/:key" element={<DetailArticle />} />
           <Route path="/admin" element={<HomepageAdmin />} />
           <Route path="/admin/article" element={<ArtikelAdmin />} />
+
         </Routes>
         {/* <Footer /> */}
         {!isAdminRoute && <Footer />}
