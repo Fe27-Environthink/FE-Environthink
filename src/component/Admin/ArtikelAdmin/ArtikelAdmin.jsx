@@ -65,14 +65,14 @@ function ArtikelAdmin() {
                       }}>
                       <td className="me-5">
                         <img
-                          src={item.images}
+                          src={item.url}
                           alt="name"
                           className="img-artikel w-100"
                           
                         />
                       </td>
                       <td>{item.titleArticle}</td>
-                      <td>{item.cathegory}</td>
+                      <td>{item.category}</td>
                       <td>{item.author}</td>
                       <td>{item.date}</td>
                       <td>

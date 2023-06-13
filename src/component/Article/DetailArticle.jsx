@@ -33,20 +33,19 @@ function DetailArticle() {
               <>
                 <div className="col-md-12 mb-3">
                   <p className="hashTag m-0 p-0">
-                    <span id="cathegory">{detailArticle.cathegory}</span>{" "}
+                    <span id="cathegory">{detailArticle.category}</span>{" "}
                     <span id="dot"></span>
                     
-                    {detailArticle.hashTag.map((hashTag) => (
-                         <Link
-                         to={`/article/terkait/${hashTag}`}
+                    {detailArticle.hashtag.map((hashtag) => (
+                         <Link key={hashtag}
+                         to={`/article/terkait/${hashtag}`}
                          style={{ textDecoration: "none" }}
                        >
                       <span
                         id="hashTag"
-                        key={hashTag}
                         className="hashTagArticle text-decoration-none me-2"
                       >
-                        #{hashTag}
+                        #{hashtag}
                       </span>
                       </Link>
                     ))}
@@ -75,41 +74,41 @@ function DetailArticle() {
                 <div className="col-md-12 p-0 me-4 text-center">
                   <img
                     className="articlesImage img-fluid"
-                    src={detailArticle.images}
+                    src={detailArticle.url}
                     alt=""
                     id="images"
                   />
                 </div>
                 <div className="paragraf col-md-12 ps-0 pe-0 pt-5 ps-3">
                   <p id="paragraf1" className="text-dark">
-                    {detailArticle.paragraf1}
+                    {detailArticle.desc1}
                   </p>
                   <p id="paragraf2" className="text-dark">
-                    {detailArticle.paragraf2}
+                    {detailArticle.desc2}
                   </p>
                   <p id="paragraf3" className="text-dark">
-                    {detailArticle.paragraf3}
+                    {detailArticle.desc3}
                   </p>
                   <p id="paragraf4" className="text-dark">
-                    {detailArticle.paragraf4}
+                    {detailArticle.desc4}
                   </p>
                   <p id="paragraf5" className="text-dark">
-                    {detailArticle.paragraf5}
+                    {detailArticle.desc5}
                   </p>
                   <p id="paragraf6" className="text-dark">
-                    {detailArticle.paragraf6}
+                    {detailArticle.desc6}
                   </p>
                   <p id="paragraf7" className="text-dark">
-                    {detailArticle.paragraf7}
+                    {detailArticle.desc7}
                   </p>
                   <p id="paragraf8" className="text-dark">
-                    {detailArticle.paragraf8}
+                    {detailArticle.desc8}
                   </p>
                   <p id="paragraf9" className="text-dark">
-                    {detailArticle.paragraf9}
+                    {detailArticle.desc9}
                   </p>
                   <p id="paragraf10" className="text-dark">
-                    {detailArticle.paragraf10}
+                    {detailArticle.desc10}
                   </p>
                 </div>
               </>
