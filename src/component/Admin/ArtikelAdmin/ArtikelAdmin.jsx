@@ -76,7 +76,7 @@ function ArtikelAdmin() {
                           />
                         </td>
                         <td>{item.titleArticle}</td>
-                        <td>{item.cathegory}</td>
+                        <td>{item.category}</td>
                         <td>{item.author}</td>
                         <td>{item.date}</td>
                         <td>
@@ -88,14 +88,6 @@ function ArtikelAdmin() {
                               >
                                 <FaPen />
                               </Link>
-                            </div>
-                            <div className="col-4 px-1">
-                              <button
-                                to="/"
-                                className="btn bg-danger btn-delete text-sm me-4 text-white w-100 px-2"
-                              >
-                                <FaTrashAlt />
-                              </button>
                             </div>
                           </div>
                         </td>

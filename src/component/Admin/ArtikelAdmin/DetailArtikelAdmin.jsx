@@ -47,19 +47,19 @@ function DetailArtikelAdmin() {
                         <>
                             <div className="row mb-4">
                                 <div className="col-md-6 col-lg-6 p-3">
-                                    <img className='imgArticleAdmin' src={detailArticle.images}/>
+                                    <img className='imgArticleAdmin' src={detailArticle.url}/>
                                 </div>
 
                                 <div className="col-md-6 col-lg-6 pt-5">
                                     <h3 className="titleArticle pt-4" id="titleArticle">{detailArticle.titleArticle}</h3>
-                                    <h5 id="cathegory" className='cathegory pt-3'>{detailArticle.cathegory}</h5>
-                                    {detailArticle.hashTag.map((hashTag) => (
+                                    <h5 id="cathegory" className='cathegory pt-3'>{detailArticle.category}</h5>
+                                    {detailArticle.hashtag.map((hashtag) => (
                                         <span
                                             id="hashTag"
-                                            key={hashTag}
+                                            key={hashtag}
                                             className="hashTagArticle text-decoration-none me-2 pt-4"
                                         >
-                                            #{hashTag}
+                                            #{hashtag}
                                         </span>
                                     ))}
                                     <p className="text-dark pt-3">
@@ -87,34 +87,34 @@ function DetailArtikelAdmin() {
                                     <h3 className="text-primary-dark">Descriptions</h3>
                                     <div className="paragraf col-md-12 ps-0 pe-0 pt-4 ps-3">
                                         <p id="paragraf1" className="text-dark">
-                                            {detailArticle.paragraf1}
+                                            {detailArticle.desc1}
                                         </p>
                                         <p id="paragraf2" className="text-dark">
-                                            {detailArticle.paragraf2}
+                                            {detailArticle.desc2}
                                         </p>
                                         <p id="paragraf3" className="text-dark">
-                                            {detailArticle.paragraf3}   
+                                            {detailArticle.desc3}   
                                         </p>
                                         <p id="paragraf4" className="text-dark">
-                                            {detailArticle.paragraf4}
+                                            {detailArticle.desc4}
                                         </p>
                                         <p id="paragraf5" className="text-dark">
-                                            {detailArticle.paragraf5}
+                                            {detailArticle.desc5}
                                         </p>
                                         <p id="paragraf6" className="text-dark">
-                                            {detailArticle.paragraf6}
+                                            {detailArticle.desc6}
                                         </p>
                                         <p id="paragraf7" className="text-dark">
-                                            {detailArticle.paragraf7}
+                                            {detailArticle.desc7}
                                         </p>
                                         <p id="paragraf8" className="text-dark">
-                                            {detailArticle.paragraf8}
+                                            {detailArticle.desc8}
                                         </p>
                                         <p id="paragraf9" className="text-dark">
-                                            {detailArticle.paragraf9}
+                                            {detailArticle.desc9}
                                         </p>
                                         <p id="paragraf10" className="text-dark">
-                                            {detailArticle.paragraf10}
+                                            {detailArticle.desc10}
                                         </p>
                                     </div>
                                 </div>

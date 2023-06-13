@@ -18,18 +18,18 @@ function DetailAksi() {
   );
 
   let renderHeaderPetisi = () => {
-    console.log(detailAksi.numberOfSupport);
+  
     {
-      if (detailAksi.numberOfSupport == 0) {
+      if (detailAksi.numberofsupport == 0) {
         return (
           <h5 className="fw-bold" id="heading-form">
             Belum ada dukungan
           </h5>
         );
-      } else if (detailAksi.numberOfSupport < detailAksi.target) {
+      } else if (detailAksi.numberofsupport < detailAksi.target) {
         return (
           <h5 className="fw-bold" id="heading-form">
-            {detailAksi.numberOfSupport} orang yang sudah mendukung
+            {detailAksi.numberofsupport} orang yang sudah mendukung
           </h5>
         );
       } else {
@@ -42,10 +42,10 @@ function DetailAksi() {
     }
   };
   let renderTextPetisi = () => {
-    if (detailAksi.numberOfSupport < detailAksi.target) {
+    if (detailAksi.numberofsupport < detailAksi.target) {
       return (
         <p className="fw-semibold paragraf" id="paragarfPetisi">
-          {detailAksi.textPetisi}
+          {detailAksi.teks}
         </p>
       );
     } else {
@@ -61,8 +61,9 @@ function DetailAksi() {
   };
   const renderBar = () => {
     let Persentase =
-      (detailAksi.numberOfSupport / detailAksi.target) * 100 + "%";
-    console.log(Persentase);
+      (detailAksi.numberofsupport / detailAksi.target) * 100 + "%";
+
+    console.log("cek presentasi",Persentase);
     return { width: Persentase };
   };
   useEffect(() => {
@@ -75,7 +76,12 @@ console.log("ini key",key);
       listAksi.filter((item) => item.id != key)
     );
   }, [listAksi,key]);
-
+ 
+ useEffect(()=>{
+  console.log("ini cek detail",detailAksi);
+  console.log("kok",detailAksi.image); 
+  
+ },[detailAksi])
   return (
     <>
       {isLoading ? (
@@ -96,8 +102,8 @@ console.log("ini key",key);
                     <span id="cathegory">Petisi</span> <span id="dot"> </span>
                   </Link>
                   {detailAksi != 0 &&
-                    detailAksi.hashtag.map((item) => (
-                      <Link
+                   detailAksi.hashtag.map((item) => (
+                      <Link key="1"
                         to={`/aksi/terkait/${item}`}
                         style={{ textDecoration: "none" }}
                       >
@@ -107,28 +113,28 @@ console.log("ini key",key);
                       </Link>
                     ))}
                 </p>
-
+                
                 <h3 id="title">{detailAksi.title}</h3>
                 <img
                   className="img-fluid pt-3"
                   width="100%"
-                  src={detailAksi.image}
+                  src={detailAksi.url}
                   alt="image content"
                   id="image"
                 />
                 <div className="paragraf pt-4">
-                  <p className="mb-4 paragraf">{detailAksi.paragraf1}</p>
-                  <p className="mb-4 paragraf">{detailAksi.paragraf2}</p>
+                  <p className="mb-4 paragraf">{detailAksi.desc}</p>
+                  <p className="mb-4 paragraf">{detailAksi.desc1}</p>
                   <p id="paragraf-konklusi" className="fw-bold paragraf">
-                    {detailAksi.paragrafKonklusi}
-                  </p>
+                    {detailAksi.desc2}
+                  </p> 
                 </div>
               </div>
             </div>
             <div className="col-md-4 pt-5">
               <div id="aksi">
                 {renderHeaderPetisi()}
-                {detailAksi.numberOfSupport < detailAksi.target ? (
+                {detailAksi.numberofsupport < detailAksi.target ? (
                   <div>
                     <div
                       className="progress"
@@ -150,7 +156,7 @@ console.log("ini key",key);
                       id="figcaption"
                     >
                       <span id="caption-bar" />
-                      {detailAksi.numberOfSupport}/{detailAksi.target}
+                      {detailAksi.numberofsupport}/{detailAksi.target}
                       <span id="target" /> dukungan
                     </figcaption>
                   </div>
@@ -159,7 +165,7 @@ console.log("ini key",key);
                 )}
                 {renderTextPetisi()}
 
-                {detailAksi.numberOfSupport == detailAksi.target ? (
+                {detailAksi.numberofsupport == detailAksi.target ? (
                   <Link className="link-aksi" to={`/aksi`}>
                     <button
                       className="btn btn-petisi btn-main w-100 mb-4 "
@@ -198,7 +204,7 @@ console.log("ini key",key);
                 <div key={item.id} className="aksiContent">
                   <div className="row ms-1 me-1 mt-5 mb-5">
                     <div className="col-md-4 p-0 me-4">
-                      <img id="aksiImage" src={item.image} alt="Images " />
+                      <img id="aksiImage" src={item.url} alt="Images " />
                     </div>
                     <div className="col-md-7 ps-0 pe-0 mt-2">
                       <p className="hashTag  m-0 p-0">
@@ -225,17 +231,17 @@ console.log("ini key",key);
                         <h3 className="titleAksi"  onClick={() => navigate(`/aksi/${item.id}`)}>{item.title}</h3>
                       </a>
                       <p className="descAksi text-dark wrapText">
-                        {item.paragraf1}
+                        {item.desc}
                       </p>
                       <p className="card-text  kontributorAksi sub-title d-flex align-items-center gap-2">
                         <FaUsers />
-                        {item.numberOfSupport == 0 ? (
+                        {item.numberofsupport == 0 ? (
                           <span className="fw-medium fs-6">
                             Belum ada dukungan
                           </span>
-                        ) : item.numberOfSupport < item.target ? (
+                        ) : item.numberofsupport < item.target ? (
                           <span className="fw-medium fs-6">
-                            {item.numberOfSupport} orang mendukung
+                            {item.numberofsupport} orang mendukung
                           </span>
                         ) : (
                           <span className="fw-medium fs-6">

@@ -42,7 +42,7 @@ function AksiTerkait() {
                 <div key={item.id} className="aksiContent">
                   <div className="row ms-1 me-1 mt-5 mb-5">
                     <div className="col-md-4 p-0 me-4">
-                      <img id="aksiImage" src={item.image} alt="Images " />
+                      <img id="aksiImage" src={item.url} alt="Images " />
                     </div>
                     <div className="col-md-7 ps-0 pe-0 mt-2">
                       <p className="hashTag  m-0 p-0">
@@ -69,17 +69,17 @@ function AksiTerkait() {
                         <h3 className="titleAksi">{item.title}</h3>
                       </a>
                       <p className="descAksi text-dark wrapText">
-                        {item.paragraf1}
+                        {item.desc}
                       </p>
                       <p className="card-text  kontributorAksi sub-title d-flex align-items-center gap-2">
                         <FaUsers />
-                        {item.numberOfSupport == 0 ? (
+                        {item.numberofsupport == 0 ? (
                           <span className="fw-medium fs-6">
                             Belum ada dukungan
                           </span>
-                        ) : item.numberOfSupport < item.target ? (
+                        ) : item.numberofsupport < item.target ? (
                           <span className="fw-medium fs-6">
-                            {item.numberOfSupport} orang mendukung
+                            {item.numberofsupport} orang mendukung
                           </span>
                         ) : (
                           <span className="fw-medium fs-6">

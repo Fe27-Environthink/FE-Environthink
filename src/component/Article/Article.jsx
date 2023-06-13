@@ -50,7 +50,7 @@ function Article() {
                             }}
                             >
                             <div className="card card-artikel h-100" >
-                                <img src={item.images} className="card-img-top" alt="artikel"/>
+                                <img src={item.url} className="card-img-top" alt="artikel"/>
                                 <div className="card-body">
                                     <Link to={`/article/${item.id}`} className="wrapperLinkTitleArticles">
                                         <h5 className="card-title title-article">{item.titleArticle}</h5>
