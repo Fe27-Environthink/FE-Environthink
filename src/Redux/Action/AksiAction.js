@@ -20,7 +20,7 @@ export const successGetDetail = (payload) => ({
 
 export const getDataAksi = () => async (dispatch) => {
   dispatch(fatchingAksi());
-  const url = "https://647ef495c246f166da8fbfec.mockapi.io/aksi";
+  const url =import.meta.env.VITE_API_AKSI
   const result = await axios(url);
   dispatch(success(result.data));
 };
@@ -47,14 +47,15 @@ export const submitFailure = () => {
 export const getDetail = (id) => async (dispatch) => {
   console.log("id", id);
   dispatch(fatchingAksi());
-  const url = `https://647ef495c246f166da8fbfec.mockapi.io/aksi/${id}`;
+  const url = `${import.meta.env.VITE_API_AKSI}/${id}`;
 
   const result = await axios(url);
-  dispatch(successGetDetail(result.data));
+  console.log("result get",result.data.result);
+  dispatch(successGetDetail(result.data.result));
 };
 export const submitPetisi = (data, id) => async (dispatch) => {
   // get data detail
-  const urlDetail = `https://647ef495c246f166da8fbfec.mockapi.io/aksi/${id}`;
+  const urlDetail = `${import.meta.env.VITE_API_AKSI}${id}`;
   const url = `https://647ef495c246f166da8fbfec.mockapi.io/aksi/${id}/kontributor`;
   const result = await axios(urlDetail);
 

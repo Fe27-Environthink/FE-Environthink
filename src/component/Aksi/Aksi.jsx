@@ -57,8 +57,8 @@ function Aksi() {
                 <div className="col-md-4 col-sm-6  pt-4 pb-4" key={item.id}>
                   <div className="card card-aksi h-100">
                     <img
-                      src={item.image}
-                      className="card-img-top h-100"
+                      src={item.url}
+                      className="card-img-top h-100 sm-h-100" 
                       alt=" "
                     />
                     <div className="card-body">
@@ -67,13 +67,13 @@ function Aksi() {
                       </h6>
                       <p className="card-text sub-title d-flex align-items-center gap-2">
                         <FaUsers />
-                        {item.numberOfSupport == 0 ? (
+                        {item.numberofsupport == 0 ? (
                           <span className="fw-medium fs-6">
                             Belum ada dukungan
                           </span>
-                        ) : item.numberOfSupport < item.target ? (
+                        ) : item.numberofsupport < item.target ? (
                           <span className="fw-medium fs-6">
-                            {item.numberOfSupport} orang mendukung
+                            {item.numberofsupport} orang mendukung
                           </span>
                         ) : (
                           <span className="fw-medium fs-6">
@@ -82,7 +82,7 @@ function Aksi() {
                         )}
                       </p>
                       <Link className="link-aksi" to={`/aksi/${item.id}`}>
-                        {item.numberOfSupport < item.target ? (
+                        {item.numberofsupport < item.target ? (
                           <h5 className="btn btn-main d-block">
                             Pelajari Selengkapnya
                           </h5>
