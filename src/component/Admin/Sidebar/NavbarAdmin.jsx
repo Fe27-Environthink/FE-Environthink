@@ -41,7 +41,7 @@ function NavbarAdmin() {
               <Nav className="justify-content-end flex-grow-1 pe-3">
                 <ul className="navbar-nav">
                   <li className="nav-item mt-1">
-                    <NavLink className="nav-link active" to="aksi.html">
+                    <NavLink className="nav-link active" to="/admin/aksi">
                       Aksi
                     </NavLink>
                   </li>
@@ -57,7 +57,7 @@ function NavbarAdmin() {
                     </NavLink>
                   </li>
                   <li className="nav-item mt-1">
-                    <NavLink className="nav-link active" to="aksi.html">
+                    <NavLink className="nav-link active" to="/admin/donasi">
                       Donasi
                     </NavLink>
                   </li>
