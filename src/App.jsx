@@ -18,6 +18,7 @@ import AddArtikelAdmin from "./component/Admin/ArtikelAdmin/AddArtikelAdmin";
 import ArticleTerkait from "./component/Article/ArticleTerkait";
 import Login from "./component/Auth/Login";
 import Register from "./component/Auth/Register";
+import DonasiAdmin from "./component/Admin/DonasiAdmin/DonasiAdmin";
 
 function App() {
   const isAdminRoute = window.location.pathname === "/admin";
@@ -28,7 +29,6 @@ function App() {
         {isAdminRoute ? <NavbarAdmin /> : <Navbars />}
         <Routes>
           <Route path="/" element={<HomePage />} />
-
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/aksi" element={<Aksi />} />
@@ -40,6 +40,7 @@ function App() {
           <Route path="/article/:key" element={<DetailArticle />} />
           <Route path="/admin" element={<HomepageAdmin />} />
           <Route path="/admin/article" element={<ArtikelAdmin />} />
+          <Route path="/admin/donasi" element={<DonasiAdmin />} />
           <Route path="/article/terkait/:tag" element={<ArticleTerkait />} />
           <Route path="/admin/article/:key" element={<DetailArtikelAdmin />} />
           <Route
