@@ -5,13 +5,21 @@ import { getArticle } from "../../../Redux/Action/articleAction";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "react-bootstrap/Spinner";
 import { Link, useNavigate } from "react-router-dom";
+import ArticleVector from "../../../assets/ArticleVector.jpg";
+import { getAPI } from "../../../Redux/Action/HomepageAdminAction";
 
 function ArtikelAdmin() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const { article, isLoading } = useSelector((state) => state.articleReducer);
+  const { totalArticle} = useSelector(
+    (state) => state.HomepageAdminReducer
+  );
 
+  useEffect(() => {
+    dispatch(getAPI());
+  }, []);
   useEffect(() => {
     dispatch(getArticle());
   }, []);
@@ -20,6 +28,40 @@ function ArtikelAdmin() {
     <>
       <div className="container pt-4">
         <h2>Article</h2>
+        <div className="row gx-4 gy-2 justify-content-start">
+          <div className="col-6 w-auto">
+            <div className="card mb-3" style={{ maxWidth: "30em" }}>
+              <div className="row g-0">
+                <div className="col-md-4">
+                  <img
+                    src={ArticleVector}
+                    className="img-fluid rounded-start"
+                    alt="Artikel "
+                  />
+                </div>
+                <div className="col-md-8">
+                  <div className="card-body">
+                    <p className="card-title text-center m-0 text-dark fs-5">
+                      Artikel
+                    </p>
+                    <hr className="my-2 p-0" />
+                    <Link
+                      to="/admin/article"
+                      className="total card-text text-dark m-0 fs-3"
+                      style={{ textDecoration: "none" }}
+                    >
+                      {totalArticle}
+                    </Link>
+                    <p className="totalHomepageAdmin card-text text-dark m-0">
+                      Total Artikel
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div className="row">
           <div className="col-md-12 d-flex justify-content-end">
             <Link
