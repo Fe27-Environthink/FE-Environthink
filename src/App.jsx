@@ -5,9 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbars from "./component/Navbar/Navbars";
 import Aksi from "./component/Aksi/Aksi";
 import DetailAksi from "./component/Aksi/DetailAksi";
-
 import AksiTerkait from "./component/Aksi/AksiTerkait";
-
 import Search from "./component/Searchpage/Search";
 import Donasi from "./component/Donasi/Donasi";
 import Article from "./component/Article/Article";
