@@ -11,8 +11,9 @@ const AuthReducer =(state=initialState,action)=>{
     switch (action.type) {
         case AUTH:
           return {
-            users: [...action.payload]
+            users: action.payload
           }
+
         default:
            return state
     }

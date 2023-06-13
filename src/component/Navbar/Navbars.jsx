@@ -7,8 +7,17 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 
 import { BsSearch } from "react-icons/bs";
 import { Link, NavLink } from "react-router-dom";
+import {
+  ButtonGroup,
+  Dropdown,
+  DropdownButton,
+  Image,
+  NavItem,
+} from "react-bootstrap";
+import { useEffect } from "react";
 
 function Navbars() {
+  useEffect(() => {}, []);
   return (
     <>
       <Navbar
@@ -35,7 +44,7 @@ function Navbars() {
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
-                <ul className="navbar-nav">
+                <ul className="navbar-nav d-flex justify-content-center ">
                   <li className="nav-item mt-1">
                     <NavLink
                       className="nav-link active"
@@ -71,7 +80,7 @@ function Navbars() {
                       Donasi
                     </NavLink>
                   </li>
-                  <li className="nav-item ">
+                  {localStorage.length === 0?( <li className="nav-item ">
                     <div id="button-login">
                       <NavLink
                         className="btnLogin m-1 btn  nav-link active ps-3 pe-3"
@@ -80,7 +89,31 @@ function Navbars() {
                         Login
                       </NavLink>
                     </div>
-                  </li>
+                  </li>):(<li className="nav-item mt-1">
+                    <Dropdown align={{ lg: "end" }}>
+                      <Dropdown.Toggle
+                        variant="transparent"
+                        id="dropdown-avatar"
+                      >
+                        <img
+                          src="https://i.ibb.co/Lz14knd/photo-1535713875002-d1d0cf377fde.jpg"
+                          alt="User Avatar"
+                          className="avatar rounded-circle"
+                          style={{ width: "30px" }}
+                        />
+                      </Dropdown.Toggle>
+
+                      <Dropdown.Menu>
+                        <Dropdown.Item>{localStorage.getItem(' ')}</Dropdown.Item>
+                 
+                        <Dropdown.Item onClick={() => localStorage.clear() }>
+                          Logout
+                        </Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
+                  </li>)}
+                 
+                  
                 </ul>
               </Nav>
             </Offcanvas.Body>

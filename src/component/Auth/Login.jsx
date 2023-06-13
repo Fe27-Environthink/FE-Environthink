@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import './Login.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { sigInUser } from '../../Redux/Action/AuthAction'
+import {  sigInUser } from '../../Redux/Action/AuthAction'
 function Login() {
   const dispatch=useDispatch()
   const {users} =useSelector(state=>state.AuthReducer)
@@ -10,22 +10,36 @@ function Login() {
         username:"",
         password:"",
     })
-
+const navigate =useNavigate()
    const handleChangeLogin =(e)=>{
     setInputLogin({
         ...inputLogin,
         [e.target.name ]: e.target.value
     })
    }
-   console.log(inputLogin);
+
  const handleLogin =(e)=>{
   e.preventDefault()
  
   dispatch(sigInUser(inputLogin))
  }
  useEffect(()=>{
-console.log(users);
+  
+
+  if (users!=0){
+   
+    Object.keys(users).forEach(key => {
+      let value=users[key]
+      localStorage.setItem(key, value);
+    });
+
+}
+  if (localStorage.getItem("id")){
+    navigate("/")
+   }
+ 
  },[handleLogin])
+
   return (
     <>
   <div className="container">

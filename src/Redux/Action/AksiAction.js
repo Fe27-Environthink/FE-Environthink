@@ -78,3 +78,4 @@ export const submitPetisi = (data, id) => async (dispatch) => {
     dispatch(submitSuccess());
   }
 };
+

@@ -22,3 +22,8 @@ nav {
   background-color: var(--color-main) !important;
   color: var(--color-bg) !important;
 }
+.dropdown-toggle:focus {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  outline: none !important;
+}
