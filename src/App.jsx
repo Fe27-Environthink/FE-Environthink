@@ -18,11 +18,11 @@ import AddArtikelAdmin from "./component/Admin/ArtikelAdmin/AddArtikelAdmin";
 import ArticleTerkait from "./component/Article/ArticleTerkait";
 import Login from "./component/Auth/Login";
 import Register from "./component/Auth/Register";
-<<<<<<< HEAD
+
 import DonasiAdmin from "./component/Admin/DonasiAdmin/DonasiAdmin";
-=======
+
 import AksiAdmin from "./component/Admin/AksiAdmin/AksiAdmin";
->>>>>>> 20bcc7881960cb323c8b77bc6be39bac61a14629
+
 
 function App() {
   const isAdminRoute = window.location.pathname === "/admin";

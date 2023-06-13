@@ -1,11 +1,16 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Login.css'
 import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { sigInUser } from '../../Redux/Action/AuthAction'
 function Login() {
+  const dispatch=useDispatch()
+  const {users} =useSelector(state=>state.AuthReducer)
     const [inputLogin,setInputLogin] = useState({
         username:"",
         password:"",
     })
+
    const handleChangeLogin =(e)=>{
     setInputLogin({
         ...inputLogin,
@@ -13,6 +18,14 @@ function Login() {
     })
    }
    console.log(inputLogin);
+ const handleLogin =(e)=>{
+  e.preventDefault()
+ 
+  dispatch(sigInUser(inputLogin))
+ }
+ useEffect(()=>{
+console.log(users);
+ },[handleLogin])
   return (
     <>
   <div className="container">
@@ -28,7 +41,7 @@ function Login() {
                 <p className="text-secondary">
                   Belum Punya Akun <Link to="/register">register</Link>
                 </p>
-                <form id="login-form">
+                <form id="login-form" onSubmit={handleLogin}>
                   <div className="form-group ">
                     <label htmlFor="username" className="mb-2 fw-bold ">Username:</label>
                     <input type="text" id="username" name="username" value={inputLogin.username} onChange={handleChangeLogin} className="form-control" required />
