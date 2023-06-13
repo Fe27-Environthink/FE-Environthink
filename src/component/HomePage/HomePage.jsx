@@ -55,54 +55,56 @@ const HomePage = () => {
       </div>
 
       <div className="container">
-        {state.length==0 ? (
-              <div className="text-center  d-flex justify-content-center align-items-center my-5 py-5">
-                <span className="mx-2 h1">loading</span>
-                <Spinner animation="border" variant="dark" />
-              </div>
-            ) : (state?.map((item) => (
-          <div
-            className="articlesContent"
-            key={item.id}
-            onClick={() => navigate(`/article/${item.id}`)}
-          >
-            <div className="row ms-1 me-1 mt-5 mb-5">
-              <div className="col-md-4 p-0 me-4">
-                <img id="articlesImage" src={item.images} alt="Images " />
-              </div>
-              <div
-                id="detailPreviewArticles"
-                className="col-md-7 ps-0 pe-0 mt-2"
-              >
-                <p className="hashTag mb-1  p-0">
-                  <span id="category">{item.cathegory}</span>{" "}
-                  <span id="dot"></span>
-                  {item.hashTag.map((hashtag) => (
-                    <a
-                      href=""
-                      className="hashTagArticle text-decoration-none me-2"
-                      key={hashtag}
-                    >
-                      #{hashtag}
-                    </a>
-                  ))}
-                </p>
-                <a
-                  className="wrapperLinkTitleArticles"
-                  onClick={() => navigate(`/article/${item.id}`)}
+        {state.length == 0 ? (
+          <div className="text-center  d-flex justify-content-center align-items-center my-5 py-5">
+            <span className="mx-2 h1">loading</span>
+            <Spinner animation="border" variant="dark" />
+          </div>
+        ) : (
+          state?.map((item) => (
+            <div
+              className="articlesContent"
+              key={item.id}
+              onClick={() => navigate(`/article/${item.id}`)}
+            >
+              <div className="row ms-1 me-1 mt-5 mb-5">
+                <div className="col-md-4 p-0 me-4">
+                  <img id="articlesImage" src={item.url} alt="Images " />
+                </div>
+                <div
+                  id="detailPreviewArticles"
+                  className="col-md-7 ps-0 pe-0 mt-2"
                 >
-                  <h3 className="titleArticles">{item.titleArticle}</h3>
-                </a>
-                <p className="descArticles text-dark">{item.descArticle}</p>
-                <p className="AuthorAndDate ">
-                  <span id="authorArticle"> {item.author}</span>
-                  <span id="dot2"></span>{" "}
-                  <span id="dateArticle">{item.date}</span>
-                </p>
+                  <p className="hashTag mb-1  p-0">
+                    <span id="category">{item.cathegory}</span>{" "}
+                    <span id="dot"></span>
+                    {item.hashtag.map((hashtag) => (
+                      <a
+                        href=""
+                        className="hashTagArticle text-decoration-none me-2"
+                        key={hashtag}
+                      >
+                        #{hashtag}
+                      </a>
+                    ))}
+                  </p>
+                  <a
+                    className="wrapperLinkTitleArticles"
+                    onClick={() => navigate(`/article/${item.id}`)}
+                  >
+                    <h3 className="titleArticles">{item.titleArticle}</h3>
+                  </a>
+                  <p className="descArticles text-dark">{item.descArticle}</p>
+                  <p className="AuthorAndDate ">
+                    <span id="authorArticle"> {item.author}</span>
+                    <span id="dot2"></span>{" "}
+                    <span id="dateArticle">{item.date}</span>
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-        )))}
+          ))
+        )}
         <div className="d-flex justify-content-start ms-1">
           <button
             className="btn"
