@@ -20,7 +20,8 @@ function DetailArtikelAdmin() {
     }, []);
   return (
     <div>
-        <div className='container pt-5'>
+        <div className='container pt-4'>
+            <h2>Detail Article</h2>
             <div className="row mb-4">
                 <div className="col-md-12 d-flex justify-content-end">
                 <Link

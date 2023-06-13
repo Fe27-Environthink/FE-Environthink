@@ -18,8 +18,9 @@ function ArtikelAdmin() {
 
   return (
     <>
-      <div className="container">
-        <div className="row pt-4">
+      <div className="container pt-4">
+        <h2>Article</h2>
+        <div className="row">
           <div className="col-md-12 d-flex justify-content-end">
             <Link to="/admin/article/add-article" className="btn bg-primary text-white text-sm px-5 py-2">
               Add Artikel
