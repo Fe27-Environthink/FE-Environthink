@@ -1,8 +1,7 @@
 import "./App.css";
 import Footer from "./component/Footer/Footer";
 import HomePage from "./component/HomePage/HomePage";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Swal from "sweetalert2";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbars from "./component/Navbar/Navbars";
 import Aksi from "./component/Aksi/Aksi";
 import DetailAksi from "./component/Aksi/DetailAksi";
@@ -23,19 +22,12 @@ import Register from "./component/Auth/Register";
 import DonasiAdmin from "./component/Admin/DonasiAdmin/DonasiAdmin";
 
 import AksiAdmin from "./component/Admin/AksiAdmin/AksiAdmin";
+import NotFound from "./component/NotFound/NotFound";
 
 function App() {
   const isAdminRoute = window.location.pathname === "/admin";
 
-  const userTryAdminRoute = window.location.pathname.startsWith("/admin");
-
   const roleLocalStorage = localStorage.getItem("role");
-  const usernameLocalStorage = localStorage.getItem("username");
-  const accesTokenLocalStorage = localStorage.getItem("accesToken");
-
-  // console.log(roleLocalStorage);
-  // console.log(usernameLocalStorage);
-  // console.log(accesTokenLocalStorage);
 
   return (
     <div className="d-flex flex-column min-vh-100">
@@ -56,7 +48,7 @@ function App() {
           <Route path="/donasi" element={<Donasi />} />
           <Route path="/article" element={<Article />} />
           <Route path="/article/:key" element={<DetailArticle />} />
-          {roleLocalStorage === "admin" ? (
+          {roleLocalStorage === "admin" && (
             <>
               <Route path="/admin" element={<HomepageAdmin />} />
               <Route path="/admin/aksi" element={<AksiAdmin />} />
@@ -67,30 +59,13 @@ function App() {
                 element={<DetailArtikelAdmin />}
               />
             </>
-          ) : roleLocalStorage === null && userTryAdminRoute ? (
-            (() => {
-              Swal.fire({
-                icon: "error",
-                title: "Anda tidak memiliki izin untuk akses halaman admin !",
-                text: "Silahkan Login Terlebih Dahulu!",
-              });
-            })()
-          ) : roleLocalStorage === "user" && userTryAdminRoute ? (
-            (() => {
-              Swal.fire({
-                icon: "error",
-                title: "Anda tidak memiliki izin untuk akses halaman admin !",
-                text: "Anda Bukan Admin!",
-              });
-            })()
-          ) : null}
-
+          )}
           <Route path="/article/terkait/:tag" element={<ArticleTerkait />} />
           <Route
             path="/admin/article/add-article"
             element={<AddArtikelAdmin />}
           />
-          <Route path="*" element={<h1>Not Found</h1>} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         {/* <Footer /> */}
         {!isAdminRoute && <Footer />}
