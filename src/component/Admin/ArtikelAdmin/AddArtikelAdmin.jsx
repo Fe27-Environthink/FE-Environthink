@@ -2,80 +2,81 @@ import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { addArticle } from '../../../Redux/Action/articleAction'
+import { useParams } from 'react-router-dom';
 
 function AddArtikelAdmin() {
     const dispatch = useDispatch();
 
-    const [formData, setFormData] = useState({
-        titleArticle: '',
-        descArticle: '',
-        category: '',
-        hashtag: [],
-        author: '',
-        date: '',
-        images: '',
-        desc1: '',
-        desc2: '',
-        desc3: '',
-        desc4: '',
-        desc5: '',
-        desc6: '',
-        desc7: '',
-        desc8: '',
-        desc9: '',
-        desc10: '',
-    });
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prevData) => ({
-            ...prevData,
-            [name]: value,
-        }));
-    };
+    const [titleArticle, setTitleArticle] = useState("");
+    const [descArticle, setDescArticle] = useState("");
+    const [category, setCategory] = useState("");
+    const [hashtag, setHashtag] = useState([]);
+    const [author, setAuthor] = useState("");
+    const [date, setDate] = useState("");
+    const [images, setImages] = useState(null);
+    const [desc1, setDesc1] = useState("");
+    const [desc2, setDesc2] = useState("");
+    const [desc3, setDesc3] = useState("");
+    const [desc4, setDesc4] = useState("");
+    const [desc5, setDesc5] = useState("");
+    const [desc6, setDesc6] = useState("");
+    const [desc7, setDesc7] = useState("");
+    const [desc8, setDesc8] = useState("");
+    const [desc9, setDesc9] = useState("");
+    const [desc10, setDesc10] = useState("");
 
     const handleHashtagChange = (e) => {
         const { value } = e.target;
-        setFormData((prevData) => ({
-            ...prevData,
-            hashtag: value.split(',').map((hashtag) => hashtag.trim()),
-        }));
-    };
+        setHashtag(value.split(',').map((hashtag) => hashtag.trim()));
+      };
 
-    const handleImageChange = (e) => {
+      const handleImageChange = (e) => {
         const file = e.target.files[0];
-        setFormData((prevData) => ({
-          ...prevData,
-          images: file,
-        }));
-    };
+        setImages(file);
+      };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(addArticle(formData));
+        let newData = {
+            titleArticle: titleArticle,
+            descArticle: descArticle,
+            category: category,
+            hashtag: hashtag,
+            author: author,
+            date: date,
+            images: images,
+            desc1: desc1,
+            desc2: desc2,
+            desc3: desc3,
+            desc4: desc4,
+            desc5: desc5,
+            desc6: desc6,
+            desc7: desc7,
+            desc8: desc8,
+            desc9: desc9,
+            desc10: desc10,
+        };
+        dispatch(addArticle(newData));
         // Reset the form data
-        setFormData({
-            titleArticle: '',
-            descArticle: '',
-            category: '',
-            hashtag: [],
-            author: '',
-            date: '',
-            images: '',
-            desc1: '',
-            desc2: '',
-            desc3: '',
-            desc4: '',
-            desc5: '',
-            desc6: '',
-            desc7: '',
-            desc8: '',
-            desc9: '',
-            desc10: '',
-        });
+        setTitleArticle("")
+        setDescArticle("")
+        setCategory("")
+        setHashtag([])
+        setAuthor("")
+        setDate("")
+        setImages("")
+        setDesc1("")
+        setDesc2("")
+        setDesc3("")
+        setDesc4("")
+        setDesc5("")
+        setDesc6("")
+        setDesc7("")
+        setDesc8("")
+        setDesc9("")
+        setDesc10("")
     };
     
-
   return (
     <>
         <div className="container pt-4">
@@ -90,28 +91,28 @@ function AddArtikelAdmin() {
                             <div className="form-group row pt-3">
                                 <label htmlFor="titleArticle" className="col-sm-2 col-form-label">Title Article</label>
                                 <div className="col-md-5">
-                                    <input name="titleArticle" type="text" className="form-control" id="titleArticle" value={formData.titleArticle} onChange={handleChange}  />
+                                    <input name="titleArticle" type="text" className="form-control" id="titleArticle" value={titleArticle} onChange={(e) => setTitleArticle(e.target.value)}  />
                                 </div>
                             </div>
 
                             <div className="form-group row pt-3">
                                 <label htmlFor="descArticle" className="col-sm-2 col-form-label">Desc Article</label>
                                 <div className="col-md-5">
-                                    <input name="descArticle" type="text" className="form-control" id="descArticle" value={formData.descArticle} onChange={handleChange}  />
+                                    <input name="descArticle" type="text" className="form-control" id="descArticle" value={descArticle} onChange={(e) => setDescArticle(e.target.value)}  />
                                 </div>
                             </div>
 
                             <div className="form-group row pt-3">
                                 <label htmlFor="category" className="col-sm-2 col-form-label">Category</label>
                                 <div className="col-md-5">
-                                    <input name="category" type="text" className="form-control" id="category" value={formData.category} onChange={handleChange}  />
+                                    <input name="category" type="text" className="form-control" id="category" value={category} onChange={(e) => setCategory(e.target.value)}  />
                                 </div>
                             </div>
 
                             <div className="form-group row pt-3">
                                 <label htmlFor="hashtag" className="col-sm-2 col-form-label">Hashtag</label>
                                 <div className="col-md-5">
-                                    <input name="hashtag" type="text" className="form-control" id="hashtag" value={formData.hashtag.join(', ')} onChange={handleHashtagChange}  />
+                                    <input name="hashtag" type="text" className="form-control" id="hashtag" value={hashtag.join(', ')} onChange={handleHashtagChange}  />
                                     <small className="form-text text-muted">Separate hashtag with commas (e.g. #tag1, #tag2)</small>
                                 </div>
                             </div>
@@ -119,14 +120,14 @@ function AddArtikelAdmin() {
                             <div className="form-group row pt-3">
                                 <label htmlFor="author" className="col-sm-2 col-form-label">Author</label>
                                 <div className="col-md-5">
-                                    <input name="author" type="text" className="form-control" id="author" value={formData.author} onChange={handleChange}  />
+                                    <input name="author" type="text" className="form-control" id="author" value={author} onChange={(e) => setAuthor(e.target.value)}  />
                                 </div>
                             </div>
                             
                             <div className="form-group row pt-3">
                                 <label htmlFor="date" className="col-sm-2 col-form-label">Date</label>
                                 <div className="col-md-5">
-                                    <input name="date" type="date" className="form-control" id="date" value={formData.date} onChange={handleChange}  />
+                                    <input name="date" type="date" className="form-control" id="date" value={date} onChange={(e) => setDate(e.target.value)}  />
                                 </div>
                             </div>
 
@@ -151,8 +152,8 @@ function AddArtikelAdmin() {
                                         name='desc1'
                                         id="desc1"
                                         rows="3"
-                                        value={formData.desc1}
-                                        onChange={handleChange}
+                                        value={desc1}
+                                        onChange={(e) => setDesc1(e.target.value)}
                                         type="text"
                                     ></textarea>
                                 </div>
@@ -166,8 +167,8 @@ function AddArtikelAdmin() {
                                         name='desc2'
                                         id="desc2"
                                         rows="3"
-                                        value={formData.desc2}
-                                        onChange={handleChange}
+                                        value={desc2}
+                                        onChange={(e) => setDesc2(e.target.value)}
                                         type="text"
                                     ></textarea>
                                 </div>
@@ -181,8 +182,8 @@ function AddArtikelAdmin() {
                                         name='desc3'
                                         id="desc3"
                                         rows="3"
-                                        value={formData.desc3}
-                                        onChange={handleChange}
+                                        value={desc3}
+                                        onChange={(e) => setDesc3(e.target.value)}
                                         type="text"
                                     ></textarea>
                                 </div>
@@ -196,8 +197,8 @@ function AddArtikelAdmin() {
                                         name='desc4'
                                         id="desc4"
                                         rows="3"
-                                        value={formData.desc4}
-                                        onChange={handleChange}
+                                        value={desc4}
+                                        onChange={(e) => setDesc4(e.target.value)}
                                         type="text"
                                     ></textarea>
                                 </div>
@@ -211,8 +212,8 @@ function AddArtikelAdmin() {
                                         name='desc5'
                                         id="desc5"
                                         rows="3"
-                                        value={formData.desc5}
-                                        onChange={handleChange}
+                                        value={desc5}
+                                        onChange={(e) => setDesc5(e.target.value)}
                                         type="text"
                                     ></textarea>
                                 </div>
@@ -226,8 +227,8 @@ function AddArtikelAdmin() {
                                         name='desc6'
                                         id="desc6"
                                         rows="3"
-                                        value={formData.desc6}
-                                        onChange={handleChange}
+                                        value={desc6}
+                                        onChange={(e) => setDesc6(e.target.value)}
                                         type="text"
                                     ></textarea>
                                 </div>
@@ -241,8 +242,8 @@ function AddArtikelAdmin() {
                                         name='desc7'
                                         id="desc7"
                                         rows="3"
-                                        value={formData.desc7}
-                                        onChange={handleChange}
+                                        value={desc7}
+                                        onChange={(e) => setDesc7(e.target.value)}
                                         type="text"
                                     ></textarea>
                                 </div>
@@ -256,8 +257,8 @@ function AddArtikelAdmin() {
                                         name='desc8'
                                         id="desc8"
                                         rows="3"
-                                        value={formData.desc8}
-                                        onChange={handleChange}
+                                        value={desc8}
+                                        onChange={(e) => setDesc8(e.target.value)}
                                         type="text"
                                     ></textarea>
                                 </div>
@@ -271,8 +272,8 @@ function AddArtikelAdmin() {
                                         name='desc9'
                                         id="desc9"
                                         rows="3"
-                                        value={formData.desc9}
-                                        onChange={handleChange}
+                                        value={desc9}
+                                        onChange={(e) => setDesc9(e.target.value)}
                                         type="text"
                                     ></textarea>
                                 </div>
@@ -286,8 +287,8 @@ function AddArtikelAdmin() {
                                         name='desc10'
                                         id="desc10"
                                         rows="3"
-                                        value={formData.desc10}
-                                        onChange={handleChange}
+                                        value={desc10}
+                                        onChange={(e) => setDesc10(e.target.value)}
                                         type="text"
                                     ></textarea>
                                 </div>
