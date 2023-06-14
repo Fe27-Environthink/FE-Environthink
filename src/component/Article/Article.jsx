@@ -5,6 +5,7 @@ import "./Article.css"
 import Infografis from '../Infografis/Infografis'
 import { Link, useNavigate } from 'react-router-dom'
 import Spinner from "react-bootstrap/Spinner";
+import Navbars from '../Navbar/Navbars'
 
 function Article() {
     const dispatch = useDispatch();
@@ -31,6 +32,7 @@ function Article() {
 
   return (
     <>
+      <Navbars />
         <div className="container mt-4">
             <div className="artikel" id="artikel">
                 <h3 className="text-start mb-3">Artikel</h3>

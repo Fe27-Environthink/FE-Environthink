@@ -3,6 +3,7 @@ import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { sigInUser } from "../../Redux/Action/AuthAction";
+import Navbars from "../Navbar/Navbars";
 function Login() {
   const dispatch = useDispatch();
   const { users } = useSelector((state) => state.AuthReducer);
@@ -31,12 +32,14 @@ function Login() {
       });
     }
     if (localStorage.getItem("id")) {
+      
       navigate("/");
     }
   }, [handleLogin]);
 
   return (
     <>
+     <Navbars />
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-xl-10 col-lg-12 col-md-9">

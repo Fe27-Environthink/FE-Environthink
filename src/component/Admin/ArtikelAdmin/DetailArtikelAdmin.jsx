@@ -19,6 +19,8 @@ function DetailArtikelAdmin() {
         dispatch(getArticleDetail(key));
     }, []);
   return (
+    <>
+    <NavbarAdmin />
     <div>
         <div className='container pt-4'>
             <h2>Detail Article</h2>
@@ -130,6 +132,7 @@ function DetailArtikelAdmin() {
             
         </div>
     </div>
+    </>
     )
 }
 

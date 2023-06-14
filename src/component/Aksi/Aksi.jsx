@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 
 import Spinner from "react-bootstrap/Spinner";
 import { getDataAksi } from "./../../Redux/Action/AksiAction";
+import Navbars from "../Navbar/Navbars";
 function Aksi() {
   const dispatch = useDispatch();
   const { listAksi, isLoading } = useSelector((state) => state.AksiReducer);
@@ -31,6 +32,7 @@ function Aksi() {
 
   return (
     <>
+        <Navbars />
       <div className="container mt-4">
         <div className="artikel" id="artikel">
           <h3 className="text-start ">Tanpa Aksi, Tidak Ada Perubahan </h3>

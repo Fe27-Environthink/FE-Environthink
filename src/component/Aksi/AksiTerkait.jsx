@@ -6,6 +6,7 @@ import { FaUsers } from "react-icons/fa";
 import "./Aksi.css";
 
 import { Spinner } from "react-bootstrap";
+import Navbars from "../Navbar/Navbars";
 function AksiTerkait() {
   const { hashtag } = useParams();
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ function AksiTerkait() {
 
   return (
     <>
+      <Navbars />
       <div className="container mt-4">
         <div className="aksi">
           <h3 className="text-start ">Aksi terkait &quot;{hashtag}&quot; </h3>

@@ -10,6 +10,7 @@ import ArticleVector from "../../../assets/ArticleVector.jpg";
 import AksiVector from "../../../assets/AksiVector.jpg";
 import InfografisVector from "../../../assets/InfografisVector.jpg";
 import DonationVector from "../../../assets/DonationVector.jpg";
+import NavbarAdmin from "../Sidebar/NavbarAdmin";
 
 function HomepageAdmin() {
   const { totalAksi, totalArticle, totalInfografis, totalDonasi } = useSelector(
@@ -25,6 +26,9 @@ function HomepageAdmin() {
   }, []);
 
   return (
+    <>
+    <NavbarAdmin />
+   
     <Container className="d-flex px-4" style={{ marginTop: "0em" }}>
       {totalAksi != null && totalArticle != null && totalInfografis != null ? (
         <div className="container">
@@ -159,6 +163,7 @@ function HomepageAdmin() {
         </div>
       )}
     </Container>
+    </>
   );
 }
 

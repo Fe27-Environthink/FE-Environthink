@@ -11,6 +11,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import Swal from "sweetalert2";
+import NavbarAdmin from "../Sidebar/NavbarAdmin";
 
 const DonasiAdmin = () => {
   const dispatch = useDispatch();
@@ -83,6 +84,7 @@ const DonasiAdmin = () => {
 
   return (
     <>
+    <NavbarAdmin />
       <div className="container">
         <h1 className="text-center mt-3 titleDonasi">Donasi</h1>
         {result != null && result.length != 0 ? (

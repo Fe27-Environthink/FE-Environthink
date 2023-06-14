@@ -1,8 +1,10 @@
 import React from 'react'
+import Navbars from '../Navbar/Navbars'
 
 function Register() {
   return (
     <>
+     <Navbars />
    <div className="container ">
   {/* Outer Row */}
   <div className="row justify-content-center">

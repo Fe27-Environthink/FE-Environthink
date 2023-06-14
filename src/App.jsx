@@ -32,11 +32,11 @@ function App() {
   return (
     <div className="d-flex flex-column min-vh-100">
       <BrowserRouter>
-        {isAdminRoute && roleLocalStorage == "admin" ? (
+        {/* {isAdminRoute && roleLocalStorage == "admin" ? (
           <NavbarAdmin />
         ) : (
           <Navbars />
-        )}
+        )} */}
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<Login />} />

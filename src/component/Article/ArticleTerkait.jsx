@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router";
 import { getArticle } from "../../Redux/Action/articleAction";
 import { Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import Navbars from "../Navbar/Navbars";
 
 function ArticleTerkait() {
   const { tag } = useParams();
@@ -21,6 +22,7 @@ function ArticleTerkait() {
   console.log(articleTerkait);
 
   return (
+    <>  <Navbars />
     <div className="container mt-4">
       <div className="artikel" id="artikel"></div>
       <h3 className="text-start mb-3">Artikel Terkait &quot; {tag} &quot;</h3>
@@ -80,6 +82,7 @@ function ArticleTerkait() {
         ))
       )}
     </div>
+    </>
   );
 }
 
