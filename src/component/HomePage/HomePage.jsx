@@ -76,7 +76,7 @@ const HomePage = () => {
                   className="col-md-7 ps-0 pe-0 mt-2"
                 >
                   <p className="hashTag mb-1  p-0">
-                    <span id="category">{item.cathegory}</span>{" "}
+                    <span id="category">{item.category}</span>{" "}
                     <span id="dot"></span>
                     {item.hashtag.map((hashtag) => (
                       <a

@@ -37,7 +37,6 @@ export const getArticleDetail = (id) => {
     dispatch(startFetching());
     const result = await axios(url);
     dispatch(successGetDetail(result.data.result));
-    console.log(result.data.result);
   };
 };
 

@@ -1,7 +1,81 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { addArticle } from '../../../Redux/Action/articleAction'
 
 function AddArtikelAdmin() {
+    const dispatch = useDispatch();
+
+    const [formData, setFormData] = useState({
+        titleArticle: '',
+        descArticle: '',
+        category: '',
+        hashtag: [],
+        author: '',
+        date: '',
+        images: '',
+        desc1: '',
+        desc2: '',
+        desc3: '',
+        desc4: '',
+        desc5: '',
+        desc6: '',
+        desc7: '',
+        desc8: '',
+        desc9: '',
+        desc10: '',
+    });
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
+    };
+
+    const handleHashtagChange = (e) => {
+        const { value } = e.target;
+        setFormData((prevData) => ({
+            ...prevData,
+            hashtags: value.split(',').map((hashtag) => hashtag.trim()),
+        }));
+    };
+
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        setFormData((prevData) => ({
+          ...prevData,
+          images: file,
+        }));
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        dispatch(addArticle(formData));
+        // Reset the form data
+        setFormData({
+            titleArticle: '',
+            descArticle: '',
+            category: '',
+            hashtag: [],
+            author: '',
+            date: '',
+            images: '',
+            desc1: '',
+            desc2: '',
+            desc3: '',
+            desc4: '',
+            desc5: '',
+            desc6: '',
+            desc7: '',
+            desc8: '',
+            desc9: '',
+            desc10: '',
+        });
+    };
+    
+
   return (
     <>
         <div className="container pt-4">
@@ -12,70 +86,60 @@ function AddArtikelAdmin() {
                         FORM DATA ARTICLE
                     </div>
                     <div className="card-body">
-                        <form>
+                        <form onSubmit={handleSubmit}> 
                             <div className="form-group row pt-3">
-                                <label for="titleArticle" className="col-sm-2 col-form-label">Title Article</label>
+                                <label htmlFor="titleArticle" className="col-sm-2 col-form-label">Title Article</label>
                                 <div className="col-md-5">
-                                    <input name='titleArticle' type="text" className="form-control" id="titleArticle"/>
+                                    <input name="titleArticle" type="text" className="form-control" id="titleArticle" value={formData.titleArticle} onChange={handleChange} required />
                                 </div>
                             </div>
 
                             <div className="form-group row pt-3">
-                                <label for="descArticel" className="col-sm-2 col-form-label">Desc Article</label>
+                                <label htmlFor="descArticle" className="col-sm-2 col-form-label">Desc Article</label>
                                 <div className="col-md-5">
-                                    <input name='descArticel' type="text" className="form-control" id="descArticel"/>
+                                    <input name="descArticle" type="text" className="form-control" id="descArticle" value={formData.descArticle} onChange={handleChange} required />
                                 </div>
                             </div>
 
                             <div className="form-group row pt-3">
-                                <label for="category" className="col-sm-2 col-form-label">Cathegory</label>
+                                <label htmlFor="category" className="col-sm-2 col-form-label">Category</label>
                                 <div className="col-md-5">
-                                    <input name='category' type="text" className="form-control" id="category"/>
+                                    <input name="category" type="text" className="form-control" id="category" value={formData.category} onChange={handleChange} required />
                                 </div>
                             </div>
 
                             <div className="form-group row pt-3">
-                                <label for="hashtag" className="col-sm-2 col-form-label">HashTag</label>
+                                <label htmlFor="hashtag" className="col-sm-2 col-form-label">Hashtag</label>
                                 <div className="col-md-5">
-                                    <input name='hashtag' type="text" className="form-control" id="hashtag"/>
+                                    <input name="hashtag" type="text" className="form-control" id="hashtag" value={formData.hashtag.join(', ')} onChange={handleHashtagChange} required />
+                                    <small className="form-text text-muted">Separate hashtags with commas (e.g. #tag1, #tag2)</small>
                                 </div>
                             </div>
 
                             <div className="form-group row pt-3">
-                                <label for="author" className="col-sm-2 col-form-label">Author</label>
+                                <label htmlFor="author" className="col-sm-2 col-form-label">Author</label>
                                 <div className="col-md-5">
-                                    <input name='author' type="text" className="form-control" id="author"/>
+                                    <input name="author" type="text" className="form-control" id="author" value={formData.author} onChange={handleChange} required />
                                 </div>
                             </div>
 
                             <div className="form-group row pt-3">
-                                <label for="date" className="col-sm-2 col-form-label">Date</label>
+                                <label htmlFor="date" className="col-sm-2 col-form-label">Date</label>
                                 <div className="col-md-5">
-                                    <input name='date' type="text" className="form-control" id="date"/>
+                                    <input name="date" type="date" className="form-control" id="date" value={formData.date} onChange={handleChange} required />
                                 </div>
                             </div>
-                            
-                            {/* <div className="form-group row pt-3">
-                                <label for="date" className="col-sm-2 col-form-label">Date</label>
-                                <div className="col-md-5">
-                                    <div className="col-auto">
-                                        <div className="input-group mb-2">
-                                            <div className="input-group-prepend">
-                                                <div className="input-group-text pt-2 pb-3"><BsCalendar/></div>
-                                            </div>
-                                            <input type="text" className="form-control" id="inlineFormInputGroup" placeholder="Username"/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> */}
 
                             <div className="form-group row pt-3">
-                                <label for="images" className="col-sm-2 col-form-label">Images</label>
+                                <label htmlFor="images" className="col-sm-2 col-form-label">Images</label>
                                 <div className="col-md-5">
-                                    <div className="custom-file">
-                                        <input type="file" className="custom-file-input" id="customFile"/>
-                                        <label className="custom-file-label" for="customFile">Choose file</label>
-                                    </div>
+                                    <input
+                                    type="file"
+                                    className="form-control-file"
+                                    id="images"
+                                    accept="image/*"
+                                    onChange={handleImageChange}
+                                    />
                                 </div>
                             </div>
 
@@ -89,7 +153,6 @@ function AddArtikelAdmin() {
                                         rows="3"
                                         value=""
                                         onChange=""
-                                        required
                                     ></textarea>
                                 </div>
                             </div>
@@ -104,7 +167,6 @@ function AddArtikelAdmin() {
                                         rows="3"
                                         value=""
                                         onChange=""
-                                        required
                                     ></textarea>
                                 </div>
                             </div>
@@ -119,7 +181,6 @@ function AddArtikelAdmin() {
                                         rows="3"
                                         value=""
                                         onChange=""
-                                        required
                                     ></textarea>
                                 </div>
                             </div>
@@ -134,7 +195,6 @@ function AddArtikelAdmin() {
                                         rows="3"
                                         value=""
                                         onChange=""
-                                        required
                                     ></textarea>
                                 </div>
                             </div>
@@ -149,7 +209,6 @@ function AddArtikelAdmin() {
                                         rows="3"
                                         value=""
                                         onChange=""
-                                        required
                                     ></textarea>
                                 </div>
                             </div>
@@ -164,7 +223,6 @@ function AddArtikelAdmin() {
                                         rows="3"
                                         value=""
                                         onChange=""
-                                        required
                                     ></textarea>
                                 </div>
                             </div>
@@ -179,7 +237,6 @@ function AddArtikelAdmin() {
                                         rows="3"
                                         value=""
                                         onChange=""
-                                        required
                                     ></textarea>
                                 </div>
                             </div>
@@ -194,7 +251,6 @@ function AddArtikelAdmin() {
                                         rows="3"
                                         value=""
                                         onChange=""
-                                        required
                                     ></textarea>
                                 </div>
                             </div>
@@ -209,7 +265,6 @@ function AddArtikelAdmin() {
                                         rows="3"
                                         value=""
                                         onChange=""
-                                        required
                                     ></textarea>
                                 </div>
                             </div>
@@ -224,7 +279,6 @@ function AddArtikelAdmin() {
                                         rows="3"
                                         value=""
                                         onChange=""
-                                        required
                                     ></textarea>
                                 </div>
                             </div>
