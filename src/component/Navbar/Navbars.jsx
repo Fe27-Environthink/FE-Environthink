@@ -104,7 +104,7 @@ function Navbars() {
                       </Dropdown.Toggle>
 
                       <Dropdown.Menu>
-                        <Dropdown.Item>{localStorage.getItem(' ')}</Dropdown.Item>
+                        <Dropdown.Item>{localStorage.getItem('username')}</Dropdown.Item>
                  
                         <Dropdown.Item onClick={() => localStorage.clear() }>
                           Logout

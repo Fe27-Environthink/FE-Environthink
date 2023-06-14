@@ -18,7 +18,7 @@ function Login() {
       [e.target.name]: e.target.value,
     });
   };
-
+  const roleLocalStorage = localStorage.getItem("role");
   const handleLogin = (e) => {
     e.preventDefault();
 
@@ -31,9 +31,13 @@ function Login() {
         localStorage.setItem(key, value);
       });
     }
+    console.log(users.role);
     if (localStorage.getItem("id")) {
+      console.log("cek role",roleLocalStorage);
+      if(users.role=='admin'){
+        navigate("/admin")
+      }else{navigate("/");}
       
-      navigate("/");
     }
   }, [handleLogin]);
 
