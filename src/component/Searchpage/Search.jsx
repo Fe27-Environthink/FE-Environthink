@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./Search.css";
 import { useDispatch, useSelector } from "react-redux";
 import { SearchData } from "../../Redux/Action/SearchAction";
+import { useNavigate } from "react-router-dom";
 
 const Search = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -12,6 +13,8 @@ const Search = () => {
   const handleSubmit = () => {
     dispatch(SearchData(searchValue));
   };
+
+  const navigate = useNavigate();
 
   return (
     <>
@@ -69,12 +72,11 @@ const Search = () => {
                 className="col-12 col-sm-12 col-md-6 col-lg-4 pt-4"
                 key={item.id}
               >
-                <div className="card card-artikel h-100">
-                  <img
-                    src={item.images}
-                    className="card-img-top"
-                    alt="artikel"
-                  />
+                <div
+                  className="card card-artikel h-100"
+                  onClick={() => navigate(`/article/${item.id}`)}
+                >
+                  <img src={item.url} className="card-img-top" alt="artikel" />
                   <div className="card-body">
                     <a className="wrapperLinkTitleArticles" href="">
                       <h5 className="card-title text-break">
