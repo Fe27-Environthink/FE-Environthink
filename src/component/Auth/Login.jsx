@@ -25,6 +25,7 @@ function Login() {
     dispatch(sigInUser(inputLogin));
   };
   useEffect(() => {
+    console.log(users);
     if (users != 0) {
       Object.keys(users).forEach((key) => {
         let value = users[key];
