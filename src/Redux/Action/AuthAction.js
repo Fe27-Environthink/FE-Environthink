@@ -22,7 +22,8 @@ export const sigInUser = (data) => async (dispatch) => {
   console.log("data", data);
   const json = JSON.stringify(data);
   console.log("convert json", json);
-  const url = "https://api-fe27be9-environthink.cyclic.app/user/signin/";
+  
+  const url = `${import.meta.env.VITE_API_LOGIN}/signin`;
 
   try {
     const res = await axios.post(url, data);
@@ -40,7 +41,7 @@ export const sigUpUser = (data) => async (dispatch) => {
   console.log("data", data);
   const json = JSON.stringify(data);
   console.log("convert json", json);
-  const url = "https://api-fe27be9-environthink.cyclic.app/user/signup";
+  const url = `${import.meta.env.VITE_API_LOGIN}/signup`;
 
   try {
     const res = await axios.post(url, data);
