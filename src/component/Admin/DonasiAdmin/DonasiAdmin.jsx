@@ -96,48 +96,56 @@ const DonasiAdmin = () => {
               }}
             >
               <div className="card-body">
-                <div className="table-responsive">
-                  <table className="table">
+                <div className="table-responsive-lg text-nowrap">
+                  <table className="table w-auto">
                     <thead>
                       <tr>
-                        <th scope="col" className="px-1">
+                        <th scope="col" className="">
                           ID
                         </th>
-                        <th scope="col" className="px-1">
+                        <th scope="col" className=" ">
                           Nama
                         </th>
-                        <th scope="col" className="px-1">
+                        <th scope="col" className="">
                           Email
                         </th>
-                        <th scope="col" className="px-1">
+                        <th scope="col" className="">
                           Nomor Telepon
                         </th>
-                        <th scope="col" className="px-1">
+                        <th scope="col" className="col-4">
                           Nomor Rekening
                         </th>
-                        <th scope="col">Donasi</th>
-                        <th scope="col">Original Value</th>
-                        <th scope="col">createdAt</th>
-                        <th scope="col" className="text-center">
+                        <th scope="col" className="">
+                          Donasi
+                        </th>
+                        <th scope="col" className="">
+                          Original Value
+                        </th>
+                        <th scope="col" className="">
+                          createdAt
+                        </th>
+                        <th scope="col" className="">
                           Action
                         </th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <td className="text-center">{user.id}</td>
+                        <th className="text-center" scope="row">
+                          {user.id}
+                        </th>
                         <td>{user.Nama}</td>
                         <td>{user.Email}</td>
                         <td>{user.Nomor_Telepon}</td>
                         <td>{user.Nomor_Rekening}</td>
                         <td>{user.formattedValue}</td>
-                        <td className="text-center">{user.originalValue}</td>
+                        <td>{user.originalValue}</td>
                         <td>{user.createdAt}</td>
                         <td>
                           <div className="row justify-content-center">
                             <div className="col-4 px-1">
-                              <button
-                                type="button"
+                              <FaPen
+                                className="text-success w-100"
                                 onClick={() =>
                                   handleUpdate(
                                     user.id,
@@ -149,21 +157,15 @@ const DonasiAdmin = () => {
                                     user.originalValue
                                   )
                                 }
-                                className="btn bg-success btn-update text-sm me-4 text-white w-100 px-2"
-                              >
-                                <FaPen />
-                              </button>
+                              />
                             </div>
                             <div className="col-4 px-1">
-                              <button
-                                type="button"
-                                className="btn bg-danger btn-delete text-sm me-4 text-white w-100 px-2"
+                              <FaTrashAlt
+                                className="text-danger w-100 "
                                 onClick={() =>
                                   dispatch(deleteDataDonasi(user.id))
                                 }
-                              >
-                                <FaTrashAlt />
-                              </button>
+                              />
                             </div>
                           </div>
                         </td>
@@ -179,7 +181,7 @@ const DonasiAdmin = () => {
         )}
 
         <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
+          <Modal.Header>
             <Modal.Title>Update Data</Modal.Title>
           </Modal.Header>
           <Modal.Body>
