@@ -14,9 +14,9 @@ function AksiAdmin() {
     useEffect(()=>{
         dispatch(getDataAksi())
     },[])
-    useEffect(()=>{
-        console.log(listAksi);
-    },[listAksi])
+    // useEffect(()=>{
+    //     console.log(listAksi);
+    // },[listAksi])
 
     const handleShowModal= ()=>{
         setShowModal(true)
@@ -27,7 +27,7 @@ function AksiAdmin() {
     <div className="container">
         <div className="row pt-4">
           <div className="col-md-12 d-flex justify-content-end ">
-            <button  className="btn bg-primary text-white text-sm px-5 py-2 d-flex gap-2 justify-content-end align-items-center" onclick={handleShowModal()}> 
+            <button  className="btn bg-primary text-white text-sm px-5 py-2 d-flex gap-2 justify-content-end align-items-center" onClick={handleShowModal}> 
              <FaPlus />  Tambah Aksi
             </button>
           </div>
