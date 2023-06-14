@@ -18,6 +18,8 @@ function HomepageAdmin() {
 
   const dispatch = useDispatch();
 
+  // const localStrage = localStorage;
+  // console.log(localStrage);
   useEffect(() => {
     dispatch(getAPI());
   }, []);

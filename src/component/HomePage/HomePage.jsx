@@ -5,7 +5,7 @@ import "./Homepage.css";
 import { useDispatch, useSelector } from "react-redux";
 import { FetchActicle } from "../../Redux/Action/HompageAction";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Spinner } from "react-bootstrap";
 
 const HomePage = () => {
@@ -13,9 +13,15 @@ const HomePage = () => {
 
   const navigate = useNavigate();
 
+  const location = useLocation();
+
   const state = useSelector((state) => state.HomepageReducer.article);
 
   const [saveState, setSaveState] = useState(3);
+
+  const localStrage = localStorage.getItem("role");
+  // console.log(localStrage);
+  // console.log(location.pathname);
 
   useEffect(() => {
     dispatch(FetchActicle());
