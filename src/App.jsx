@@ -71,7 +71,7 @@ function App() {
             (() => {
               Swal.fire({
                 icon: "error",
-                title: "Anda tidak meiliki izin untuk akses halaman admin !",
+                title: "Anda tidak memiliki izin untuk akses halaman admin !",
                 text: "Silahkan Login Terlebih Dahulu!",
               });
             })()
@@ -79,7 +79,7 @@ function App() {
             (() => {
               Swal.fire({
                 icon: "error",
-                title: "Anda tidak meiliki izin untuk akses halaman admin !",
+                title: "Anda tidak memiliki izin untuk akses halaman admin !",
                 text: "Anda Bukan Admin!",
               });
             })()
