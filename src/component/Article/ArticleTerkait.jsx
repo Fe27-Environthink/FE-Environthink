@@ -15,9 +15,10 @@ function ArticleTerkait() {
   useEffect(() => {
     dispatch(getArticle());
   }, []);
-  console.log("artikel", article);
+
   useEffect(() => {
-    setArticleterkait(article.filter((item) => item.hashTag.includes(tag)));
+    console.log("artikel", article);
+    setArticleterkait(article.filter((item) => item.hashtag.includes(tag)));
   }, [article, tag]);
   console.log(articleTerkait);
 
@@ -37,7 +38,7 @@ function ArticleTerkait() {
           <div className="articlesContent" key={item.id}>
             <div className="row ms-1 me-1 mt-5 mb-5">
               <div className="col-md-4 p-0 me-4">
-                <img id="articlesImage" src={item.images} alt="Images " />
+                <img id="articlesImage" src={item.url} alt="Images " />
               </div>
               <div
                 id="detailPreviewArticles"
@@ -46,7 +47,7 @@ function ArticleTerkait() {
                 <p className="hashTag mb-1  p-0">
                   <span id="category">{item.cathegory}</span>{" "}
                   <span id="dot"></span>
-                  {item.hashTag.map((hashTag) => (
+                  {item.hashtag.map((hashTag) => (
                     <Link
                       key={hashTag}
                       to={`/article/terkait/${hashTag}`}
