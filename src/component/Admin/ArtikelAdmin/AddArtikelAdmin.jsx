@@ -1,11 +1,10 @@
-import React, {useState} from 'react'
-import { Link } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { addArticle } from '../../../Redux/Action/articleAction'
-import { useParams } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addArticle } from "../../../Redux/Action/articleAction";
 
 function AddArtikelAdmin() {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
     const [titleArticle, setTitleArticle] = useState("");
     const [descArticle, setDescArticle] = useState("");
@@ -300,12 +299,13 @@ function AddArtikelAdmin() {
                             </div>
                         </form>
                     </div>
-                    
                 </div>
             </div>
         </div>
+                    
+
     </>
-  )
+  );
 }
 
-export default AddArtikelAdmin
+export default AddArtikelAdmin;
