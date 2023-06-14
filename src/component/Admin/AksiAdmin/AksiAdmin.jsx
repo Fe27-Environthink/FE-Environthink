@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { getDataAksi } from '../../../Redux/Action/AksiAction';
 import { Spinner } from 'react-bootstrap';
+import NavbarAdmin from '../Sidebar/NavbarAdmin';
 
 function AksiAdmin() {
     const dispatch = useDispatch()
@@ -21,6 +22,8 @@ function AksiAdmin() {
         setShowModal(true)
     }
   return (
+    <>
+    <NavbarAdmin />
     <div className="container">
         <div className="row pt-4">
           <div className="col-md-12 d-flex justify-content-end ">
@@ -106,6 +109,7 @@ function AksiAdmin() {
           </div>
         </div>
       </div>
+      </>
   )
 }
 
