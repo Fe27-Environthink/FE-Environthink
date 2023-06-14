@@ -20,7 +20,7 @@ export const getKomentar = (id) => {
         dispatch(startKomentar()) 
         const url = `${import.meta.env.VITE_API_ARTICLE}/${id}/komentar`
         const result = await axios(url) 
-        dispatch(successGetKomentar(result.data)) 
+        dispatch(successGetKomentar(result.data.result)) 
     }
 }
 
@@ -28,6 +28,7 @@ export const addKomentar = (newData, id) => async (dispatch) => {
     const url = `${import.meta.env.VITE_API_ARTICLE}/${id}/komentar`;
     await axios.post(url, newData);
     dispatch(getKomentar(id));
+    console.log(newData)
 }
 
 export const deleteKomentar = (data, id) => async (dispatch) => {
@@ -38,6 +39,6 @@ export const deleteKomentar = (data, id) => async (dispatch) => {
 
 export const editKomentar = (data, id) => async (dispatch) => {
     const url = `${import.meta.env.VITE_API_ARTICLE}/${id}/komentar/${data.id}`;
-    await axios.put(url, data);
+    await axios.patch(url, data);
     dispatch(getKomentar(id));
 };

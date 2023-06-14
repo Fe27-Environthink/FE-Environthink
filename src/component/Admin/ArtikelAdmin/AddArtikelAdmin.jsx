@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addArticle } from "../../../Redux/Action/articleAction";
 
 function AddArtikelAdmin() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
     const [titleArticle, setTitleArticle] = useState("");
     const [descArticle, setDescArticle] = useState("");
@@ -56,6 +57,8 @@ function AddArtikelAdmin() {
             desc10: desc10,
         };
         dispatch(addArticle(newData));
+        navigate('/admin/article');
+        console.log(newData)
         // Reset the form data
         setTitleArticle("")
         setDescArticle("")
@@ -144,7 +147,7 @@ function AddArtikelAdmin() {
                             </div>
 
                             <div className="form-group row pt-3">
-                                <label for="desc1" className="col-sm-2 col-form-label">Desc 1</label>
+                                <label htmlFor="desc1" className="col-sm-2 col-form-label">Desc 1</label>
                                 <div className="col-md-5">
                                     <textarea
                                         className="form-control"
@@ -159,7 +162,7 @@ function AddArtikelAdmin() {
                             </div>
 
                             <div className="form-group row pt-3">
-                                <label for="desc2" className="col-sm-2 col-form-label">Desc 2</label>
+                                <label htmlFor="desc2" className="col-sm-2 col-form-label">Desc 2</label>
                                 <div className="col-md-5">
                                     <textarea
                                         className="form-control"
@@ -174,7 +177,7 @@ function AddArtikelAdmin() {
                             </div>
 
                             <div className="form-group row pt-3">
-                                <label for="desc3" className="col-sm-2 col-form-label">Desc 3</label>
+                                <label htmlFor="desc3" className="col-sm-2 col-form-label">Desc 3</label>
                                 <div className="col-md-5">
                                     <textarea
                                         className="form-control"
@@ -189,7 +192,7 @@ function AddArtikelAdmin() {
                             </div>
 
                             <div className="form-group row pt-3">
-                                <label for="desc4" className="col-sm-2 col-form-label">Desc 4</label>
+                                <label htmlFor="desc4" className="col-sm-2 col-form-label">Desc 4</label>
                                 <div className="col-md-5">
                                     <textarea
                                         className="form-control"
@@ -204,7 +207,7 @@ function AddArtikelAdmin() {
                             </div>
 
                             <div className="form-group row pt-3">
-                                <label for="desc5" className="col-sm-2 col-form-label">Desc 5</label>
+                                <label htmlFor="desc5" className="col-sm-2 col-form-label">Desc 5</label>
                                 <div className="col-md-5">
                                     <textarea
                                         className="form-control"
@@ -219,7 +222,7 @@ function AddArtikelAdmin() {
                             </div>
 
                             <div className="form-group row pt-3">
-                                <label for="desc6" className="col-sm-2 col-form-label">Desc 6</label>
+                                <label htmlFor="desc6" className="col-sm-2 col-form-label">Desc 6</label>
                                 <div className="col-md-5">
                                     <textarea
                                         className="form-control"
@@ -234,7 +237,7 @@ function AddArtikelAdmin() {
                             </div>
 
                             <div className="form-group row pt-3">
-                                <label for="desc7" className="col-sm-2 col-form-label">Desc 7</label>
+                                <label htmlFor="desc7" className="col-sm-2 col-form-label">Desc 7</label>
                                 <div className="col-md-5">
                                     <textarea
                                         className="form-control"
@@ -249,7 +252,7 @@ function AddArtikelAdmin() {
                             </div>
 
                             <div className="form-group row pt-3">
-                                <label for="desc8" className="col-sm-2 col-form-label">Desc 8</label>
+                                <label htmlFor="desc8" className="col-sm-2 col-form-label">Desc 8</label>
                                 <div className="col-md-5">
                                     <textarea
                                         className="form-control"
@@ -264,7 +267,7 @@ function AddArtikelAdmin() {
                             </div>
 
                             <div className="form-group row pt-3">
-                                <label for="desc9" className="col-sm-2 col-form-label">Desc 9</label>
+                                <label htmlFor="desc9" className="col-sm-2 col-form-label">Desc 9</label>
                                 <div className="col-md-5">
                                     <textarea
                                         className="form-control"
@@ -279,7 +282,7 @@ function AddArtikelAdmin() {
                             </div>
 
                             <div className="form-group row pt-3">
-                                <label for="desc10" className="col-sm-2 col-form-label">Desc 10</label>
+                                <label htmlFor="desc10" className="col-sm-2 col-form-label">Desc 10</label>
                                 <div className="col-md-5">
                                     <textarea
                                         className="form-control"

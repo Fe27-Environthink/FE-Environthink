@@ -5,7 +5,7 @@ const initialState = {
   isLoading: false,
 };
 
-function infografisReducer(state = initialState, action) {
+function komentarReducer(state = initialState, action) {
     switch (action.type) {
         case START_KOMENTAR:
             return {
@@ -23,4 +23,4 @@ function infografisReducer(state = initialState, action) {
             return state;
         }
     }
-  export default infografisReducer;
+  export default komentarReducer;
