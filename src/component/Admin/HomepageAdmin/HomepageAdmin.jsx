@@ -25,8 +25,8 @@ function HomepageAdmin() {
   useEffect(() => {
     dispatch(getAPI());
 
-    if (roleLocalStorage === null) {
-      if (localStorage.getItem("role") == null) {
+  
+      if (localStorage.getItem('role') == null) {
         Swal.fire({
           icon: "error",
           title: "Terjadi Kesalahan !",
@@ -40,7 +40,7 @@ function HomepageAdmin() {
             navigate("/login");
           }
         });
-      } else if (localStorage.getItem("role") === "user") {
+      } else if (localStorage.getItem('role') === "user") {
         Swal.fire({
           icon: "error",
           title: "Anda Bukan Admin !",
@@ -55,7 +55,7 @@ function HomepageAdmin() {
           }
         });
       }
-    }
+    
   }, []);
 
   return (

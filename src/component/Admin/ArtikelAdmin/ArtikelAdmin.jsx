@@ -21,7 +21,7 @@ function ArtikelAdmin() {
     dispatch(getAPI());
   }, []);
   useEffect(() => {
-    if (localStorage.getItem("role") === null) {
+
       if (localStorage.getItem("role") == null) {
         Swal.fire({
           icon: "error",
@@ -51,7 +51,7 @@ function ArtikelAdmin() {
           }
         });
       }
-    }
+    
     if (localStorage.getItem("role") == "admin") {
       dispatch(getArticle());
     }

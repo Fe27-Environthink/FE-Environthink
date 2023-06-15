@@ -19,7 +19,7 @@ function DetailArtikelAdmin() {
         const navigate=useNavigate()
     useEffect(() => {
         
-        if (localStorage.getItem('role') ===null) {
+    
   
             if (localStorage.getItem("role") == null) {
               Swal.fire({
@@ -50,7 +50,7 @@ function DetailArtikelAdmin() {
                 }
               });
             }
-          }
+          
           if(localStorage.getItem("role")=='admin'){
             dispatch(getArticleDetail(key));
           }
