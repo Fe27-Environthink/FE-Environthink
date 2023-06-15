@@ -1,44 +1,44 @@
 import axios from "axios";
-export const START_KOMENTAR = "START_KOMENTAR"
-export const SUCCESS_GET_KOMENTAR = "SUCCESS_GET_KOMENTAR"
+export const START_KOMENTAR = "START_KOMENTAR";
+export const SUCCESS_GET_KOMENTAR = "SUCCESS_GET_KOMENTAR";
 
 const startKomentar = () => {
-    return {
-        type: START_KOMENTAR
-    }
-}
+  return {
+    type: START_KOMENTAR,
+  };
+};
 
 const successGetKomentar = (payload) => {
-    return {
-        type: SUCCESS_GET_KOMENTAR,
-        payload
-    }
-}
+  return {
+    type: SUCCESS_GET_KOMENTAR,
+    payload,
+  };
+};
 
 export const getKomentar = (id) => {
-    return async (dispatch) => {
-        dispatch(startKomentar()) 
-        const url = `${import.meta.env.VITE_API_ARTICLE}/${id}/komentar`
-        const result = await axios(url) 
-        dispatch(successGetKomentar(result.data.result)) 
-    }
-}
+  return async (dispatch) => {
+    dispatch(startKomentar());
+    const url = `${import.meta.env.VITE_API_ARTICLE}/${id}/komentar`;
+    const result = await axios(url);
+    dispatch(successGetKomentar(result.data.result));
+  };
+};
 
 export const addKomentar = (newData, id) => async (dispatch) => {
-    const url = `${import.meta.env.VITE_API_ARTICLE}/${id}/komentar`;
-    await axios.post(url, newData);
-    dispatch(getKomentar(id));
-    console.log(newData)
-}
+  const url = `${import.meta.env.VITE_API_ARTICLE}/komentar?articleId=${id}`;
+  await axios.post(url, newData);
+  dispatch(getKomentar(id));
+  console.log(newData);
+};
 
 export const deleteKomentar = (data, id) => async (dispatch) => {
-    const url = `${import.meta.env.VITE_API_ARTICLE}/${id}/komentar/${data}`;
-    await axios.delete(url);
-    dispatch(getKomentar(id));
+  const url = `${import.meta.env.VITE_API_ARTICLE}/${id}/komentar/${data}`;
+  await axios.delete(url);
+  dispatch(getKomentar(id));
 };
 
 export const editKomentar = (data, id) => async (dispatch) => {
-    const url = `${import.meta.env.VITE_API_ARTICLE}/${id}/komentar/${data.id}`;
-    await axios.patch(url, data);
-    dispatch(getKomentar(id));
+  const url = `${import.meta.env.VITE_API_ARTICLE}/${id}/komentar/${data.id}`;
+  await axios.patch(url, data);
+  dispatch(getKomentar(id));
 };
