@@ -1,8 +1,8 @@
 import "./Donasi.css";
 import ImgCreditCard from "../../assets/CardCredit.png";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Swal from "sweetalert2";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { dataDonasi } from "../../Redux/Action/ActionDonasi";
 import emailjs from "@emailjs/browser";
 import Navbars from "../Navbar/Navbars";
@@ -23,6 +23,17 @@ const Donasi = () => {
     Email: "",
     Nomor_Rekening: "",
   });
+
+  useEffect(() => {
+    if (localStorage.length > 0) {
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        Nama: localStorage.getItem("username"),
+        Nomor_Telepon: localStorage.getItem("telepon"),
+        Email: localStorage.getItem("email"),
+      }));
+    }
+  }, []);
 
   const [data, setData] = useState({
     originalValue: null,
