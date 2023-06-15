@@ -23,12 +23,12 @@ function Komentar() {
         e.preventDefault(); 
         if (editingId) {
             let editedKomentar = {
-                id: editingId,
+                komentar_id: editingId,
                 name: inputName,
                 email: inputEmail,
                 komentar: inputKomentar,
             }
-            dispatch(editKomentar(editedKomentar, key));
+            dispatch(editKomentar(editedKomentar, key, localStorage.getItem('accessToken')));
             setEditingId(null);
             Swal.fire({
                 position: 'top',
@@ -66,7 +66,7 @@ function Komentar() {
     }
 
     const handleEdit = (id) => {
-        const selectedKomentar = komentar.find((item) => item.id === id);
+        const selectedKomentar = komentar.find((item) => item.komentar_id === id);
         setInputName(selectedKomentar.name);
         setInputEmail(selectedKomentar.email);
         setInputKomentar(selectedKomentar.komentar);
@@ -74,10 +74,9 @@ function Komentar() {
         setShowModal(true);
     };
 
-    const deleteHandler = (id) => {
+    const deleteHandler = (komentar_id) => {
         Swal.fire({
-            title: 'Are you sure?',
-            text: "You want to delete this!",
+            title: 'Apakah anda yakin ingin menghapus komentar?',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -86,11 +85,11 @@ function Komentar() {
         })
         .then((result) => {
             if (result.isConfirmed) {
-                dispatch(deleteKomentar(id, key))
+                dispatch(deleteKomentar(komentar_id, key, localStorage.getItem('accessToken')))
                 Swal.fire({
                     position: 'top',
                     icon: 'success',
-                    title: 'Delete komentar',
+                    title: '"Berhasil!", "Berhasil Hapus Data Komentar"',
                     showConfirmButton: false,
                     timer: 1500
                 });
@@ -122,9 +121,8 @@ const handleInputKomentar=()=>{
                                 className="form-control form-control-md me-2"
                                 placeholder="Masukkan Alamat Email"
                                 value={inputEmail}
-                                onChange={(e) => setInputEmail(e.target.value)}
-                                
-                    onClick={handleInputKomentar}
+                                onChange={(e) => setInputEmail(e.target.value)}        
+                                onClick={handleInputKomentar}
                                 required
                             />
                             <input
@@ -187,8 +185,8 @@ const handleInputKomentar=()=>{
                                 )
                             } */}
 
-                            <Link onClick={() => handleEdit(item.id)} className="card-link text-decoration-none">Edit</Link>
-                            <Link onClick={() => deleteHandler(item.id)} className="card-link text-decoration-none">Delete</Link>
+                            <Link onClick={() => handleEdit(item.komentar_id)} className="card-link text-decoration-none">Edit</Link>
+                            <Link onClick={() => deleteHandler(item.komentar_id)} className="card-link text-decoration-none">Delete</Link>
                             
                             {/* Modal */}
                             {showModal && (
