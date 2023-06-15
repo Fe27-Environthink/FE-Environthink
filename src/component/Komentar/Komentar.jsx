@@ -153,13 +153,14 @@ function Komentar() {
             <div className="row pt-4">
             {isLoading?(
                 <div className="text-center  d-flex justify-content-center align-items-center my-5 py-5">
-                    <span className="mx-2 h1" >loading   
-                </span>
-                <Spinner animation="border" variant="dark" />
+                    <span className="mx-2 h1" >
+                        loading   
+                    </span>
+                    <Spinner animation="border" variant="dark" />
                 </div>
                 ):komentar.length > 0 &&
                 komentar.map((item) => (
-                <div key={item.id} className="posts-list" id="posts-list">
+                <div key={item.komentar_id} className="posts-list" id="posts-list">
                     <div className="card bg-light mt-2 mb-2" style={{width: "50rem"}}>
                         <div className="card-body">
                             <h5 className="card-title">{item.name}</h5>
@@ -168,6 +169,8 @@ function Komentar() {
                                 <span> {item.email}</span>
                             </h6>
                             <p className="card-text text-dark">{item.komentar}</p>
+
+                            {/* contoh dari kak haikal menampilkan sesuai user */}
                             {/* {
                                 userId == item.userId && (
                                     <>
