@@ -25,9 +25,9 @@ export const getKomentar = (id) => {
   };
 };
 
-export const addKomentar = (newData, id,token) => async (dispatch) => {
-  console.log("cek data yang dikirim",newData);
-  console.log("cek token ",token);
+export const addKomentar = (newData, id, token) => async (dispatch) => {
+  console.log("cek data yang dikirim", newData);
+  console.log("cek token ", token);
   const json = JSON.stringify(newData);
   const url = `https://api-fe27be9-environthink.cyclic.app/komentar?artikelId=${id}`;
   try {
@@ -46,50 +46,47 @@ export const addKomentar = (newData, id,token) => async (dispatch) => {
   }
 };
 
-export const deleteKomentar = (data, id, token) => async (dispatch) => {
-    console.log("cek data yang dikirim",data);
-    console.log("cek token ",token);
-    
-    const url = `${import.meta.env.VITE_API_ARTICLE}/${id}/komentar/${data}`;
-    // await axios.delete(url, {
-    //     headers: {
-    //         'Authorization': `Bearer ${token}`
-    //     }
-    // });
-    // dispatch(getKomentar(id));
+export const deleteKomentar = (komentar_id, id, token) => async (dispatch) => {
+  console.log("cek data yang dikirim", komentar_id);
+  console.log("cek token ", token);
 
-    try {
-        const test = await axios.delete(url, data, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        console.log(test)
-        dispatch(getKomentar(id));
-      } catch (error) {
-        Swal.fire({
-          icon: "error",
-          title: "Terjadi Kesalahan!",
-          text: `${error}`,
-        });
-        console.log(err)
-      }
+
+  const url = `https://api-fe27be9-environthink.cyclic.app/komentar/${komentar_id}`;
+
+  try {
+    await axios.delete(url, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    dispatch(getKomentar(id));
+  } catch (error) {
+    Swal.fire({
+      icon: "error",
+      title: "Terjadi Kesalahan!",
+      text: `${error}`,
+    });
+    console.log(error);
+  }
+
 };
 
 export const editKomentar = (data, id, token) => async (dispatch) => {
-    const url = `${import.meta.env.VITE_API_ARTICLE}/${id}/komentar/${data.komentar_id}`;
-    try {
-        await axios.patch(url, data, {
-        headers: {
-            Authorization: `Bearer ${token}`,
-        },
-        });
-        dispatch(getKomentar(id));
-    } catch (error) {
-        Swal.fire({
-            icon: "error",
-            title: "Terjadi Kesalahan!",
-            text: `${error}`,
-        });
-    }
+  const url = `${import.meta.env.VITE_API_ARTICLE}/${id}/komentar/${
+    data.komentar_id
+  }`;
+  try {
+    await axios.patch(url, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    dispatch(getKomentar(id));
+  } catch (error) {
+    Swal.fire({
+      icon: "error",
+      title: "Terjadi Kesalahan!",
+      text: `${error}`,
+    });
+  }
 };
