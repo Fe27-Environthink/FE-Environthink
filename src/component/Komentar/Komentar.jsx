@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getKomentar,
@@ -19,48 +19,63 @@ function Komentar() {
   const [inputEmail, setInputEmail] = useState("");
   const [inputName, setInputName] = useState("");
 
-  console.log(komentar);
+  //   console.log(komentar);
 
   const [editingId, setEditingId] = useState(null);
   const [showModal, setShowModal] = useState(false);
-
-  const [userId] = useState("33");
-
+  const navigate = useNavigate()
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (editingId) {
-      let editedKomentar = {
-        komentar_id: editingId,
-        name: inputName,
-        email: inputEmail,
-        komentar: inputKomentar,
-      };
-      dispatch(
-        editKomentar(editedKomentar, key, localStorage.getItem("accessToken"))
-      );
-      setEditingId(null);
+    if (localStorage.length == 0) {
       Swal.fire({
-        position: "top",
-        icon: "success",
-        title: "Edit sukses",
-        showConfirmButton: false,
-        timer: 1500,
+        icon: "error",
+        title: "Terjadi Kesalahan !",
+        text: "Anda Harus Login Terlebih Dahulu",
+        confirm: {
+          text: "OK",
+          value: true,
+        },
+      }).then((value) => {
+        if (value) {
+          navigate("/login");
+        }
       });
-    } else {
-      let newData = {
-        name: inputName,
-        email: inputEmail,
-        komentar: inputKomentar,
-      };
-      dispatch(addKomentar(newData, key, localStorage.getItem("accessToken")));
-      Swal.fire({
-        position: "top",
-        icon: "success",
-        title: "Menambahkan komentar",
-        showConfirmButton: false,
-        timer: 1500,
-      });
+    }else{
+      if (editingId) {
+        let editedKomentar = {
+          komentar_id: editingId,
+          name: inputName,
+          email: inputEmail,
+          komentar: inputKomentar,
+        };
+        dispatch(
+          editKomentar(editedKomentar, key, localStorage.getItem("accessToken"))
+        );
+        setEditingId(null);
+        Swal.fire({
+          position: "top",
+          icon: "success",
+          title: "Edit sukses",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } else {
+        let newData = {
+          name: inputName,
+          email: inputEmail,
+          komentar: inputKomentar,
+        };
+        dispatch(addKomentar(newData, key, localStorage.getItem("accessToken")));
+        Swal.fire({
+          position: "top",
+          icon: "success",
+          title: "Menambahkan komentar",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
     }
+   
     setInputName("");
     setInputEmail("");
     setInputKomentar("");
@@ -109,7 +124,11 @@ function Komentar() {
 
   useEffect(() => {
     dispatch(getKomentar(key));
+    
   }, []);
+  useEffect(()=>{
+    console.log(komentar);
+  },[komentar])
   const handleInputKomentar = () => {
     setInputEmail(localStorage.getItem("email"));
     setInputName(localStorage.getItem("username"));
@@ -200,8 +219,10 @@ function Komentar() {
                                     
                                 )
                             } */}
-
-                    <Link
+                            {console.log("cekuserid",item.user_id)}
+                            {console.log("cek idd",localStorage.getItem('id'))}
+                    {item.user_id==localStorage.getItem('id') &&(<>
+                      <Link
                       onClick={() => handleEdit(item.komentar_id)}
                       className="card-link text-decoration-none"
                     >
@@ -213,6 +234,8 @@ function Komentar() {
                     >
                       Delete
                     </Link>
+                    </>)}
+                    
 
                     {/* Modal */}
                     {showModal && (

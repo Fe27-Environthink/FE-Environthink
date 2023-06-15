@@ -1,11 +1,11 @@
-import { useEffect } from 'react'
-import NavbarAdmin from '../Sidebar/NavbarAdmin';
-import { Link } from 'react-router-dom';
-import { FaPen, FaTrashAlt } from 'react-icons/fa';
-import './InfografisAdmin.css';
+import { useEffect } from "react";
+import NavbarAdmin from "../Sidebar/NavbarAdmin";
+import { Link } from "react-router-dom";
+import { FaPen, FaTrashAlt } from "react-icons/fa";
+import "./InfografisAdmin.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getInfografis } from '../../../Redux/Action/infografisAction';
-import { Spinner } from 'react-bootstrap';
+import { getInfografis } from "../../../Redux/Action/infografisAction";
+import { Spinner } from "react-bootstrap";
 
 function InfografisAdmin() {
   const dispatch = useDispatch();
@@ -13,12 +13,13 @@ function InfografisAdmin() {
     (state) => state.infografisReducer
   );
 
+  console.log(infografis);
   useEffect(() => {
     dispatch(getInfografis());
   }, []);
   return (
     <>
-    <NavbarAdmin />
+      <NavbarAdmin />
       <div className="container pt-4">
         <h2>Article</h2>
         <div className="row">
@@ -47,46 +48,47 @@ function InfografisAdmin() {
                     <th scope="col-md-6" className="imgInfografisAdmin">
                       Image
                     </th>
-                    <th scope="col-md-3" className="text-center">Title Article</th>
+                    <th scope="col-md-3" className="text-center">
+                      Title Article
+                    </th>
                     <th scope="col-md-3" className="text-center">
                       Action
                     </th>
                   </tr>
                 </thead>
                 <tbody>
-                {isLoading ? (
-                  <tr>
-                    <td>
-                      <div className="text-center  d-flex justify-content-center align-items-center my-5 py-5">
-                        <span className="mx-2 h1">loading</span>
-                        <Spinner animation="border" variant="dark" />
-                      </div>
-                    </td>
-                  </tr> 
+                  {isLoading ? (
+                    <tr>
+                      <td>
+                        <div className="text-center  d-flex justify-content-center align-items-center my-5 py-5">
+                          <span className="mx-2 h1">loading</span>
+                          <Spinner animation="border" variant="dark" />
+                        </div>
+                      </td>
+                    </tr>
                   ) : (
                     infografis.map((item) => (
-                      <tr
-                        key={item.id}
-                      >
-                        <td className="me-5">
+                      <tr key={item.id}>
+                        <td className="">
                           <img
                             src={item.url}
                             alt="name"
                             className="img-artikel w-100"
+                            style={{ height: "20em" }}
                           />
                         </td>
                         <td className="text-center">{item.judul}</td>
                         <td>
-                        <div className="row d-flex justify-content-center">
-                            <div className="col-2 ">
+                          <div className="row d-flex justify-content-center">
+                            <div className="col-2 w-50">
                               <Link
                                 to="/"
-                                className="btn bg-success btn-update text-sm text-white "
+                                className="btn bg-success btn-update text-sm text-white"
                               >
                                 <FaPen />
                               </Link>
                             </div>
-                            <div className="col-2">
+                            <div className="col-2 w-50">
                               <button
                                 to="/"
                                 className="btn bg-danger btn-delete text-sm  text-white "
@@ -106,7 +108,7 @@ function InfografisAdmin() {
         </div>
       </div>
     </>
-  )
+  );
 }
 
-export default InfografisAdmin
+export default InfografisAdmin;

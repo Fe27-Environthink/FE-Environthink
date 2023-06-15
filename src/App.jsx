@@ -53,6 +53,7 @@ function App() {
           <Route path="/article/terkait/:tag" element={<ArticleTerkait />} />
           {/* {roleLocalStorage === "admin" && (
             <> */}
+
               <Route path="/admin" element={<HomepageAdmin />} />
               <Route path="/admin/aksi" element={<AksiAdmin />} />
               <Route path="/admin/article" element={<ArtikelAdmin />} />
@@ -64,13 +65,17 @@ function App() {
               <Route path="/admin/infografis" element={<InfografisAdmin />} />
               <Route path="/admin/infografis/add-infografis" element={<AddInfografisAdmin />} />
                <Route
+
             path="/admin/article/add-article"
             element={<AddArtikelAdmin />}
           />
-           
+          <Route
+            path="/admin/infografis/add-infografis"
+            element={<AddInfografisAdmin />}
+          />
+
           {/* )} */}
-         
-         
+
           <Route path="*" element={<NotFound />} />
         </Routes>
         {/* <Footer /> */}

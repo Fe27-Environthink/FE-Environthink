@@ -75,3 +75,4 @@ function AddInfografisAdmin() {
 }
 
 export default AddInfografisAdmin
+

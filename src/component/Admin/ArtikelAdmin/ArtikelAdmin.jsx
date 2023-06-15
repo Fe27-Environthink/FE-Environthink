@@ -15,16 +15,13 @@ function ArtikelAdmin() {
   const navigate = useNavigate();
 
   const { article, isLoading } = useSelector((state) => state.articleReducer);
-  const { totalArticle} = useSelector(
-    (state) => state.HomepageAdminReducer
-  );
+  const { totalArticle } = useSelector((state) => state.HomepageAdminReducer);
 
   useEffect(() => {
     dispatch(getAPI());
   }, []);
   useEffect(() => {
-    if (localStorage.getItem('role') ===null) {
-  
+    if (localStorage.getItem("role") === null) {
       if (localStorage.getItem("role") == null) {
         Swal.fire({
           icon: "error",
@@ -55,14 +52,14 @@ function ArtikelAdmin() {
         });
       }
     }
-    if(localStorage.getItem("role")=='admin'){
-    dispatch(getArticle());
+    if (localStorage.getItem("role") == "admin") {
+      dispatch(getArticle());
     }
   }, []);
 
   return (
     <>
-    <NavbarAdmin />
+      <NavbarAdmin />
       <div className="container pt-4">
         <h2>Article</h2>
         <div className="row gx-4 gy-2 justify-content-start">
@@ -136,10 +133,14 @@ function ArtikelAdmin() {
                 </thead>
                 <tbody>
                   {isLoading ? (
-                    <div className="text-center  d-flex justify-content-center align-items-center my-5 py-5">
-                      <span className="mx-2 h1">loading</span>
-                      <Spinner animation="border" variant="dark" />
-                    </div>
+                    <tr>
+                      <td>
+                        <div className="text-center  d-flex justify-content-center align-items-center my-5 py-5">
+                          <span className="mx-2 h1">loading</span>
+                          <Spinner animation="border" variant="dark" />
+                        </div>
+                      </td>
+                    </tr>
                   ) : (
                     article.map((item) => (
                       <tr
@@ -160,7 +161,7 @@ function ArtikelAdmin() {
                         <td>{item.author}</td>
                         <td>{item.date}</td>
                         <td>
-                        <div className="row">
+                          <div className="row">
                             <div className="col-4 px-1">
                               <Link
                                 to="/"

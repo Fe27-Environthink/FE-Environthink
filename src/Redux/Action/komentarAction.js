@@ -26,9 +26,6 @@ export const getKomentar = (id) => {
 };
 
 export const addKomentar = (newData, id, token) => async (dispatch) => {
-  console.log("cek data yang dikirim", newData);
-  console.log("cek token ", token);
-  const json = JSON.stringify(newData);
   const url = `https://api-fe27be9-environthink.cyclic.app/komentar?artikelId=${id}`;
   try {
     await axios.post(url, newData, {
@@ -47,10 +44,6 @@ export const addKomentar = (newData, id, token) => async (dispatch) => {
 };
 
 export const deleteKomentar = (komentar_id, id, token) => async (dispatch) => {
-  console.log("cek data yang dikirim", komentar_id);
-  console.log("cek token ", token);
-
-
   const url = `https://api-fe27be9-environthink.cyclic.app/komentar/${komentar_id}`;
 
   try {
@@ -66,15 +59,12 @@ export const deleteKomentar = (komentar_id, id, token) => async (dispatch) => {
       title: "Terjadi Kesalahan!",
       text: `${error}`,
     });
-    console.log(error);
   }
-
 };
 
 export const editKomentar = (data, id, token) => async (dispatch) => {
-  const url = `${import.meta.env.VITE_API_ARTICLE}/${id}/komentar/${
-    data.komentar_id
-  }`;
+  const url = `https://api-fe27be9-environthink.cyclic.app/komentar/${data.komentar_id}`;
+
   try {
     await axios.patch(url, data, {
       headers: {
