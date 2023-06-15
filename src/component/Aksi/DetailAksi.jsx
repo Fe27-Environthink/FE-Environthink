@@ -103,7 +103,7 @@ function DetailAksi() {
       }
     console.log(showForm);
   }, [key,kontributor,detailAksi]);
-  const shareUrl = `https://environthink.netlify.app/aksi.html/${key}`;
+  const shareUrl = `https://final-environthink.netlify.app/aksi/${key}`;
   return (
     <>
       <Navbars />

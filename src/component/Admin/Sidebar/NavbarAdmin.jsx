@@ -30,17 +30,17 @@ function NavbarAdmin() {
             {" "}
             <img src={Logo} id="logo" alt="Environthink Logo" />
           </Navbar.Brand>
-          {/* <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-lg`} /> */}
+          <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-lg`} />
           <Navbar.Offcanvas
             id={`offcanvasNavbar-expand-lg`}
             aria-labelledby={`offcanvasNavbarLabel-expand-lg`}
             placement="start"
           >
-            {/* <Offcanvas.Header closeButton>
+            <Offcanvas.Header closeButton>
               <Offcanvas.Title id={`offcanvasNavbarLabel-expand-lg`}>
                 <img src={Logo} id="logo" alt="Environthink Logo" />
               </Offcanvas.Title>
-            </Offcanvas.Header> */}
+            </Offcanvas.Header>
 
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">

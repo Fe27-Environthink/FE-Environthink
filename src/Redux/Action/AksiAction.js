@@ -71,7 +71,7 @@ export const getDetail = (id) => async (dispatch) => {
 };
 export const submitPetisi = (data, id,token) => async (dispatch) => {
 
-  const url = `https://api-fe27be9-environthink.cyclic.app/kontribusi?aksiId=${id}`;
+  const url = `${import.meta.env.VITE_API_KONTRIBUTOR}?aksiId=${id}`;
   // const result = await axios(urlDetail);
   console.log(data);
 
