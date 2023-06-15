@@ -272,6 +272,7 @@ function Komentar() {
                                       setInputName(e.target.value)
                                     }
                                     required
+                                    disabled
                                   />
                                 </div>
                                 <div className="form-group">
@@ -284,6 +285,7 @@ function Komentar() {
                                     onChange={(e) =>
                                       setInputEmail(e.target.value)
                                     }
+                                    disabled
                                     required
                                   />
                                 </div>

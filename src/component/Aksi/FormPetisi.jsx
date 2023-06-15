@@ -115,6 +115,7 @@ function FormPetisi() {
             value={petisi.email}
             name="email"
             onChange={handleChangePetisi}
+            onClick={handleInputPetisi}
           />
         </div>
         <div className="mb-3">
@@ -129,6 +130,7 @@ function FormPetisi() {
             value={petisi.telepon}
             name="tlp"
             onChange={handleChangePetisi}
+            onClick={handleInputPetisi}
           />
         </div>
         <div className="mb-3">
@@ -143,6 +145,7 @@ function FormPetisi() {
             value={petisi.kota}
             name="city"
             onChange={handleChangePetisi}
+            onClick={handleInputPetisi}
           />
         </div>
         <div className="form-check text-secondary">

@@ -42,9 +42,10 @@ export const getArticleDetail = (id) => {
 
 export const addArticle = (newData, id) => async (dispatch) => {
   const token = localStorage.getItem("accessToken");
-
+  console.log(newData);
+  const json =JSON.stringify(newData)
   const url = `${import.meta.env.VITE_API_ARTICLE}`;
-  await axios.post(url, newData, {
+  await axios.post(url, json, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
