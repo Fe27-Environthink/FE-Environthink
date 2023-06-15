@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import Navbars from "../Navbar/Navbars";
 
 const NotFound = () => {
   const navigate = useNavigate();
@@ -11,32 +12,31 @@ const NotFound = () => {
   const userTryAdminRoute = location.pathname.startsWith("/admin");
 
   useEffect(() => {
-    if (localStorage.getItem("role") == null) {
-      Swal.fire({
-        icon: "error",
-        title: "Terjadi Kesalahan !",
-        text: "Anda Harus Login Terlebih Dahulu",
-      });
-      navigate("/login");
-    } else if (localStorage.getItem("role") === "user" && userTryAdminRoute) {
-      Swal.fire({
-        icon: "error",
-        title: "Anda Bukan Admin !",
-        text: "User Tidak Bisa Akses Ke Halaman Admin!",
-      });
-      navigate("/");
-    } else if (location.pathname != "user") {
-      setText("Not Found");
-    }
+    Swal.fire({
+      icon: "error",
+      title: "Halaman Tidak Ditemukan",
+      text: "Halaman Yang dituju tidak ditemukan",
+      confirm: {
+        text: "OK",
+        value: true,
+      },
+    }).then((value) => {
+      if (value) {
+        navigate("/");
+      }
+    });
   }, []);
 
   return (
+    <>
+    <Navbars/>
     <div
       style={{ fontFamily: "Plus Jakarta Sans, sans-serif", fontWeight: 800 }}
       className="textNotFound text-center fs-1 mt-5"
     >
-      {text}
+      Halaman TIdak Tidemukan
     </div>
+    </>
   );
 };
 
