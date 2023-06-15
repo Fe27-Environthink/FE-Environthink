@@ -68,19 +68,18 @@ function FormPetisi() {
   const handleInputPetisi = (event) => {
     console.log("ini cek event:", event);
     setPetisi({
-      ...petisi,
-      name: localStorage.getItem("username"),
-      email: localStorage.getItem("email"),
-      telepon: localStorage.getItem("telepon"),
-      kota: localStorage.getItem("kota"),
+      
+      name: localStorage.getItem('username'),
+      email: localStorage.getItem('email'),
+      telepon: localStorage.getItem('telepon'),
+      kota: localStorage.getItem('kota'),
     });
+    
   };
-  useEffect(() => {
-    if (isSuccess) {
-      setPetisi("");
-    }
-  }, [submitDataPetisi]);
-
+ 
+useEffect(()=>{
+  console.log(petisi);
+},[petisi])
   return (
     <>
       <form

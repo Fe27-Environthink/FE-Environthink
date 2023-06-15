@@ -5,6 +5,7 @@ export const SUCCESS = "SUCCESS";
 export const SUCCESS_GET_DETAIL = "SUCCESS_GET_DETAIL";
 export const SUBMIT_SUCCESS = "SUBMIT_SUCCESS";
 export const SUBMIT_FAILURE = "SUBMIT_FAILURE";
+
 export const fatchingAksi = () => ({
   type: FATCHING_AKSI,
 });
@@ -61,7 +62,7 @@ export const getDetail = (id) => async (dispatch) => {
       Authorization: `Bearer ${token} `,
     },
   });
-  console.log("cek result1",result1);
+  
   dispatch(successGetDetail(result.data.result,result1.data));
 }else{
   dispatch(successGetDetail(result.data.result,result1));
@@ -69,13 +70,12 @@ export const getDetail = (id) => async (dispatch) => {
   
 };
 export const submitPetisi = (data, id,token) => async (dispatch) => {
-  // get data detail
-  // const urlDetail = `${import.meta.env.VITE_API_AKSI}${id}`;
+
   const url = `https://api-fe27be9-environthink.cyclic.app/kontribusi?aksiId=${id}`;
   // const result = await axios(urlDetail);
   console.log(data);
-  const json = JSON.stringify(data);
-  console.log(json);
+
+  console.log(data);
 try {
   await axios.post(url, data, {
     headers: {
