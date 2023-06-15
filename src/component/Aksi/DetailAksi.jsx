@@ -53,9 +53,12 @@ function DetailAksi() {
       );
       }else{
         return (
+          <div>
+            <h3 className="heading-form"> Terima Kasih Sudah Berkontribusi 🎉</h3>
           <p className="fw-semibold paragraf" id="paragarfPetisi">
-            Terima Kasih Sudah Berkontribusi , jadilah Aktivis Digital Dengan membagikan petisi ini
+            jadilah Aktivis Digital Dengan membagikan petisi ini
           </p>
+          </div>
         );
       }
     } else {
