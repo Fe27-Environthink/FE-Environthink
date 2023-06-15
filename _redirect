@@ -1,2 +1,2 @@
 # Redirects from what the browser requests to what we serve
-/aksi/1 /aksi
+/* /index.html 200
