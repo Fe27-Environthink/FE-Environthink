@@ -24,7 +24,7 @@ function InfografisAdmin() {
         <div className="row">
           <div className="col-md-12 d-flex justify-content-end">
             <Link
-              to=""
+              to="/admin/infografis/add-infografis"
               className="btn bg-primary text-white text-sm px-5 py-2"
             >
               Add Infografis

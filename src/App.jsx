@@ -24,6 +24,7 @@ import DonasiAdmin from "./component/Admin/DonasiAdmin/DonasiAdmin";
 import AksiAdmin from "./component/Admin/AksiAdmin/AksiAdmin";
 import NotFound from "./component/NotFound/NotFound";
 import InfografisAdmin from "./component/Admin/InfografisAdmin/InfografisAdmin";
+import AddInfografisAdmin from "./component/Admin/InfografisAdmin/AddInfografisAdmin";
 
 function App() {
   const isAdminRoute = window.location.pathname === "/admin";
@@ -61,6 +62,7 @@ function App() {
                 element={<DetailArtikelAdmin />}
               />
               <Route path="/admin/infografis" element={<InfografisAdmin />} />
+              <Route path="/admin/infografis/add-infografis" element={<AddInfografisAdmin />} />
                <Route
             path="/admin/article/add-article"
             element={<AddArtikelAdmin />}
