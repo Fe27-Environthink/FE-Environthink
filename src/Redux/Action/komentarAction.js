@@ -72,7 +72,7 @@ export const deleteKomentar = (data, id, token) => async (dispatch) => {
           title: "Terjadi Kesalahan!",
           text: `${error}`,
         });
-        console.log(error)
+        console.log(err)
       }
 };
 
