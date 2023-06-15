@@ -5,6 +5,7 @@ const initialState ={
     isLoading :false,
     detailAksi:[],
     message :[],
+    kontributor:[],
     isSuccess: false,
     isFailure: false,
     
@@ -28,6 +29,7 @@ function AksiReducer(state = initialState , action) {
                 return{
                     ...state,
                     detailAksi:action.payload,
+                    kontributor:action.payload2,
                     isLoading:false
                    
                 }

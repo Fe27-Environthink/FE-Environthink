@@ -13,9 +13,10 @@ export const success = (payload) => ({
   type: SUCCESS,
   payload,
 });
-export const successGetDetail = (payload) => ({
+export const successGetDetail = (payload,payload2) => ({
   type: SUCCESS_GET_DETAIL,
   payload,
+  payload2,
 });
 
 export const getDataAksi = () => async (dispatch) => {
@@ -51,7 +52,21 @@ export const getDetail = (id) => async (dispatch) => {
 
   const result = await axios(url);
   console.log("result get",result.data.result);
-  dispatch(successGetDetail(result.data.result));
+  const result1=[]
+  if(localStorage.length!=0){
+  const url1 = `${import.meta.env.VITE_API_KONTRIBUTOR}?aksiId=${id}`;
+  const token =localStorage.getItem('accessToken')
+  const result1 = await axios(url1, {
+    headers: {
+      Authorization: `Bearer ${token} `,
+    },
+  });
+  console.log("cek result1",result1);
+  dispatch(successGetDetail(result.data.result,result1.data));
+}else{
+  dispatch(successGetDetail(result.data.result,result1));
+}
+  
 };
 export const submitPetisi = (data, id,token) => async (dispatch) => {
   // get data detail

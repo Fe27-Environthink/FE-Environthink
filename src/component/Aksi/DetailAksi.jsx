@@ -8,18 +8,19 @@ import { getDataAksi, getDetail } from "../../Redux/Action/AksiAction";
 import FormPetisi from "./FormPetisi";
 import { FaUsers } from "react-icons/fa";
 import Navbars from "../Navbar/Navbars";
+import { FacebookIcon, FacebookShareButton, TwitterIcon, TwitterShareButton, WhatsappIcon, WhatsappShareButton } from "react-share";
 
 function DetailAksi() {
   const { key } = useParams();
   const dispatch = useDispatch();
   const [aksiLainnya, setAkasiLainnya] = useState([]);
   const navigate = useNavigate();
-  const { detailAksi, listAksi, isLoading } = useSelector(
+  const [showForm,setShowForm]=useState(true)
+  const { detailAksi, listAksi, isLoading,kontributor } = useSelector(
     (state) => state.AksiReducer
   );
 
   let renderHeaderPetisi = () => {
-  
     {
       if (detailAksi.numberofsupport == 0) {
         return (
@@ -44,11 +45,19 @@ function DetailAksi() {
   };
   let renderTextPetisi = () => {
     if (detailAksi.numberofsupport < detailAksi.target) {
+      if(showForm){
       return (
         <p className="fw-semibold paragraf" id="paragarfPetisi">
           {detailAksi.teks}
         </p>
       );
+      }else{
+        return (
+          <p className="fw-semibold paragraf" id="paragarfPetisi">
+            Terima Kasih Sudah Berkontribusi , jadilah Aktivis Digital Dengan membagikan petisi ini
+          </p>
+        );
+      }
     } else {
       return (
         <p className="fw-semibold paragraf " id="paragarfPetisi">
@@ -64,35 +73,69 @@ function DetailAksi() {
     let Persentase =
       (detailAksi.numberofsupport / detailAksi.target) * 100 + "%";
 
-    console.log("cek presentasi",Persentase);
+    console.log("cek presentasi", Persentase);
     return { width: Persentase };
   };
   useEffect(() => {
     dispatch(getDetail(key));
     dispatch(getDataAksi());
-  }, [key]);
-console.log("ini key",key);
-  useEffect(() => {
-    setAkasiLainnya(
-      listAksi.filter((item) => item.id != key)
-    );
-  }, [listAksi,key]);
+
+  }, [key,getDetail]);
+
  
- useEffect(()=>{
-  console.log("ini cek detail",detailAksi);
-  console.log("kok",detailAksi.image); 
-  
- },[detailAksi])
+  useEffect(() => {
+    setAkasiLainnya(listAksi.filter((item) => item.id != key));
+  }, [listAksi, key]);
+
+  useEffect(() => {
+      const cekPetisi  = kontributor.find(user => user.email === localStorage.getItem('email')&&user.aksi_id === key);
+
+      if(cekPetisi){
+        setShowForm(false)
+        console.log("masuk ");
+        console.log(cekPetisi);
+      }
+      else{
+        setShowForm(true)
+      }
+    console.log(showForm);
+  }, [key,kontributor,detailAksi]);
+  const shareUrl = `https://environthink.netlify.app/aksi.html/${key}`;
   return (
     <>
       <Navbars />
       {isLoading ? (
         <div className="text-center  d-flex justify-content-center align-items-center my-5 py-5">
-           <Spinner className="mx-4" animation="grow" size="sm" variant="success" />
-                <Spinner className="mx-4" animation="grow" size="sm" variant="success" />
-                <Spinner className="mx-4" animation="grow" size="sm" variant="success" />
-                <Spinner className="mx-4" animation="grow" size="sm" variant="success" />
-                <Spinner className="mx-4" animation="grow" size="sm" variant="success" />
+          <Spinner
+            className="mx-4"
+            animation="grow"
+            size="sm"
+            variant="success"
+          />
+          <Spinner
+            className="mx-4"
+            animation="grow"
+            size="sm"
+            variant="success"
+          />
+          <Spinner
+            className="mx-4"
+            animation="grow"
+            size="sm"
+            variant="success"
+          />
+          <Spinner
+            className="mx-4"
+            animation="grow"
+            size="sm"
+            variant="success"
+          />
+          <Spinner
+            className="mx-4"
+            animation="grow"
+            size="sm"
+            variant="success"
+          />
         </div>
       ) : (
         <div className="container pt-5 detail-aksi">
@@ -103,9 +146,10 @@ console.log("ini key",key);
                   <Link to={`/aksi/`} style={{ textDecoration: "none" }}>
                     <span id="cathegory">Petisi</span> <span id="dot"> </span>
                   </Link>
-                  {detailAksi != 0 &&
-                   detailAksi.hashtag.map((item) => (
-                      <Link key="1"
+                  {typeof detailAksi.hashtag !='undefined' &&
+                    detailAksi.hashtag.map((item) => (
+                      <Link
+                        key="1"
                         to={`/aksi/terkait/${item}`}
                         style={{ textDecoration: "none" }}
                       >
@@ -115,7 +159,9 @@ console.log("ini key",key);
                       </Link>
                     ))}
                 </p>
-                
+                <div>
+                  
+                </div>
                 <h3 id="title">{detailAksi.title}</h3>
                 <img
                   className="img-fluid pt-3"
@@ -129,7 +175,7 @@ console.log("ini key",key);
                   <p className="mb-4 paragraf">{detailAksi.desc1}</p>
                   <p id="paragraf-konklusi" className="fw-bold paragraf">
                     {detailAksi.desc2}
-                  </p> 
+                  </p>
                 </div>
               </div>
             </div>
@@ -166,7 +212,7 @@ console.log("ini key",key);
                   <span></span>
                 )}
                 {renderTextPetisi()}
-              
+
                 {detailAksi.numberofsupport == detailAksi.target ? (
                   <Link className="link-aksi" to={`/aksi`}>
                     <button
@@ -178,8 +224,21 @@ console.log("ini key",key);
                       Lainnya
                     </button>
                   </Link>
-                ) : (
+                ) : showForm ? (
+                  
                   <FormPetisi />
+                ):(
+                  <div className="d-flex gap-2" >
+                  <FacebookShareButton url={shareUrl}>
+                    <FacebookIcon size={32}/>
+                  </FacebookShareButton>
+                  <TwitterShareButton url={shareUrl}>
+                    <TwitterIcon size={32}/>
+                  </TwitterShareButton>
+                  <WhatsappShareButton url={shareUrl}>
+                    <WhatsappIcon size={32}/>
+                  </WhatsappShareButton>
+                </div>
                 )}
               </div>
             </div>
@@ -195,11 +254,36 @@ console.log("ini key",key);
           <div className="row pt-2">
             {isLoading ? (
               <div className="text-center  d-flex justify-content-center align-items-center my-5 py-5">
-                   <Spinner className="mx-4" animation="grow" size="sm" variant="success" />
-                <Spinner className="mx-4" animation="grow" size="sm" variant="success" />
-                <Spinner className="mx-4" animation="grow" size="sm" variant="success" />
-                <Spinner className="mx-4" animation="grow" size="sm" variant="success" />
-                <Spinner className="mx-4" animation="grow" size="sm" variant="success" />
+                <Spinner
+                  className="mx-4"
+                  animation="grow"
+                  size="sm"
+                  variant="success"
+                />
+                <Spinner
+                  className="mx-4"
+                  animation="grow"
+                  size="sm"
+                  variant="success"
+                />
+                <Spinner
+                  className="mx-4"
+                  animation="grow"
+                  size="sm"
+                  variant="success"
+                />
+                <Spinner
+                  className="mx-4"
+                  animation="grow"
+                  size="sm"
+                  variant="success"
+                />
+                <Spinner
+                  className="mx-4"
+                  animation="grow"
+                  size="sm"
+                  variant="success"
+                />
               </div>
             ) : (
               aksiLainnya.map((item) => (
@@ -226,15 +310,15 @@ console.log("ini key",key);
                             </Link>
                           ))}
                       </p>
-                      <a
-                        className="wrapperLinkTitleAksi"
-                       
-                      >
-                        <h3 className="titleAksi"  onClick={() => navigate(`/aksi/${item.id}`)}>{item.title}</h3>
+                      <a className="wrapperLinkTitleAksi">
+                        <h3
+                          className="titleAksi"
+                          onClick={() => navigate(`/aksi/${item.id}`)}
+                        >
+                          {item.title}
+                        </h3>
                       </a>
-                      <p className="descAksi text-dark wrapText">
-                        {item.desc}
-                      </p>
+                      <p className="descAksi text-dark wrapText">{item.desc}</p>
                       <p className="card-text  kontributorAksi sub-title d-flex align-items-center gap-2">
                         <FaUsers />
                         {item.numberofsupport == 0 ? (
