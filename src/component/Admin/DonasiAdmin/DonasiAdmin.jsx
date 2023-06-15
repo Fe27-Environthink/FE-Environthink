@@ -12,12 +12,12 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import Swal from "sweetalert2";
 import NavbarAdmin from "../Sidebar/NavbarAdmin";
+import dayjs from "dayjs";
+import "dayjs/locale/id";
 
 const DonasiAdmin = () => {
   const dispatch = useDispatch();
   const { result } = useSelector((state) => state.DonasiReducerAdmin);
-
-  console.log(result);
 
   const [updateValue, setUpdateValue] = useState({
     User_ID: "",
@@ -27,6 +27,8 @@ const DonasiAdmin = () => {
     Nomor_Rekening: "",
     formattedValue: "",
     originalValue: null,
+    createdAt: "",
+    updatedAt: "",
   });
 
   const [show, setShow] = useState(false);
@@ -61,7 +63,9 @@ const DonasiAdmin = () => {
     nomor_telepon,
     nomor_rekening,
     formatted_value,
-    original_value
+    original_value,
+    createdAt,
+    updatedAt
   ) => {
     setShow(true);
 
@@ -73,9 +77,35 @@ const DonasiAdmin = () => {
       Nomor_Rekening: nomor_rekening,
       formattedValue: formatted_value,
       originalValue: original_value,
+      createdAt: createdAt,
+      updatedAt: updatedAt,
     };
 
     setUpdateValue(dataUpdate);
+  };
+
+  const handleDelete = (name, user_id) => {
+    Swal.fire({
+      title: `Apakah anda yakin ingin menghapus donasi dari ${name} ?`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      cancelButtonText: "No",
+      confirmButtonText: "Yes",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(deleteDataDonasi(user_id));
+        Swal.fire("Berhasil!", "Berhasil Hapus Data Donasi", "success");
+      }
+    });
+  };
+
+  const formatTime = (dateTime) => {
+    const indonesianTime = dayjs(dateTime)
+      .locale("id")
+      .format("D MMMM YYYY, HH:mm:ss");
+    return indonesianTime;
   };
 
   useEffect(() => {
@@ -84,7 +114,7 @@ const DonasiAdmin = () => {
 
   return (
     <>
-    <NavbarAdmin />
+      <NavbarAdmin />
       <div className="container">
         <h1 className="text-center mt-3 titleDonasi">Donasi</h1>
         {result != null && result.length != 0 ? (
@@ -127,6 +157,9 @@ const DonasiAdmin = () => {
                           createdAt
                         </th>
                         <th scope="col" className="">
+                          updatedAt
+                        </th>
+                        <th scope="col" className="">
                           Action
                         </th>
                       </tr>
@@ -136,13 +169,14 @@ const DonasiAdmin = () => {
                         <th className="text-center" scope="row">
                           {user.id}
                         </th>
-                        <td>{user.Nama}</td>
-                        <td>{user.Email}</td>
-                        <td>{user.Nomor_Telepon}</td>
-                        <td>{user.Nomor_Rekening}</td>
-                        <td>{user.formattedValue}</td>
-                        <td>{user.originalValue}</td>
-                        <td>{user.createdAt}</td>
+                        <td>{user.nama}</td>
+                        <td>{user.email}</td>
+                        <td>{user.nomor_hp}</td>
+                        <td>{user.nomor_rekening}</td>
+                        <td>{user.formated_value}</td>
+                        <td>{user.original_value}</td>
+                        <td>{formatTime(user.createdAt)}</td>
+                        <td>{formatTime(user.updatedAt)}</td>
                         <td>
                           <div className="row justify-content-center">
                             <div className="col-4 px-1">
@@ -151,12 +185,14 @@ const DonasiAdmin = () => {
                                 onClick={() =>
                                   handleUpdate(
                                     user.id,
-                                    user.Nama,
-                                    user.Email,
-                                    user.Nomor_Telepon,
-                                    user.Nomor_Rekening,
-                                    user.formattedValue,
-                                    user.originalValue
+                                    user.nama,
+                                    user.email,
+                                    user.nomor_hp,
+                                    user.nomor_rekening,
+                                    user.formated_value,
+                                    user.original_value,
+                                    formatTime(user.createdAt),
+                                    formatTime(user.updatedAt)
                                   )
                                 }
                               />
@@ -164,9 +200,7 @@ const DonasiAdmin = () => {
                             <div className="col-4 px-1">
                               <FaTrashAlt
                                 className="text-danger w-100 "
-                                onClick={() =>
-                                  dispatch(deleteDataDonasi(user.id))
-                                }
+                                onClick={() => handleDelete(user.nama, user.id)}
                               />
                             </div>
                           </div>
@@ -276,6 +310,32 @@ const DonasiAdmin = () => {
                   placeholder="Masukan Nomor Rekening untuk di update !"
                   name="originalValue"
                   value={updateValue.originalValue}
+                  onChange={handleFormModal}
+                />
+              </Form.Group>
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlInput1"
+              >
+                <Form.Label>Nomor Rekening</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Masukan Nomor Rekening untuk di update !"
+                  name="createdAt"
+                  value={updateValue.createdAt}
+                  onChange={handleFormModal}
+                />
+              </Form.Group>
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlInput1"
+              >
+                <Form.Label>Nomor Rekening</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Masukan Nomor Rekening untuk di update !"
+                  name="updatedAt"
+                  value={updateValue.updatedAt}
                   onChange={handleFormModal}
                 />
               </Form.Group>
