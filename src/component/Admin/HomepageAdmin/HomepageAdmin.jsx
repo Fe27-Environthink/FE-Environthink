@@ -25,7 +25,7 @@ function HomepageAdmin() {
   useEffect(() => {
     dispatch(getAPI());
 
-    if (roleLocalStorage === "user") {
+    if (roleLocalStorage ===null) {
       console.log(roleLocalStorage);
       if (localStorage.getItem("role") == null) {
         Swal.fire({

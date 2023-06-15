@@ -4,9 +4,10 @@ import "./ArtikelAdmin.css";
 import { FaClock } from 'react-icons/fa';
 import { getArticleDetail } from '../../../Redux/Action/articleAction';
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { Spinner } from "react-bootstrap";
 import NavbarAdmin from '../Sidebar/NavbarAdmin';
+import Swal from 'sweetalert2';
 
 function DetailArtikelAdmin() {
     const { key } = useParams();
@@ -15,9 +16,44 @@ function DetailArtikelAdmin() {
     const { detailArticle, article, isLoading } = useSelector(
         (state) => state.articleReducer
     );
-
+        const navigate=useNavigate()
     useEffect(() => {
-        dispatch(getArticleDetail(key));
+        
+        if (localStorage.getItem('role') ===null) {
+  
+            if (localStorage.getItem("role") == null) {
+              Swal.fire({
+                icon: "error",
+                title: "Terjadi Kesalahan !",
+                text: "Anda Harus Login Terlebih Dahulu",
+                confirm: {
+                  text: "OK",
+                  value: true,
+                },
+              }).then((value) => {
+                if (value) {
+                  navigate("/login");
+                }
+              });
+            } else if (localStorage.getItem("role") === "user") {
+              Swal.fire({
+                icon: "error",
+                title: "Anda Bukan Admin !",
+                text: "User Tidak Bisa Akses Ke Halaman Admin!",
+                confirm: {
+                  text: "OK",
+                  value: true,
+                },
+              }).then((value) => {
+                if (value) {
+                  navigate("/");
+                }
+              });
+            }
+          }
+          if(localStorage.getItem("role")=='admin'){
+            dispatch(getArticleDetail(key));
+          }
     }, []);
   return (
     <>

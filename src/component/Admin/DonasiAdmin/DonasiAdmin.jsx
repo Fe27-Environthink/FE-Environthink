@@ -10,11 +10,13 @@ import Swal from "sweetalert2";
 import NavbarAdmin from "../Sidebar/NavbarAdmin";
 import dayjs from "dayjs";
 import "dayjs/locale/id";
+import { useNavigate } from "react-router";
 
 const DonasiAdmin = () => {
   const dispatch = useDispatch();
   const { result } = useSelector((state) => state.DonasiReducerAdmin);
-
+  const roleLocalStorage = localStorage.getItem("role");
+  const navigate = useNavigate();
   const handleDelete = (name, user_id) => {
     Swal.fire({
       title: `Apakah anda yakin ingin menghapus donasi dari ${name} ?`,
@@ -40,7 +42,43 @@ const DonasiAdmin = () => {
   };
 
   useEffect(() => {
-    dispatch(fetchApiDonasi());
+    if (roleLocalStorage ===null) {
+      console.log(roleLocalStorage);
+      if (localStorage.getItem("role") == null) {
+        Swal.fire({
+          icon: "error",
+          title: "Terjadi Kesalahan !",
+          text: "Anda Harus Login Terlebih Dahulu",
+          confirm: {
+            text: "OK",
+            value: true,
+          },
+        }).then((value) => {
+          if (value) {
+            navigate("/login");
+          }
+        });
+      } else if (localStorage.getItem("role") === "user") {
+        Swal.fire({
+          icon: "error",
+          title: "Anda Bukan Admin !",
+          text: "User Tidak Bisa Akses Ke Halaman Admin!",
+          confirm: {
+            text: "OK",
+            value: true,
+          },
+        }).then((value) => {
+          if (value) {
+            navigate("/");
+          }
+        });
+      }
+    }
+    if(roleLocalStorage=='admin'){
+      dispatch(fetchApiDonasi());
+    }
+   
+    
   }, []);
 
   return (

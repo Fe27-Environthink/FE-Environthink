@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addArticle } from "../../../Redux/Action/articleAction";
 import NavbarAdmin from "../Sidebar/NavbarAdmin";
+import Swal from "sweetalert2";
 
 function AddArtikelAdmin() {
   const dispatch = useDispatch();
@@ -79,7 +80,41 @@ function AddArtikelAdmin() {
         setDesc9("")
         setDesc10("")
     };
-    
+    useEffect(()=>{
+        if (localStorage.getItem('role') ===null) {
+  
+            if (localStorage.getItem("role") == null) {
+              Swal.fire({
+                icon: "error",
+                title: "Terjadi Kesalahan !",
+                text: "Anda Harus Login Terlebih Dahulu",
+                confirm: {
+                  text: "OK",
+                  value: true,
+                },
+              }).then((value) => {
+                if (value) {
+                  navigate("/login");
+                }
+              });
+            } else if (localStorage.getItem("role") === "user") {
+              Swal.fire({
+                icon: "error",
+                title: "Anda Bukan Admin !",
+                text: "User Tidak Bisa Akses Ke Halaman Admin!",
+                confirm: {
+                  text: "OK",
+                  value: true,
+                },
+              }).then((value) => {
+                if (value) {
+                  navigate("/");
+                }
+              });
+            }
+          }
+         
+    },[])
   return (
     <>
     <NavbarAdmin />
