@@ -1,6 +1,6 @@
-/* .imgInfografisAdmin {
-  width: 100px !important;
-} */
+.imgInfografisAdmin {
+  width: 250px !important;
+}
 
 .btn-update:hover {
   background-color: #14ae5c !important;
