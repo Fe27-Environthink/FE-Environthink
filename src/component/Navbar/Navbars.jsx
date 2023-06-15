@@ -17,11 +17,11 @@ import {
 import { useEffect } from "react";
 
 function Navbars() {
-  const navigate = useNavigate()
-  const handleLogout=()=>{
-    localStorage.clear()
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.clear();
     window.location.reload();
-  }
+  };
   return (
     <>
       <Navbar
@@ -84,40 +84,55 @@ function Navbars() {
                       Donasi
                     </NavLink>
                   </li>
-                  {localStorage.length === 0?( <li className="nav-item ">
-                    <div id="button-login">
-                      <NavLink
-                        className="btnLogin m-1 btn  nav-link active ps-3 pe-3"
-                        to="/login"
-                      >
-                        Login
-                      </NavLink>
-                    </div>
-                  </li>):(<li className="nav-item mt-1">
-                    <Dropdown align={{ lg: "end" }}>
-                      <Dropdown.Toggle
-                        variant="transparent"
-                        id="dropdown-avatar"
-                      >
-                        <img
-                          src="https://i.ibb.co/Lz14knd/photo-1535713875002-d1d0cf377fde.jpg"
-                          alt="User Avatar"
-                          className="avatar rounded-circle"
-                          style={{ width: "30px" }}
-                        />
-                      </Dropdown.Toggle>
+                  {localStorage.length === 0 ? (
+                    <li className="nav-item ">
+                      <div id="button-login">
+                        <NavLink
+                          className="btnLogin m-1 btn  nav-link active ps-3 pe-3"
+                          to="/login"
+                        >
+                          Login
+                        </NavLink>
+                      </div>
+                    </li>
+                  ) : (
+                    <li className="nav-item mt-1">
+                      <Dropdown align={{ lg: "end" }}>
+                        <Dropdown.Toggle
+                          variant="transparent"
+                          id="dropdown-avatar"
+                        >
+                          {localStorage.getItem("admin") != "" ? (
+                            // INI AVATAR ADMIN
+                            <img
+                              src="https://i.ibb.co/Lz14knd/photo-1535713875002-d1d0cf377fde.jpg"
+                              alt="User Avatar"
+                              className="avatar rounded-circle"
+                              style={{ width: "30px" }}
+                            />
+                          ) : (
+                            // INI AVATAR USER
+                            <img
+                              src="https://i.ibb.co/Lz14knd/photo-1535713875002-d1d0cf377fde.jpg"
+                              alt="User Avatar"
+                              className="avatar rounded-circle"
+                              style={{ width: "30px" }}
+                            />
+                          )}
+                        </Dropdown.Toggle>
 
-                      <Dropdown.Menu>
-                        <Dropdown.Item>{localStorage.getItem('username')}</Dropdown.Item>
-                 
-                        <Dropdown.Item onClick={handleLogout }>
-                          Logout
-                        </Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                  </li>)}
-                 
-                  
+                        <Dropdown.Menu>
+                          <Dropdown.Item>
+                            {localStorage.getItem("username")}
+                          </Dropdown.Item>
+
+                          <Dropdown.Item onClick={handleLogout}>
+                            Logout
+                          </Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
+                    </li>
+                  )}
                 </ul>
               </Nav>
             </Offcanvas.Body>
