@@ -32,24 +32,6 @@ export const fetchApiDonasi = () => {
   };
 };
 
-export const updateDataDonasi = (data) => {
-  return async (dispatch) => {
-    try {
-      await axios.put(
-        `${import.meta.env.VITE_API_DONASI}/${data.User_ID}`,
-        data
-      );
-      dispatch(fetchApiDonasi());
-    } catch (error) {
-      Swal.fire({
-        icon: "error",
-        title: "Gagal Hapus Data Donasi !",
-        text: `${error.message}`,
-      });
-    }
-  };
-};
-
 export const deleteDataDonasi = (id) => {
   return async (dispatch) => {
     try {

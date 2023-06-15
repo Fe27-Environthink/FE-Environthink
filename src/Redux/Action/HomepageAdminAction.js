@@ -17,6 +17,8 @@ const GetTotalContent = (
 
 export const getAPI = () => {
   return async (dispatch) => {
+    const token = localStorage.getItem("accessToken");
+
     const urlArticle = import.meta.env.VITE_API_ARTICLE;
     const urlAksi = import.meta.env.VITE_API_AKSI;
     const urlInfografis = import.meta.env.VITE_API_INFOGRAFIS;
@@ -25,7 +27,11 @@ export const getAPI = () => {
     const resultArticle = await axios(urlArticle);
     const resultAksi = await axios(urlAksi);
     const resultInfografis = await axios(urlInfografis);
-    const resultDonasi = await axios(urlDonasi);
+    const resultDonasi = await axios.get(urlDonasi, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
     dispatch(
       GetTotalContent(
