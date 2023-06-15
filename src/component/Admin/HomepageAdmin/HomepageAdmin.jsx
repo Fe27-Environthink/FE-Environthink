@@ -25,8 +25,7 @@ function HomepageAdmin() {
   useEffect(() => {
     dispatch(getAPI());
 
-    if (roleLocalStorage ===null) {
-      console.log(roleLocalStorage);
+    if (roleLocalStorage === null) {
       if (localStorage.getItem("role") == null) {
         Swal.fire({
           icon: "error",

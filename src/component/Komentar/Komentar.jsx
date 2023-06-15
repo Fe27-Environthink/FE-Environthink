@@ -19,12 +19,10 @@ function Komentar() {
   const [inputEmail, setInputEmail] = useState("");
   const [inputName, setInputName] = useState("");
 
-  console.log(komentar);
+  //   console.log(komentar);
 
   const [editingId, setEditingId] = useState(null);
   const [showModal, setShowModal] = useState(false);
-
-  const [userId] = useState("33");
 
   const handleSubmit = (e) => {
     e.preventDefault();
