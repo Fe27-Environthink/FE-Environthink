@@ -1,15 +1,11 @@
 import "./DonasiAdmin.css";
-import { FaTrashAlt, FaPen } from "react-icons/fa";
-import { useEffect, useState } from "react";
+import { FaTrashAlt } from "react-icons/fa";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   deleteDataDonasi,
   fetchApiDonasi,
-  updateDataDonasi,
 } from "../../../Redux/Action/ActionDonasiAdmin";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import Modal from "react-bootstrap/Modal";
 import Swal from "sweetalert2";
 import NavbarAdmin from "../Sidebar/NavbarAdmin";
 import dayjs from "dayjs";
@@ -18,71 +14,6 @@ import "dayjs/locale/id";
 const DonasiAdmin = () => {
   const dispatch = useDispatch();
   const { result } = useSelector((state) => state.DonasiReducerAdmin);
-
-  const [updateValue, setUpdateValue] = useState({
-    User_ID: "",
-    Nama: "",
-    Nomor_Telepon: "",
-    Email: "",
-    Nomor_Rekening: "",
-    formattedValue: "",
-    originalValue: null,
-    createdAt: "",
-    updatedAt: "",
-  });
-
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => {
-    Swal.fire({
-      title: "Apakah anda yakin untuk menyimpan perubahan ?",
-      showCancelButton: true,
-      confirmButtonText: "Save",
-      denyButtonText: `Don't save`,
-    }).then((result) => {
-      /* Read more about isConfirmed, isDenied below */
-      if (result.isConfirmed) {
-        setShow(false);
-        dispatch(updateDataDonasi(updateValue));
-        Swal.fire("Berhasil Update !", "", "success");
-      }
-    });
-  };
-
-  const handleFormModal = (event) => {
-    setUpdateValue({
-      ...updateValue,
-      [event.target.name]: event.target.value,
-    });
-  };
-
-  const handleUpdate = (
-    user_id,
-    nama,
-    email,
-    nomor_telepon,
-    nomor_rekening,
-    formatted_value,
-    original_value,
-    createdAt,
-    updatedAt
-  ) => {
-    setShow(true);
-
-    const dataUpdate = {
-      User_ID: user_id,
-      Nama: nama,
-      Email: email,
-      Nomor_Telepon: nomor_telepon,
-      Nomor_Rekening: nomor_rekening,
-      formattedValue: formatted_value,
-      originalValue: original_value,
-      createdAt: createdAt,
-      updatedAt: updatedAt,
-    };
-
-    setUpdateValue(dataUpdate);
-  };
 
   const handleDelete = (name, user_id) => {
     Swal.fire({
@@ -128,7 +59,7 @@ const DonasiAdmin = () => {
               }}
             >
               <div className="card-body">
-                <div className="table-responsive-lg text-nowrap">
+                <div className="table-responsive text-nowrap">
                   <table className="table w-auto">
                     <thead>
                       <tr>
@@ -180,24 +111,6 @@ const DonasiAdmin = () => {
                         <td>
                           <div className="row justify-content-center">
                             <div className="col-4 px-1">
-                              <FaPen
-                                className="text-success w-100"
-                                onClick={() =>
-                                  handleUpdate(
-                                    user.id,
-                                    user.nama,
-                                    user.email,
-                                    user.nomor_hp,
-                                    user.nomor_rekening,
-                                    user.formated_value,
-                                    user.original_value,
-                                    formatTime(user.createdAt),
-                                    formatTime(user.updatedAt)
-                                  )
-                                }
-                              />
-                            </div>
-                            <div className="col-4 px-1">
                               <FaTrashAlt
                                 className="text-danger w-100 "
                                 onClick={() => handleDelete(user.nama, user.id)}
@@ -216,7 +129,7 @@ const DonasiAdmin = () => {
           <h2 className="text-center mt-5 notFoundDonasi">Tidak Ada Donasi </h2>
         )}
 
-        <Modal show={show} onHide={handleClose}>
+        {/* <Modal show={show} onHide={handleClose}>
           <Modal.Header>
             <Modal.Title>Update Data</Modal.Title>
           </Modal.Header>
@@ -230,8 +143,8 @@ const DonasiAdmin = () => {
                 <Form.Control
                   type="number"
                   placeholder="Masukan Nama untuk di update !"
-                  name="User_ID"
-                  value={updateValue.User_ID}
+                  name="user_id"
+                  value={updateValue.user_id}
                   onChange={handleFormModal}
                 />
               </Form.Group>
@@ -243,8 +156,8 @@ const DonasiAdmin = () => {
                 <Form.Control
                   type="text"
                   placeholder="Masukan Nama untuk di update !"
-                  name="Nama"
-                  value={updateValue.Nama}
+                  name="nama"
+                  value={updateValue.nama}
                   onChange={handleFormModal}
                 />
               </Form.Group>
@@ -256,8 +169,8 @@ const DonasiAdmin = () => {
                 <Form.Control
                   type="email"
                   placeholder="Masukan Email untuk di update !"
-                  name="Email"
-                  value={updateValue.Email}
+                  name="email"
+                  value={updateValue.email}
                   onChange={handleFormModal}
                 />
               </Form.Group>
@@ -269,8 +182,8 @@ const DonasiAdmin = () => {
                 <Form.Control
                   type="number"
                   placeholder="Masukan Nomor Telepon untuk di update !"
-                  name="Nomor_Telepon"
-                  value={updateValue.Nomor_Telepon}
+                  name="nomor_hp"
+                  value={updateValue.nomor_hp}
                   onChange={handleFormModal}
                 />
               </Form.Group>
@@ -282,8 +195,8 @@ const DonasiAdmin = () => {
                 <Form.Control
                   type="number"
                   placeholder="Masukan Nomor Rekening untuk di update !"
-                  name="Nomor_Rekening"
-                  value={updateValue.Nomor_Rekening}
+                  name="nomor_rekening"
+                  value={updateValue.nomor_rekening}
                   onChange={handleFormModal}
                 />
               </Form.Group>
@@ -295,8 +208,8 @@ const DonasiAdmin = () => {
                 <Form.Control
                   type="text"
                   placeholder="Masukan Nomor Rekening untuk di update !"
-                  name="formattedValue"
-                  value={updateValue.formattedValue}
+                  name="formated_value"
+                  value={updateValue.formated_value}
                   onChange={handleFormModal}
                 />
               </Form.Group>
@@ -304,12 +217,12 @@ const DonasiAdmin = () => {
                 className="mb-3"
                 controlId="exampleForm.ControlInput1"
               >
-                <Form.Label>Nomor Rekening</Form.Label>
+                <Form.Label>Original Value</Form.Label>
                 <Form.Control
                   type="number"
                   placeholder="Masukan Nomor Rekening untuk di update !"
-                  name="originalValue"
-                  value={updateValue.originalValue}
+                  name="original_value"
+                  value={updateValue.original_value}
                   onChange={handleFormModal}
                 />
               </Form.Group>
@@ -317,7 +230,7 @@ const DonasiAdmin = () => {
                 className="mb-3"
                 controlId="exampleForm.ControlInput1"
               >
-                <Form.Label>Nomor Rekening</Form.Label>
+                <Form.Label>Created At</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Masukan Nomor Rekening untuk di update !"
@@ -330,7 +243,7 @@ const DonasiAdmin = () => {
                 className="mb-3"
                 controlId="exampleForm.ControlInput1"
               >
-                <Form.Label>Nomor Rekening</Form.Label>
+                <Form.Label>Updated At</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Masukan Nomor Rekening untuk di update !"
@@ -349,7 +262,7 @@ const DonasiAdmin = () => {
               Simpan
             </Button>
           </Modal.Footer>
-        </Modal>
+        </Modal> */}
       </div>
     </>
   );

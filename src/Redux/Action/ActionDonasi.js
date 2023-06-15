@@ -1,4 +1,5 @@
 import axios from "axios";
+import Swal from "sweetalert2";
 
 export const DONASI = "Donasi";
 
@@ -28,24 +29,42 @@ const getFormatedDate = () => {
 };
 
 export const dataDonasi = (donationAmount, dataForm) => {
-  const data = {
-    createdAt: getFormatedDate(),
-    Nama: dataForm.Nama,
-    Email: dataForm.Email,
-    Nomor_Rekening: dataForm.Nomor_Rekening,
-    Nomor_Telepon: dataForm.Nomor_Telepon,
-    formattedValue: donationAmount.formattedValue,
-    originalValue: donationAmount.originalValue,
-  };
+  return async (dispatch) => {
+    const data = {
+      nama: dataForm.Nama,
+      email: dataForm.Email,
+      nomor_rekening: dataForm.Nomor_Rekening,
+      nomor_hp: dataForm.Nomor_Telepon,
+      formated_value: donationAmount.formattedValue,
+      original_value: donationAmount.originalValue,
+    };
 
-  axios.post(import.meta.env.VITE_API_DONASI, data);
+    try {
+      const token = localStorage.getItem("accessToken");
 
-  return {
-    type: DONASI,
-    data: {
-      donationAmount,
-      dataForm,
-      createdAt: getFormatedDate(),
-    },
+      await axios.post(import.meta.env.VITE_API_DONASI, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      Swal.fire("Cek email untuk instruksi pembayaran", "", "success");
+    } catch (error) {
+      console.log(error);
+      Swal.fire({
+        icon: "error",
+        title: "Terjadi Kesalahan!",
+        text: `${error.response.data.message}`,
+      });
+    }
+
+    return {
+      type: DONASI,
+      data: {
+        donationAmount,
+        dataForm,
+        createdAt: getFormatedDate(),
+      },
+    };
   };
 };
