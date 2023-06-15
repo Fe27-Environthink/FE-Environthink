@@ -5,26 +5,72 @@ import { useSelector, useDispatch } from "react-redux";
 import { getAPI } from "../../../Redux/Action/HomepageAdminAction";
 import { useEffect } from "react";
 import Spinner from "react-bootstrap/Spinner";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ArticleVector from "../../../assets/ArticleVector.jpg";
 import AksiVector from "../../../assets/AksiVector.jpg";
 import InfografisVector from "../../../assets/InfografisVector.jpg";
 import DonationVector from "../../../assets/DonationVector.jpg";
+import NavbarAdmin from "../Sidebar/NavbarAdmin";
+import Swal from "sweetalert2";
 
 function HomepageAdmin() {
   const { totalAksi, totalArticle, totalInfografis, totalDonasi } = useSelector(
     (state) => state.HomepageAdminReducer
   );
 
+
+  const roleLocalStorage = localStorage.getItem("role");
+
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   // const localStrage = localStorage;
   // console.log(localStrage);
   useEffect(() => {
     dispatch(getAPI());
+    
+    // console.log(roleLocalStorage);
+    // validasi untuk admin
+   if(roleLocalStorage === 'user' ) {
+    console.log(roleLocalStorage);
+    if (localStorage.getItem("role") == null) {
+      Swal.fire({
+        icon: "error",
+        title: "Terjadi Kesalahan !",
+        text: "Anda Harus Login Terlebih Dahulu",
+        confirm: {
+          text: 'OK',
+          value: true,
+        },
+      }).then((value) => {
+        if (value) {
+          navigate("/login");
+        }
+      });
+     
+    } else if (localStorage.getItem("role") === "user" ) {
+      Swal.fire({
+        icon: "error",
+        title: "Anda Bukan Admin !",
+        text: "User Tidak Bisa Akses Ke Halaman Admin!",
+        confirm: {
+          text: 'OK',
+          value: true,
+        },
+      }).then((value) => {
+        if (value) {
+          navigate("/");
+        }
+      });
+     
+    } 
+   }
   }, []);
 
   return (
+    <>
+    <NavbarAdmin />
+   
     <Container className="d-flex px-4" style={{ marginTop: "0em" }}>
       {totalAksi != null && totalArticle != null && totalInfografis != null ? (
         <div className="container">
@@ -159,6 +205,7 @@ function HomepageAdmin() {
         </div>
       )}
     </Container>
+    </>
   );
 }
 

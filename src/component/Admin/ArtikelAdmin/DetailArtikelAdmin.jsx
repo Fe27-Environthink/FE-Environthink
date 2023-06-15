@@ -6,6 +6,7 @@ import { getArticleDetail } from '../../../Redux/Action/articleAction';
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router";
 import { Spinner } from "react-bootstrap";
+import NavbarAdmin from '../Sidebar/NavbarAdmin';
 
 function DetailArtikelAdmin() {
     const { key } = useParams();
@@ -19,6 +20,8 @@ function DetailArtikelAdmin() {
         dispatch(getArticleDetail(key));
     }, []);
   return (
+    <>
+    <NavbarAdmin />
     <div>
         <div className='container pt-4'>
             <h2>Detail Article</h2>
@@ -130,6 +133,7 @@ function DetailArtikelAdmin() {
             
         </div>
     </div>
+    </>
     )
 }
 

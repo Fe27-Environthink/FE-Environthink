@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { getDataAksi } from '../../../Redux/Action/AksiAction';
 import { Spinner } from 'react-bootstrap';
+import NavbarAdmin from '../Sidebar/NavbarAdmin';
 
 function AksiAdmin() {
     const dispatch = useDispatch()
@@ -13,18 +14,20 @@ function AksiAdmin() {
     useEffect(()=>{
         dispatch(getDataAksi())
     },[])
-    useEffect(()=>{
-        console.log(listAksi);
-    },[listAksi])
+    // useEffect(()=>{
+    //     console.log(listAksi);
+    // },[listAksi])
 
     const handleShowModal= ()=>{
         setShowModal(true)
     }
   return (
+    <>
+    <NavbarAdmin />
     <div className="container">
         <div className="row pt-4">
           <div className="col-md-12 d-flex justify-content-end ">
-            <button  className="btn bg-primary text-white text-sm px-5 py-2 d-flex gap-2 justify-content-end align-items-center" onclick={handleShowModal()}> 
+            <button  className="btn bg-primary text-white text-sm px-5 py-2 d-flex gap-2 justify-content-end align-items-center" onClick={handleShowModal}> 
              <FaPlus />  Tambah Aksi
             </button>
           </div>
@@ -106,6 +109,7 @@ function AksiAdmin() {
           </div>
         </div>
       </div>
+      </>
   )
 }
 

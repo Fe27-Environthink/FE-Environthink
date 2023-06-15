@@ -7,6 +7,7 @@ import Spinner from "react-bootstrap/Spinner";
 import { Link, useNavigate } from "react-router-dom";
 import ArticleVector from "../../../assets/ArticleVector.jpg";
 import { getAPI } from "../../../Redux/Action/HomepageAdminAction";
+import NavbarAdmin from "../Sidebar/NavbarAdmin";
 
 function ArtikelAdmin() {
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ function ArtikelAdmin() {
 
   return (
     <>
+    <NavbarAdmin />
       <div className="container pt-4">
         <h2>Article</h2>
         <div className="row gx-4 gy-2 justify-content-start">

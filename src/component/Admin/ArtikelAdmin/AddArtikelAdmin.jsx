@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addArticle } from "../../../Redux/Action/articleAction";
+import NavbarAdmin from "../Sidebar/NavbarAdmin";
 
 function AddArtikelAdmin() {
   const dispatch = useDispatch();
@@ -81,6 +82,7 @@ function AddArtikelAdmin() {
     
   return (
     <>
+    <NavbarAdmin />
         <div className="container pt-4">
             <div className="addArtikel">
                 <h3>Add Article</h3>

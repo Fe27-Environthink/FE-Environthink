@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import { submitPetisi } from "../../Redux/Action/AksiAction";
 
 function FormPetisi() {
     const { key } = useParams();
+    const navigate =useNavigate()
     const [petisi, setPetisi] = useState({
         aksiId: key,
         name: "",
@@ -26,26 +27,44 @@ function FormPetisi() {
       ...petisi,
       [event.target.name]: event.target.value,
     });
-    console.log(event.target);
+  
   };
 
   const handleSubmitPetisi = (e) => {
     e.preventDefault();
-
-    Swal.fire({
-      title: "Konfirmasi Data",
-      text: "Apakah data yang diisi sudah benar?",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Konfirmasi",
-      cancelButtonText: "Batal",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        submitDataPetisi();
-      }
-    });
+    console.log("cek local storage",localStorage.length);
+    if (localStorage.length==0) {
+      Swal.fire({
+        icon: "error",
+        title: "Terjadi Kesalahan !",
+        text: "Anda Harus Login Terlebih Dahulu",
+        confirm: {
+          text: 'OK',
+          value: true,
+        },
+      }).then((value) => {
+        if (value) {
+          navigate("/login");
+        }
+      });
+     
+    }else {
+      Swal.fire({
+        title: "Konfirmasi Data",
+        text: "Apakah data yang diisi sudah benar?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Konfirmasi",
+        cancelButtonText: "Batal",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          submitDataPetisi();
+        }
+      });
+    }
+   
   };
 
   const submitDataPetisi = () => {

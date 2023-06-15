@@ -3,6 +3,7 @@ import "./Search.css";
 import { useDispatch, useSelector } from "react-redux";
 import { SearchData } from "../../Redux/Action/SearchAction";
 import { useNavigate } from "react-router-dom";
+import Navbars from "../Navbar/Navbars";
 
 const Search = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -18,6 +19,7 @@ const Search = () => {
 
   return (
     <>
+    <Navbars />
       <div className="container">
         <div className="row mt-5">
           <div className="col-12 col-md-10">

@@ -3,6 +3,7 @@ import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { sigInUser } from "../../Redux/Action/AuthAction";
+import Navbars from "../Navbar/Navbars";
 function Login() {
   const dispatch = useDispatch();
   const { users } = useSelector((state) => state.AuthReducer);
@@ -17,26 +18,33 @@ function Login() {
       [e.target.name]: e.target.value,
     });
   };
-
+  const roleLocalStorage = localStorage.getItem("role");
   const handleLogin = (e) => {
     e.preventDefault();
 
     dispatch(sigInUser(inputLogin));
   };
   useEffect(() => {
+    console.log(users);
     if (users != 0) {
       Object.keys(users).forEach((key) => {
         let value = users[key];
         localStorage.setItem(key, value);
       });
     }
+    console.log(users.role);
     if (localStorage.getItem("id")) {
-      navigate("/");
+      console.log("cek role",roleLocalStorage);
+      if(users.role=='admin'){
+        navigate("/admin")
+      }else{navigate("/");}
+      
     }
   }, [handleLogin]);
 
   return (
     <>
+     <Navbars />
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-xl-10 col-lg-12 col-md-9">

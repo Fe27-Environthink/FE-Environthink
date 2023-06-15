@@ -7,6 +7,7 @@ import { FetchActicle } from "../../Redux/Action/HompageAction";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Spinner } from "react-bootstrap";
+import Navbars from "../Navbar/Navbars";
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ const HomePage = () => {
 
   return (
     <>
+    <Navbars />
       <div className="container-fluid banner ">
         <div className="container banner-content col-lg-9">
           <div>

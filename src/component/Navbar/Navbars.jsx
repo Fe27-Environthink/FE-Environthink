@@ -6,7 +6,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Offcanvas from "react-bootstrap/Offcanvas";
 
 import { BsSearch } from "react-icons/bs";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import {
   ButtonGroup,
   Dropdown,
@@ -17,7 +17,11 @@ import {
 import { useEffect } from "react";
 
 function Navbars() {
-  useEffect(() => {}, []);
+  const navigate = useNavigate()
+  const handleLogout=()=>{
+    localStorage.clear()
+    window.location.reload();
+  }
   return (
     <>
       <Navbar
@@ -104,9 +108,9 @@ function Navbars() {
                       </Dropdown.Toggle>
 
                       <Dropdown.Menu>
-                        <Dropdown.Item>{localStorage.getItem(' ')}</Dropdown.Item>
+                        <Dropdown.Item>{localStorage.getItem('username')}</Dropdown.Item>
                  
-                        <Dropdown.Item onClick={() => localStorage.clear() }>
+                        <Dropdown.Item onClick={handleLogout }>
                           Logout
                         </Dropdown.Item>
                       </Dropdown.Menu>

@@ -7,6 +7,7 @@ import { getDataAksi, getDetail } from "../../Redux/Action/AksiAction";
 
 import FormPetisi from "./FormPetisi";
 import { FaUsers } from "react-icons/fa";
+import Navbars from "../Navbar/Navbars";
 
 function DetailAksi() {
   const { key } = useParams();
@@ -84,6 +85,7 @@ console.log("ini key",key);
  },[detailAksi])
   return (
     <>
+      <Navbars />
       {isLoading ? (
         <div className="text-center  d-flex justify-content-center align-items-center my-5 py-5">
            <Spinner className="mx-4" animation="grow" size="sm" variant="success" />

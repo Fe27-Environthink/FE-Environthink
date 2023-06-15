@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
 import { dataDonasi } from "../../Redux/Action/ActionDonasi";
 import emailjs from "@emailjs/browser";
+import Navbars from "../Navbar/Navbars";
 
 const Donasi = () => {
   const dispatch = useDispatch();
@@ -102,6 +103,7 @@ const Donasi = () => {
   };
 
   return (
+    <><Navbars />
     <div className="container-fluid row p-0 m-0">
       <div className="highlight col bg-primary p-0">
         <div className="wrapperHighlightText d-flex flex-column text-white">
@@ -229,6 +231,7 @@ const Donasi = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router";
 import { Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import Navbars from "../Navbar/Navbars";
 
 function DetailArticle() {
   const { key } = useParams();
@@ -21,6 +22,7 @@ function DetailArticle() {
 
   return (
     <>
+    <Navbars />
       <div id="articlesContent" className="container pt-4">
         {isLoading ? (
           <div className="text-center  d-flex justify-content-center align-items-center my-5 py-5">
