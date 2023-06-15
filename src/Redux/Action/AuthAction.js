@@ -51,6 +51,6 @@ export const sigUpUser = (data) => async (dispatch) => {
     );
   } catch (error) {
     console.log(error.response.data);
-    // Swal.fire("Login Failed", `${error.response.data.message}`, "error");
+    Swal.fire("Login Failed", `${error.response.data.message}`, "error");
   }
 };

@@ -166,7 +166,7 @@ console.log("ini key",key);
                   <span></span>
                 )}
                 {renderTextPetisi()}
-
+              
                 {detailAksi.numberofsupport == detailAksi.target ? (
                   <Link className="link-aksi" to={`/aksi`}>
                     <button
