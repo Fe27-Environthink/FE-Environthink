@@ -52,7 +52,7 @@ function NavbarAdmin() {
                   </li>
 
                   <li className="nav-item mt-1">
-                    <NavLink className="nav-link active" to="aksi.html">
+                    <NavLink className="nav-link active" to="/admin/infografis">
                       Infografis
                     </NavLink>
                   </li>
