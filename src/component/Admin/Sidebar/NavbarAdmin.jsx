@@ -12,6 +12,11 @@ import { BsSearch } from "react-icons/bs";
 import { Link, NavLink } from "react-router-dom";
 
 function NavbarAdmin() {
+  const handleLogoutAdmin = () => {
+    localStorage.clear();
+    window.location.href = "/";
+  };
+
   return (
     <>
       <Navbar
@@ -66,7 +71,7 @@ function NavbarAdmin() {
                     <div id="button-login">
                       <NavLink
                         className="btnLogin m-1 btn nav-link active ps-3 pe-3"
-                        to="login.html"
+                        onClick={handleLogoutAdmin}
                       >
                         Logout
                       </NavLink>
