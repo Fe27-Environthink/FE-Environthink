@@ -1,4 +1,0 @@
-[[redirects]]
-  from = "/aksi/:id"
-  to = "/aksi"
-  status = 200
