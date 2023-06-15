@@ -53,29 +53,41 @@ export const getDetail = (id) => async (dispatch) => {
   console.log("result get",result.data.result);
   dispatch(successGetDetail(result.data.result));
 };
-export const submitPetisi = (data, id) => async (dispatch) => {
+export const submitPetisi = (data, id,token) => async (dispatch) => {
   // get data detail
-  const urlDetail = `${import.meta.env.VITE_API_AKSI}${id}`;
-  const url = `https://647ef495c246f166da8fbfec.mockapi.io/aksi/${id}/kontributor`;
-  const result = await axios(urlDetail);
-
+  // const urlDetail = `${import.meta.env.VITE_API_AKSI}${id}`;
+  const url = `https://api-fe27be9-environthink.cyclic.app/kontribusi?aksiId=${id}`;
+  // const result = await axios(urlDetail);
+  console.log(data);
+  const json = JSON.stringify(data);
+  console.log(json);
+try {
+  await axios.post(url, data, {
+    headers: {
+      'Authorization':`Bearer ${token} `
+    }
+  })
+  dispatch(getDetail(id));
+  dispatch(submitSuccess());
+} catch (error) {
+  console.log(error);
+  Swal.fire("Submit Failed", `${error.response.data.message}`, "error");
+}
   // validasi email yang sama
-  const cekEmail = await axios(url);
-  const emailData = cekEmail.data.find((item) => item.email === data.email);
-  if (emailData) {
-    dispatch(submitFailure());
-  } else {
-    //    mengupdate jumlah orang yang mendukung
-    const dataUpdate = {
-      numberOfSupport: result.data.numberOfSupport + 1,
-    };
-    // mensubmit ke kontributor
-    await axios.put(urlDetail, dataUpdate);
-    console.log("cek result", result);
+  // const cekEmail = await axios(url);
+  // const emailData = cekEmail.data.find((item) => item.email === data.email);
+  // if (emailData) {
+  //   dispatch(submitFailure());
+  // } else {
+  //   //    mengupdate jumlah orang yang mendukung
+  //   const dataUpdate = {
+  //     numberOfSupport: result.data.numberOfSupport + 1,
+  //   };
+  //   // mensubmit ke kontributor
+  //   await axios.put(urlDetail, dataUpdate);
+  //   console.log("cek result", result);
 
-    await axios.post(url, data);
-    dispatch(getDetail(id));
-    dispatch(submitSuccess());
-  }
+   
+  
 };
 

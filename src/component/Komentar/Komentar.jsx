@@ -43,7 +43,7 @@ function Komentar() {
                 email: inputEmail,
                 komentar: inputKomentar
             };
-            dispatch(addKomentar(newData, key));
+            dispatch(addKomentar(newData,key, localStorage.getItem('accessToken')));
             Swal.fire({
                 position: 'top',
                 icon: 'success',
@@ -101,7 +101,11 @@ function Komentar() {
     useEffect(() => {
         dispatch(getKomentar(key));
     }, []);
+const handleInputKomentar=()=>{
 
+  setInputEmail(localStorage.getItem('email'))
+  setInputName(localStorage.getItem('username'))
+}
     return (
     <>
         <div className="container p-5">
@@ -119,6 +123,8 @@ function Komentar() {
                                 placeholder="Masukkan Alamat Email"
                                 value={inputEmail}
                                 onChange={(e) => setInputEmail(e.target.value)}
+                                
+                    onClick={handleInputKomentar}
                                 required
                             />
                             <input
