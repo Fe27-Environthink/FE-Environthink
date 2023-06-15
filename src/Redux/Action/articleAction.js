@@ -41,8 +41,8 @@ export const getArticleDetail = (id) => {
 };
 
 export const addArticle = (newData, id) => async (dispatch) => {
-  const url = `${import.meta.env.VITE_API_ARTICLE}/${id}`;
+  const url = `${import.meta.env.VITE_API_ARTICLE}`;
   await axios.post(url, newData);
-  console.log(newData)
+  console.log(newData);
   dispatch(getArticle(id));
-}
+};

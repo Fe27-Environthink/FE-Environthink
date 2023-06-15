@@ -13,8 +13,22 @@ const resultApiDonasi = (data) => {
 
 export const fetchApiDonasi = () => {
   return async (dispatch) => {
-    const result = await axios(import.meta.env.VITE_API_DONASI);
-    dispatch(resultApiDonasi(result.data));
+    try {
+      const token = localStorage.getItem("accessToken");
+
+      const result = await axios.get(import.meta.env.VITE_API_DONASI, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      dispatch(resultApiDonasi(result.data));
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Terjadi Kesalahan!",
+        text: `${error}`,
+      });
+    }
   };
 };
 
@@ -29,7 +43,7 @@ export const updateDataDonasi = (data) => {
     } catch (error) {
       Swal.fire({
         icon: "error",
-        title: "Terjadi Kesalahan !",
+        title: "Gagal Hapus Data Donasi !",
         text: `${error.message}`,
       });
     }
@@ -37,10 +51,16 @@ export const updateDataDonasi = (data) => {
 };
 
 export const deleteDataDonasi = (id) => {
-  console.log(id);
   return async (dispatch) => {
     try {
-      await axios.delete(`${import.meta.env.VITE_API_DONASI}/${id}`);
+      const token = localStorage.getItem("accessToken");
+
+      await axios.delete(`${import.meta.env.VITE_API_DONASI}/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
       dispatch(fetchApiDonasi());
     } catch (error) {
       Swal.fire({
