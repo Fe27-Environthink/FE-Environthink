@@ -16,6 +16,9 @@ import {
 } from "react-bootstrap";
 import { useEffect } from "react";
 
+import userIcon from "../../assets/user.png";
+import adminIcon from "../../assets/admin.png";
+
 function Navbars() {
   const navigate = useNavigate();
   const handleLogout = () => {
@@ -105,7 +108,7 @@ function Navbars() {
                           {localStorage.getItem("role") === "admin" ? (
                             // INI AVATAR ADMIN
                             <img
-                              src="https://i.ibb.co/2WzhMwb/img-561913.png"
+                              src={adminIcon}
                               alt="User Avatar"
                               className="avatar rounded-circle"
                               style={{ width: "30px" }}
@@ -113,7 +116,7 @@ function Navbars() {
                           ) : (
                             // INI AVATAR USER
                             <img
-                              src="https://i.ibb.co/QFgFrnW/download-2.png"
+                              src={userIcon}
                               alt="User Avatar"
                               className="avatar rounded-circle"
                               style={{ width: "30px" }}
