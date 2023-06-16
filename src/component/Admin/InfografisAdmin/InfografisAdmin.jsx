@@ -31,7 +31,7 @@ function InfografisAdmin() {
         <h2>Infografis</h2>
         <div className="row gx-4 gy-2 justify-content-start">
           <div className="col-6 w-auto">
-            <div className="card mb-3" style={{ maxWidth: "30em" }}>
+            <div className="card card-total mb-3" style={{ maxWidth: "30em" }}>
               <div className="row g-0">
                 <div className="col-md-4">
                   <img

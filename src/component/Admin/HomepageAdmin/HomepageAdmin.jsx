@@ -60,13 +60,13 @@ function HomepageAdmin() {
         {totalAksi != null &&
         totalArticle != null &&
         totalInfografis != null ? (
-          <div className="container pt-5">
+          <div className="container pt-5 mb-5">
             <h1 className="text-center mb-5 titleWelcome">
               Selamat Datang Admin 😃
             </h1>
             <div className="row gx-4 gy-2 justify-content-center">
               <div className="col-6 w-auto">
-                <div className="card mb-3" style={{ maxWidth: "30em" }}>
+                <div className="card card-total mb-3" style={{ maxWidth: "30em" }}>
                   <div className="row g-0">
                     <div className="col-md-4">
                       <img
@@ -97,7 +97,7 @@ function HomepageAdmin() {
                 </div>
               </div>
               <div className="col-6 w-auto">
-                <div className="card mb-3" style={{ maxWidth: "30em" }}>
+                <div className="card card-total mb-3" style={{ maxWidth: "30em" }}>
                   <div className="row g-0">
                     <div className="col-md-4">
                       <img
@@ -124,7 +124,7 @@ function HomepageAdmin() {
                 </div>
               </div>
               <div className="col-6 w-auto">
-                <div className="card mb-3" style={{ maxWidth: "30em" }}>
+                <div className="card card-total mb-3" style={{ maxWidth: "30em" }}>
                   <div className="row g-0">
                     <div className="col-md-4">
                       <img
@@ -151,7 +151,7 @@ function HomepageAdmin() {
                 </div>
               </div>
               <div className="col-6 w-auto">
-                <div className="card mb-3" style={{ maxWidth: "30em" }}>
+                <div className="card card-total mb-3" style={{ maxWidth: "30em" }}>
                   <div className="row g-0">
                     <div className="col-md-4">
                       <img
