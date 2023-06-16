@@ -43,7 +43,7 @@ export const getArticleDetail = (id) => {
 export const addArticle = (newData, id) => async (dispatch) => {
   const token = localStorage.getItem("accessToken");
   console.log(newData);
-  const json =JSON.stringify(newData)
+  const json = JSON.stringify(newData);
   const url = `${import.meta.env.VITE_API_ARTICLE}`;
   await axios.post(url, json, {
     headers: {
@@ -52,4 +52,26 @@ export const addArticle = (newData, id) => async (dispatch) => {
   });
   console.log(newData);
   dispatch(getArticle(id));
+};
+
+export const deleteArticleAdmin = (id) => {
+  return async (dispatch) => {
+    const token = localStorage.getItem("accessToken");
+
+    try {
+      const response = await axios.delete(
+        `${import.meta.env.VITE_API_ARTICLE}/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      console.log(response);
+      dispatch(getArticle());
+    } catch (error) {
+      console.log(error);
+    }
+  };
 };

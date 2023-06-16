@@ -12,10 +12,13 @@ import dayjs from "dayjs";
 import "dayjs/locale/id";
 import { useNavigate } from "react-router";
 import DonationVector from "../../../assets/DonationVector.jpg";
+import { Spinner } from "react-bootstrap";
 
 const DonasiAdmin = () => {
   const dispatch = useDispatch();
-  const { result, isLoading } = useSelector((state) => state.DonasiReducerAdmin);
+  const { result, isLoading } = useSelector(
+    (state) => state.DonasiReducerAdmin
+  );
   const { totalDonasi } = useSelector((state) => state.HomepageAdminReducer);
   const roleLocalStorage = localStorage.getItem("role");
   const navigate = useNavigate();
@@ -44,7 +47,7 @@ const DonasiAdmin = () => {
   };
 
   useEffect(() => {
-    if (roleLocalStorage ===null) {
+    if (roleLocalStorage === null) {
       console.log(roleLocalStorage);
       if (localStorage.getItem("role") == null) {
         Swal.fire({
@@ -76,7 +79,7 @@ const DonasiAdmin = () => {
         });
       }
     }
-    if(roleLocalStorage=='admin'){
+    if (roleLocalStorage == "admin") {
       dispatch(fetchApiDonasi());
     }
   }, []);
@@ -115,62 +118,62 @@ const DonasiAdmin = () => {
             </div>
           </div>
         </div>
-            <div
-              className="card my-5"
-              style={{
-                boxShadow: "0px 8px 24px rgba(112, 144, 176, 0.25)",
-                borderRadius: 9,
-              }}
-            >
-              <div className="card-body">
-                <div className="table-responsive text-nowrap">
-                  <table className="table w-auto">
-                    <thead>
-                      <tr>
-                        <th scope="col" className="">
-                          ID
-                        </th>
-                        <th scope="col" className=" ">
-                          Nama
-                        </th>
-                        <th scope="col" className="">
-                          Email
-                        </th>
-                        <th scope="col" className="">
-                          Nomor Telepon
-                        </th>
-                        <th scope="col" className="col-4">
-                          Nomor Rekening
-                        </th>
-                        <th scope="col" className="">
-                          Donasi
-                        </th>
-                        <th scope="col" className="">
-                          Original Value
-                        </th>
-                        <th scope="col" className="">
-                          createdAt
-                        </th>
-                        <th scope="col" className="">
-                          updatedAt
-                        </th>
-                        <th scope="col" className="">
-                          Action
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody >
-                    {isLoading ? (
-                      <tr>
-                        <td>
-                          <div className="text-center  d-flex justify-content-center align-items-center my-5 py-5">
-                            <span className="mx-2 h1">loading</span>
-                            <Spinner animation="border" variant="dark" />
-                          </div>
-                        </td>
-                      </tr>
-                    ) : (
-                      result?.map((user) => (
+        <div
+          className="card my-5"
+          style={{
+            boxShadow: "0px 8px 24px rgba(112, 144, 176, 0.25)",
+            borderRadius: 9,
+          }}
+        >
+          <div className="card-body">
+            <div className="table-responsive text-nowrap">
+              <table className="table w-auto">
+                <thead>
+                  <tr>
+                    <th scope="col" className="">
+                      ID
+                    </th>
+                    <th scope="col" className=" ">
+                      Nama
+                    </th>
+                    <th scope="col" className="">
+                      Email
+                    </th>
+                    <th scope="col" className="">
+                      Nomor Telepon
+                    </th>
+                    <th scope="col" className="col-4">
+                      Nomor Rekening
+                    </th>
+                    <th scope="col" className="">
+                      Donasi
+                    </th>
+                    <th scope="col" className="">
+                      Original Value
+                    </th>
+                    <th scope="col" className="">
+                      createdAt
+                    </th>
+                    <th scope="col" className="">
+                      updatedAt
+                    </th>
+                    <th scope="col" className="">
+                      Action
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {isLoading ? (
+                    <tr>
+                      <td>
+                        <div className="text-center  d-flex justify-content-center align-items-center my-5 py-5">
+                          <span className="mx-2 h1">loading</span>
+                          <Spinner animation="border" variant="dark" />
+                        </div>
+                      </td>
+                    </tr>
+                  ) : (
+                    result?.map((user) => (
                       <tr key={user.id}>
                         <th className="text-center" scope="row">
                           {user.id}
@@ -194,16 +197,15 @@ const DonasiAdmin = () => {
                           </div>
                         </td>
                       </tr>
-                      ))
-                      )}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
+                    ))
+                  )}
+                </tbody>
+              </table>
             </div>
-          
-        
-            {/* {result != null && result.length != 0 ? (
+          </div>
+        </div>
+
+        {/* {result != null && result.length != 0 ? (
             ) : ( 
               result?.map((user) => (
               <h2 className="text-center mt-5 notFoundDonasi">Tidak Ada Donasi </h2>
