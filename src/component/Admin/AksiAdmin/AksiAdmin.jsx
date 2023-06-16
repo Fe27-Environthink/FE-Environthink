@@ -96,7 +96,7 @@ function AksiAdmin() {
                 <div className="col-md-8">
                   <div className="card-body">
                     <p className="card-title text-center m-0 text-dark fs-5">
-                      Artikel
+                      Aksi
                     </p>
                     <hr className="my-2 p-0" />
                     <Link
@@ -107,7 +107,7 @@ function AksiAdmin() {
                       {totalAksi}
                     </Link>
                     <p className="totalHomepageAdmin card-text text-dark m-0">
-                      Total Artikel
+                      Total Aksi
                     </p>
                   </div>
                 </div>
