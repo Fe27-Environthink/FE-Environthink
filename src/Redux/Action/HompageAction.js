@@ -29,6 +29,6 @@ const actionFetch = (data, index) => {
 export const FetchActicle = (index) => {
   return async (dispatch) => {
     const response = await axios.get(import.meta.env.VITE_API_ARTICLE);
-    dispatch(actionFetch(response.data.revese(), index));
+    dispatch(actionFetch(response.data, index));
   };
 };
