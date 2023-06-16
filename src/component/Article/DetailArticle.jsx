@@ -7,6 +7,7 @@ import { useParams } from "react-router";
 import { Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Navbars from "../Navbar/Navbars";
+import { FacebookIcon, FacebookShareButton, TwitterIcon, TwitterShareButton, WhatsappIcon, WhatsappShareButton } from "react-share";
 
 function DetailArticle() {
   const { key } = useParams();
@@ -19,6 +20,8 @@ function DetailArticle() {
   useEffect(() => {
     dispatch(getArticleDetail(key));
   }, []);
+
+  const shareUrl = `https://final-environthink.netlify.app/aksi/${key}`;
 
   return (
     <>
@@ -72,6 +75,17 @@ function DetailArticle() {
                       {detailArticle.date}
                     </span>
                   </p>
+                  <div className="d-flex gap-2" >
+                    <FacebookShareButton url={shareUrl}>
+                      <FacebookIcon size={32}/>
+                    </FacebookShareButton>
+                    <TwitterShareButton url={shareUrl}>
+                      <TwitterIcon size={32}/>
+                    </TwitterShareButton>
+                    <WhatsappShareButton url={shareUrl}>
+                      <WhatsappIcon size={32}/>
+                    </WhatsappShareButton>
+                  </div>
                 </div>
                 <div className="col-md-12 p-0 me-4 text-center">
                   <img
