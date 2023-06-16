@@ -81,7 +81,7 @@ function AddArtikelAdmin() {
     setDesc10("");
   };
   useEffect(() => {
-    if (localStorage.getItem("role") === null) {
+  
       if (localStorage.getItem("role") == null) {
         Swal.fire({
           icon: "error",
@@ -111,7 +111,7 @@ function AddArtikelAdmin() {
           }
         });
       }
-    }
+    
   }, []);
   return (
     <>

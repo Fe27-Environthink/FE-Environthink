@@ -153,18 +153,15 @@ function ArtikelAdmin() {
                     article.map((item) => (
                       <tr
                         key={item.id}
-                        // onClick={() => {
-                        //   navigate(`/admin/article/${item.id}`);
-                        // }}
                       >
-                        <th scope="row" className="me-5">
+                        <th scope="row" className="me-5" style={{cursor: "pointer"}}>
                           <img
                             src={item.url}
                             alt="name"
                             className="img-artikel w-100"
                           />
                         </th>
-                        <td>{item.titleArticle}</td>
+                        <td style={{cursor: "pointer"}}>{item.titleArticle}</td>
                         <td>{item.category}</td>
                         <td>{item.author}</td>
                         <td>{item.date}</td>

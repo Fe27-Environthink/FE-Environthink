@@ -140,8 +140,7 @@ function AksiAdmin() {
                     </th>
                     <th scope="col-2">Title</th>
                     <th scope="col-2">Number Of Support</th>
-                    <th scope="col-2">Target</th>
-                
+                    <th scope="col-2">Target</th>   
                     <th scope="col-4" className="text-center">
                       Action
                     </th>
@@ -159,26 +158,24 @@ function AksiAdmin() {
                     </tr>
                   ):listAksi.map((item) => (
                     <tr key={item.id} >
-                      <td className="me-5">
+                      <td className="me-5" style={{cursor: "pointer"}}>
                         <img
                           src={item.url}
                           alt="name"
                           className="img-artikel w-100"
-                          
                         />
                       </td>
-                      <td onClick={() => {
-                        navigate(`/admin/article/${item.id}`);
+                      <td style={{cursor: "pointer"}} onClick={() => {
+                        navigate(`/admin/aksi/${item.id}`);
                       }}>{item.title}</td>
                       <td>{item.numberofsupport}</td>
-                      <td>{item.target}</td>
-                    
+                      <td>{item.target}</td>  
                       <td>
                         <div className="row">
                           <div className="col-4 px-1">
                             <Link
                               to="/"
-                              className="btn bg-success btn-update text-sm me-4 text-white w-100 px-2"
+                              className="btn p-0 text-success w-100 "
                             >
                               <FaPen />
                             </Link>
@@ -186,7 +183,7 @@ function AksiAdmin() {
                           <div className="col-4 px-1">
                             <Link
                               onClick={() => deleteHandler(item.id)}
-                              className="btn bg-danger btn-delete text-sm me-4 text-white w-100 px-2"
+                              className="btn p-0 text-danger w-100 "
                             >
                               <FaTrashAlt/>
                             </Link>
