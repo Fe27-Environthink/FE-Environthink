@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import "./ArtikelAdmin.css";
-import { FaTrashAlt, FaPen } from "react-icons/fa";
+import { FaTrashAlt, FaPen, FaPlus } from "react-icons/fa";
 import { getArticle } from "../../../Redux/Action/articleAction";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "react-bootstrap/Spinner";
@@ -101,14 +101,13 @@ function ArtikelAdmin() {
             <Link
               to="/admin/article/add-article"
               className="btn bg-primary text-white text-sm px-5 py-2"
-            >
-              Add Artikel
+            > <FaPlus/> Tambah Artikel
             </Link>
           </div>
         </div>
 
         <div
-          className="card mt-4"
+          className="card mt-4 my-5"
           style={{
             boxShadow: "0px 8px 24px rgba(112, 144, 176, 0.25)",
             borderRadius: 9,

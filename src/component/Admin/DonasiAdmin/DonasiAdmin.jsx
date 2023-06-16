@@ -11,10 +11,12 @@ import NavbarAdmin from "../Sidebar/NavbarAdmin";
 import dayjs from "dayjs";
 import "dayjs/locale/id";
 import { useNavigate } from "react-router";
+import DonationVector from "../../../assets/DonationVector.jpg";
 
 const DonasiAdmin = () => {
   const dispatch = useDispatch();
-  const { result } = useSelector((state) => state.DonasiReducerAdmin);
+  const { result, isLoading } = useSelector((state) => state.DonasiReducerAdmin);
+  const { totalDonasi } = useSelector((state) => state.HomepageAdminReducer);
   const roleLocalStorage = localStorage.getItem("role");
   const navigate = useNavigate();
   const handleDelete = (name, user_id) => {
@@ -77,20 +79,44 @@ const DonasiAdmin = () => {
     if(roleLocalStorage=='admin'){
       dispatch(fetchApiDonasi());
     }
-   
-    
   }, []);
 
   return (
     <>
       <NavbarAdmin />
-      <div className="container">
-        <h1 className="text-center mt-3 titleDonasi">Donasi</h1>
-        {result != null && result.length != 0 ? (
-          result?.map((user) => (
+      <div className="container pt-4">
+        <h2>Donasi</h2>
+        <div className="row gx-4 gy-2 justify-content-start">
+          <div className="col-6 w-auto">
+            <div className="card mb-3" style={{ maxWidth: "30em" }}>
+              <div className="row g-0">
+                <div className="col-md-4">
+                  <img
+                    src={DonationVector}
+                    className="img-fluid rounded-start"
+                    alt="Artikel "
+                  />
+                </div>
+                <div className="col-md-8">
+                  <div className="card-body">
+                    <p className="card-title text-center m-0 text-dark fs-5">
+                      Donasi
+                    </p>
+                    <hr className="my-2 p-0" />
+                    <p className="total card-text text-dark m-0 fs-3">
+                      {totalDonasi}
+                    </p>
+                    <p className="totalHomepageAdmin card-text text-dark m-0">
+                      Total Donasi
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
             <div
-              className="card my-4"
-              key={user.id}
+              className="card my-5"
               style={{
                 boxShadow: "0px 8px 24px rgba(112, 144, 176, 0.25)",
                 borderRadius: 9,
@@ -133,8 +159,19 @@ const DonasiAdmin = () => {
                         </th>
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody >
+                    {isLoading ? (
                       <tr>
+                        <td>
+                          <div className="text-center  d-flex justify-content-center align-items-center my-5 py-5">
+                            <span className="mx-2 h1">loading</span>
+                            <Spinner animation="border" variant="dark" />
+                          </div>
+                        </td>
+                      </tr>
+                    ) : (
+                      result?.map((user) => (
+                      <tr key={user.id}>
                         <th className="text-center" scope="row">
                           {user.id}
                         </th>
@@ -157,15 +194,20 @@ const DonasiAdmin = () => {
                           </div>
                         </td>
                       </tr>
+                      ))
+                      )}
                     </tbody>
                   </table>
                 </div>
               </div>
             </div>
-          ))
-        ) : (
-          <h2 className="text-center mt-5 notFoundDonasi">Tidak Ada Donasi </h2>
-        )}
+          
+        
+            {/* {result != null && result.length != 0 ? (
+            ) : ( 
+              result?.map((user) => (
+              <h2 className="text-center mt-5 notFoundDonasi">Tidak Ada Donasi </h2>
+            )} */}
 
         {/* <Modal show={show} onHide={handleClose}>
           <Modal.Header>

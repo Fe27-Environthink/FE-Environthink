@@ -6,12 +6,15 @@ import { getDataAksi } from '../../../Redux/Action/AksiAction';
 import { Spinner } from 'react-bootstrap';
 import NavbarAdmin from '../Sidebar/NavbarAdmin';
 import Swal from 'sweetalert2';
+import AksiVector from "../../../assets/AksiVector.jpg";
 
 function AksiAdmin() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const {listAksi,isLoading} =useSelector((state)=>state.AksiReducer)
     const [showModal,setShowModal] =useState(false)
+    const { totalAksi } = useSelector((state) => state.HomepageAdminReducer);
+
     useEffect(()=>{
       if (localStorage.getItem("role") == null) {
         Swal.fire({
@@ -46,9 +49,6 @@ function AksiAdmin() {
         dispatch(getDataAksi())
       }
     },[])
-    // useEffect(()=>{
-    //     console.log(listAksi);
-    // },[listAksi])
 
     const handleShowModal= ()=>{
         setShowModal(true)
@@ -56,7 +56,37 @@ function AksiAdmin() {
   return (
     <>
     <NavbarAdmin />
-    <div className="container">
+    <div className="container pt-4">
+      <h2>Aksi</h2>
+      <div className="row gx-4 gy-2 justify-content-start">
+        <div className="col-6 w-auto">
+            <div className="card mb-3" style={{ maxWidth: "30em" }}>
+              <div className="row g-0">
+                <div className="col-md-4">
+                  <img
+                    src={AksiVector}
+                    className="img-fluid rounded-start"
+                    alt="Artikel "
+                  />
+                </div>
+                <div className="col-md-8">
+                  <div className="card-body">
+                    <p className="card-title text-center m-0 text-dark fs-5">
+                      Aksi
+                    </p>
+                    <hr className="my-2 p-0" />
+                    <p className="total card-text text-dark m-0 fs-3">
+                      {totalAksi}
+                    </p>
+                    <p className="totalHomepageAdmin card-text text-dark m-0">
+                      Total Aksi
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <div className="row pt-4">
           <div className="col-md-12 d-flex justify-content-end ">
             <button  className="btn bg-primary text-white text-sm px-5 py-2 d-flex gap-2 justify-content-end align-items-center" onClick={handleShowModal}> 
@@ -66,7 +96,7 @@ function AksiAdmin() {
         </div>
 
         <div
-          className="card mt-4"
+          className="card mt-4 my-5"
           style={{
             boxShadow: "0px 8px 24px rgba(112, 144, 176, 0.25)",
             borderRadius: 9,

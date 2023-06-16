@@ -5,6 +5,7 @@ export const SUCCESS = "SUCCESS";
 export const SUCCESS_GET_DETAIL = "SUCCESS_GET_DETAIL";
 export const SUBMIT_SUCCESS = "SUBMIT_SUCCESS";
 export const SUBMIT_FAILURE = "SUBMIT_FAILURE";
+
 export const fatchingAksi = () => ({
   type: FATCHING_AKSI,
 });
@@ -13,9 +14,10 @@ export const success = (payload) => ({
   type: SUCCESS,
   payload,
 });
-export const successGetDetail = (payload) => ({
+export const successGetDetail = (payload,payload2) => ({
   type: SUCCESS_GET_DETAIL,
   payload,
+  payload2,
 });
 
 export const getDataAksi = () => async (dispatch) => {
@@ -51,16 +53,29 @@ export const getDetail = (id) => async (dispatch) => {
 
   const result = await axios(url);
   console.log("result get",result.data.result);
-  dispatch(successGetDetail(result.data.result));
+  const result1=[]
+  if(localStorage.length!=0){
+  const url1 = `${import.meta.env.VITE_API_KONTRIBUTOR}?aksiId=${id}`;
+  const token =localStorage.getItem('accessToken')
+  const result1 = await axios(url1, {
+    headers: {
+      Authorization: `Bearer ${token} `,
+    },
+  });
+  
+  dispatch(successGetDetail(result.data.result,result1.data));
+}else{
+  dispatch(successGetDetail(result.data.result,result1));
+}
+  
 };
 export const submitPetisi = (data, id,token) => async (dispatch) => {
-  // get data detail
-  // const urlDetail = `${import.meta.env.VITE_API_AKSI}${id}`;
-  const url = `https://api-fe27be9-environthink.cyclic.app/kontribusi?aksiId=${id}`;
+
+  const url = `${import.meta.env.VITE_API_KONTRIBUTOR}?aksiId=${id}`;
   // const result = await axios(urlDetail);
   console.log(data);
-  const json = JSON.stringify(data);
-  console.log(json);
+
+  console.log(data);
 try {
   await axios.post(url, data, {
     headers: {

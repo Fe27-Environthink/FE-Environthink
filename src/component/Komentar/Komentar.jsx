@@ -133,6 +133,11 @@ function Komentar() {
     setInputEmail(localStorage.getItem("email"));
     setInputName(localStorage.getItem("username"));
   };
+
+  const formatDate = (dateString) => {
+    const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+    return new Date(dateString).toLocaleString('en-US', options);
+  };
   return (
     <>
       <div className="container p-5">
@@ -203,24 +208,14 @@ function Komentar() {
                   <div className="card-body">
                     <h5 className="card-title">{item.name}</h5>
                     <h6 className="card-subtitle mb-2 text-body-secondary">
-                      {item.createdAt}
+                        {formatDate(item.createdAt)}
                       <span id="dot2"></span>
                       <span> {item.email}</span>
                     </h6>
                     <p className="card-text text-dark">{item.komentar}</p>
 
-                    {/* contoh dari kak haikal menampilkan sesuai user */}
-                    {/* {
-                                userId == item.userId && (
-                                    <>
-                                        <Link to="#" className="card-link text-decoration-none">Edit</Link>
-                                        <Link onClick={() => dispatch(deleteKomentar(item.id))} className="card-link text-decoration-none">Delete</Link>
-                                    </>
-                                    
-                                )
-                            } */}
-                            {console.log("cekuserid",item.user_id)}
-                            {console.log("cek idd",localStorage.getItem('id'))}
+                    {console.log("cekuserid",item.user_id)}
+                    {console.log("cek idd",localStorage.getItem('id'))}
                     {item.user_id==localStorage.getItem('id') &&(<>
                       <Link
                       onClick={() => handleEdit(item.komentar_id)}
@@ -236,7 +231,6 @@ function Komentar() {
                     </Link>
                     </>)}
                     
-
                     {/* Modal */}
                     {showModal && (
                       <div
