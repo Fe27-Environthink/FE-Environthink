@@ -45,8 +45,7 @@ export const getArticleDetail = (id) => {
 export const addArticle = (newData, id) => async (dispatch) => {
   const token = localStorage.getItem("accessToken");
   console.log(newData);
-  const json = JSON.stringify(newData);
-  const url = `${import.meta.env.VITE_API_ARTICLE}`;
+  const url = `http://134.209.106.119:3000/artikel`;
   await axios.post(url, newData, {
     headers: {
       Authorization: `Bearer ${token}`,

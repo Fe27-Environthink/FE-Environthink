@@ -29,7 +29,7 @@ export const getInfografis = () => {
 export const addInfografis = (newData, token) => async (dispatch) => {
   console.log("cek data yang dikirim", newData);
   console.log("cek token ", token);
-  const url = import.meta.env.VITE_API_INFOGRAFIS;
+  const url = "http://134.209.106.119:3000/infografis";
   try {
     await axios.post(url, newData, {
       headers: {
