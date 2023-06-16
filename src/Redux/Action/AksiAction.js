@@ -104,7 +104,7 @@ try {
 };
 
 export const deleteAksi = (id, token) => async (dispatch) => {
-  const url = `https://api-fe27be9-environthink.cyclic.app/donasi/${id}`;
+  const url = `https://api-fe27be9-environthink.cyclic.app/aksi/${id}`;
   try {
     await axios.delete(url, {
       headers: {
