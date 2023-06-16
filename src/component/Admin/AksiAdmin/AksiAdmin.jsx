@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { FaPen, FaPlus, FaTrashAlt } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { getDataAksi } from '../../../Redux/Action/AksiAction';
+import { getDataAksi, deleteAksi } from '../../../Redux/Action/AksiAction';
 import { Spinner } from 'react-bootstrap';
 import NavbarAdmin from '../Sidebar/NavbarAdmin';
 import Swal from 'sweetalert2';
@@ -53,6 +53,30 @@ function AksiAdmin() {
     const handleShowModal= ()=>{
         setShowModal(true)
     }
+
+    const deleteHandler = (id) => {
+      Swal.fire({
+        title: "Apakah anda yakin ingin menghapus komentar?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          dispatch(
+            deleteAksi(id, localStorage.getItem("accessToken"))
+          );
+          Swal.fire({
+            position: "top",
+            icon: "success",
+            title: 'Berhasil!, "Berhasil Hapus Data Komentar',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
+    };
   return (
     <>
     <NavbarAdmin />
@@ -121,16 +145,16 @@ function AksiAdmin() {
                 </thead>
                 <tbody>
                   {isLoading?(
-                    <div className="text-center  d-flex justify-content-center align-items-center my-5 py-5">
-                        <span className="mx-2 h1" >loading   
-                    </span>
-                    <Spinner animation="border" variant="dark" />
-                    </div>
+                    <tr>
+                      <td>
+                        <div className="text-center  d-flex justify-content-center align-items-center my-5 py-5">
+                          <span className="mx-2 h1">loading</span>
+                          <Spinner animation="border" variant="dark" />
+                        </div>
+                      </td>
+                    </tr>
                   ):listAksi.map((item) => (
-                    <tr key={item.id}  
-                      onClick={() => {
-                        navigate(`/admin/article/${item.id}`);
-                      }}>
+                    <tr key={item.id} >
                       <td className="me-5">
                         <img
                           src={item.url}
@@ -139,7 +163,9 @@ function AksiAdmin() {
                           
                         />
                       </td>
-                      <td>{item.title}</td>
+                      <td onClick={() => {
+                        navigate(`/admin/article/${item.id}`);
+                      }}>{item.title}</td>
                       <td>{item.numberofsupport}</td>
                       <td>{item.target}</td>
                     
@@ -155,7 +181,7 @@ function AksiAdmin() {
                           </div>
                           <div className="col-4 px-1">
                             <Link
-                              to="/"
+                              onClick={() => deleteHandler(item.id)}
                               className="btn bg-danger btn-delete text-sm me-4 text-white w-100 px-2"
                             >
                               <FaTrashAlt/>
