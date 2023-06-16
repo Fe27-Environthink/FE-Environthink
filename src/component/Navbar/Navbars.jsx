@@ -16,6 +16,9 @@ import {
 } from "react-bootstrap";
 import { useEffect } from "react";
 
+import userIcon from "../../assets/user.png";
+import adminIcon from "../../assets/admin.png";
+
 function Navbars() {
   const navigate = useNavigate();
   const handleLogout = () => {
@@ -102,10 +105,10 @@ function Navbars() {
                           variant="transparent"
                           id="dropdown-avatar"
                         >
-                          {localStorage.getItem("admin") != "" ? (
+                          {localStorage.getItem("role") === "admin" ? (
                             // INI AVATAR ADMIN
                             <img
-                              src="https://i.ibb.co/Lz14knd/photo-1535713875002-d1d0cf377fde.jpg"
+                              src={adminIcon}
                               alt="User Avatar"
                               className="avatar rounded-circle"
                               style={{ width: "30px" }}
@@ -113,7 +116,7 @@ function Navbars() {
                           ) : (
                             // INI AVATAR USER
                             <img
-                              src="https://i.ibb.co/Lz14knd/photo-1535713875002-d1d0cf377fde.jpg"
+                              src={userIcon}
                               alt="User Avatar"
                               className="avatar rounded-circle"
                               style={{ width: "30px" }}

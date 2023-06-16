@@ -105,7 +105,7 @@ function AddInfografisAdmin() {
                   </div>
                 </div>
 
-                <div className="card-footer text-body-secondary text-center">
+                <div className="text-body-secondary text-center pt-4">
                   <button
                     type="button"
                     className="btn btn-success text-white me-3"
