@@ -116,17 +116,17 @@ function InfografisAdmin() {
                         <td className="text-center">{item.judul}</td>
                         <td>
                           <div className="row d-flex justify-content-center">
-                            <div className="col-2 w-50">
-                              <button className="btn bg-success btn-update text-sm text-white">
+                            <div className="col-2 w-25">
+                              <button className="btn p-0 text-success w-100">
                                 <FaPen />
                               </button>
                             </div>
-                            <div className="col-2 w-50">
+                            <div className="col-2 w-25">
                               <button
                                 onClick={() =>
                                   dispatch(deleteInfografis(item.id))
                                 }
-                                className="btn bg-danger btn-delete text-sm  text-white "
+                                className="btn p-0 text-danger w-100"
                               >
                                 <FaTrashAlt />
                               </button>
