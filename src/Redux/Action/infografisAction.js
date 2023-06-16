@@ -34,6 +34,7 @@ export const addInfografis = (newData, token) => async (dispatch) => {
     await axios.post(url, newData, {
       headers: {
         Authorization: `Bearer ${token}`,
+        "Content-Type": "multipart/form-data",
       },
     });
     dispatch(getInfografis());

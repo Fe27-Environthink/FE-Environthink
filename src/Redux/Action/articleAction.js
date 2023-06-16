@@ -27,6 +27,8 @@ export const getArticle = () => {
     dispatch(startFetching());
     const url = import.meta.env.VITE_API_ARTICLE;
     const result = await axios(url);
+
+    console.log(result);
     dispatch(successGetArticle(result.data));
   };
 };
@@ -45,12 +47,13 @@ export const addArticle = (newData, id) => async (dispatch) => {
   console.log(newData);
   const json = JSON.stringify(newData);
   const url = `${import.meta.env.VITE_API_ARTICLE}`;
-  await axios.post(url, json, {
+  await axios.post(url, newData, {
     headers: {
       Authorization: `Bearer ${token}`,
+      "Content-Type": "multipart/form-data",
     },
   });
-  console.log(newData);
+  // console.log(newData);
   dispatch(getArticle(id));
 };
 
@@ -68,7 +71,7 @@ export const deleteArticleAdmin = (id) => {
         }
       );
 
-      console.log(response);
+      // console.log(response);
       dispatch(getArticle());
     } catch (error) {
       console.log(error);

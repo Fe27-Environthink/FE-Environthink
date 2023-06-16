@@ -20,8 +20,8 @@ function AddInfografisAdmin() {
   const handleSubmit = (e) => {
     e.preventDefault();
     let newData = {
-      judulInfografis: judulInfografis,
-      gambar: gambar,
+      title: judulInfografis,
+      file: gambar,
     };
     dispatch(addInfografis(newData, localStorage.getItem("accessToken")));
     navigate("/admin/infografis");
