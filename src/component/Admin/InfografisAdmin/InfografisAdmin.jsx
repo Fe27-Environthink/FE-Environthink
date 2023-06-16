@@ -16,9 +16,11 @@ function InfografisAdmin() {
   const { infografis, isLoading } = useSelector(
     (state) => state.infografisReducer
   );
-  const { totalInfografis } = useSelector((state) => state.HomepageAdminReducer);
+  const { totalInfografis } = useSelector(
+    (state) => state.HomepageAdminReducer
+  );
 
-  console.log(infografis);
+  console.log(totalInfografis);
 
   useEffect(() => {
     dispatch(getInfografis());
