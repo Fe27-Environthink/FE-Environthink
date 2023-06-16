@@ -16,16 +16,12 @@ function HomepageAdmin() {
   const { totalAksi, totalArticle, totalInfografis, totalDonasi } = useSelector(
     (state) => state.HomepageAdminReducer
   );
-
   const roleLocalStorage = localStorage.getItem("role");
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAPI());
-
-  
       if (localStorage.getItem('role') == null) {
         Swal.fire({
           icon: "error",
@@ -55,22 +51,19 @@ function HomepageAdmin() {
           }
         });
       }
-    
   }, []);
 
   return (
     <>
       <NavbarAdmin />
-
       <Container className="d-flex px-4" style={{ marginTop: "0em" }}>
         {totalAksi != null &&
         totalArticle != null &&
         totalInfografis != null ? (
-          <div className="container">
+          <div className="container pt-5">
             <h1 className="text-center mb-5 titleWelcome">
               Selamat Datang Admin 😃
             </h1>
-
             <div className="row gx-4 gy-2 justify-content-center">
               <div className="col-6 w-auto">
                 <div className="card mb-3" style={{ maxWidth: "30em" }}>

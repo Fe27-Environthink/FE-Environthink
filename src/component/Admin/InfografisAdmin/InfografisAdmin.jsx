@@ -6,12 +6,14 @@ import "./InfografisAdmin.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getInfografis } from "../../../Redux/Action/infografisAction";
 import { Spinner } from "react-bootstrap";
+import InfografisVector from "../../../assets/InfografisVector.jpg";
 
 function InfografisAdmin() {
   const dispatch = useDispatch();
   const { infografis, isLoading } = useSelector(
     (state) => state.infografisReducer
   );
+  const { totalInfografis } = useSelector((state) => state.HomepageAdminReducer);
 
   console.log(infografis);
   useEffect(() => {
@@ -21,7 +23,36 @@ function InfografisAdmin() {
     <>
       <NavbarAdmin />
       <div className="container pt-4">
-        <h2>Article</h2>
+        <h2>Infografis</h2>
+        <div className="row gx-4 gy-2 justify-content-start">
+          <div className="col-6 w-auto">
+            <div className="card mb-3" style={{ maxWidth: "30em" }}>
+              <div className="row g-0">
+                <div className="col-md-4">
+                  <img
+                    src={InfografisVector}
+                    className="img-fluid rounded-start"
+                    alt="Artikel "
+                  />
+                </div>
+                <div className="col-md-8">
+                  <div className="card-body">
+                    <p className="card-title text-center m-0 text-dark fs-5">
+                      Infografis
+                    </p>
+                    <hr className="my-2 p-0" />
+                    <p className="total card-text text-dark m-0 fs-3">
+                      {totalInfografis}
+                    </p>
+                    <p className="totalHomepageAdmin card-text text-dark m-0">
+                      Total Infografis
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <div className="row">
           <div className="col-md-12 d-flex justify-content-end">
             <Link
@@ -34,7 +65,7 @@ function InfografisAdmin() {
         </div>
 
         <div
-          className="card mt-4"
+          className="card mt-4 my-5"
           style={{
             boxShadow: "0px 8px 24px rgba(112, 144, 176, 0.25)",
             borderRadius: 9,
