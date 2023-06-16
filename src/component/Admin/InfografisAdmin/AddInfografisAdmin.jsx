@@ -28,7 +28,6 @@ function AddInfografisAdmin() {
     setJudulInfografis("");
     setGambar("");
   };
-useEffect(()=>{
   useEffect(() => {
     if (localStorage.getItem("role") == null) {
       Swal.fire({
@@ -59,8 +58,7 @@ useEffect(()=>{
         }
       });
     }
-
-},[])
+  }, []);
   return (
     <>
       <NavbarAdmin />

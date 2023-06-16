@@ -62,9 +62,12 @@ function InfografisAdmin() {
 
     if (localStorage.getItem("role") == "admin") {
       dispatch(getInfografis());
-      dispatch(getAPI());
     }
   }, []);
+
+  useEffect(() => {
+    dispatch(getAPI());
+  }, [infografis]);
 
   return (
     <>
