@@ -22,7 +22,6 @@ export const getInfografis = () => {
     const url = import.meta.env.VITE_API_INFOGRAFIS;
     const result = await axios(url);
 
-    // console.log(result);
     dispatch(successGetInfografis(result.data));
   };
 };
@@ -30,11 +29,12 @@ export const getInfografis = () => {
 export const addInfografis = (newData, token) => async (dispatch) => {
   console.log("cek data yang dikirim", newData);
   console.log("cek token ", token);
-  const url = import.meta.env.VITE_API_INFOGRAFIS;
+  const url = "http://134.209.106.119:3000/infografis";
   try {
     await axios.post(url, newData, {
       headers: {
         Authorization: `Bearer ${token}`,
+        "Content-Type": "multipart/form-data",
       },
     });
     dispatch(getInfografis());
@@ -46,4 +46,32 @@ export const addInfografis = (newData, token) => async (dispatch) => {
     });
     console.log(error);
   }
+};
+
+export const deleteInfografis = (id) => {
+  return async (dispatch) => {
+    const token = localStorage.getItem("accessToken");
+
+    try {
+      await axios
+        .delete(`${import.meta.env.VITE_API_INFOGRAFIS}/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          console.log(res);
+        });
+      // console.log(response);
+      dispatch(getInfografis());
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const updateInfografis = (idInfografis) => {
+  return async (dispatch) => {
+    console.log("masuk ke update infografis");
+  };
 };

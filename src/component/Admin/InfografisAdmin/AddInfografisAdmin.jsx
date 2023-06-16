@@ -20,15 +20,45 @@ function AddInfografisAdmin() {
   const handleSubmit = (e) => {
     e.preventDefault();
     let newData = {
-      judulInfografis: judulInfografis,
-      gambar: gambar,
+      title: judulInfografis,
+      file: gambar,
     };
     dispatch(addInfografis(newData, localStorage.getItem("accessToken")));
     navigate("/admin/infografis");
     setJudulInfografis("");
     setGambar("");
   };
-
+  useEffect(() => {
+    if (localStorage.getItem("role") == null) {
+      Swal.fire({
+        icon: "error",
+        title: "Terjadi Kesalahan !",
+        text: "Anda Harus Login Terlebih Dahulu",
+        confirm: {
+          text: "OK",
+          value: true,
+        },
+      }).then((value) => {
+        if (value) {
+          navigate("/login");
+        }
+      });
+    } else if (localStorage.getItem("role") === "user") {
+      Swal.fire({
+        icon: "error",
+        title: "Anda Bukan Admin !",
+        text: "User Tidak Bisa Akses Ke Halaman Admin!",
+        confirm: {
+          text: "OK",
+          value: true,
+        },
+      }).then((value) => {
+        if (value) {
+          navigate("/");
+        }
+      });
+    }
+  }, []);
   return (
     <>
       <NavbarAdmin />
@@ -77,8 +107,9 @@ function AddInfografisAdmin() {
 
                 <div className="card-footer text-body-secondary text-center">
                   <button
-                    type="submit"
+                    type="button"
                     className="btn btn-success text-white me-3"
+                    onClick={() => navigate("/admin/infografis")}
                   >
                     Cancel
                   </button>

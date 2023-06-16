@@ -101,8 +101,22 @@ try {
   //   // mensubmit ke kontributor
   //   await axios.put(urlDetail, dataUpdate);
   //   console.log("cek result", result);
-
-   
-  
 };
 
+export const deleteAksi = (id, token) => async (dispatch) => {
+  const url = `https://api-fe27be9-environthink.cyclic.app/aksi/${id}`;
+  try {
+    await axios.delete(url, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    dispatch(getDataAksi());
+  } catch (error) {
+    Swal.fire({
+      icon: "error",
+      title: "Terjadi Kesalahan!",
+      text: `${error.message}`,
+    });
+  }
+};

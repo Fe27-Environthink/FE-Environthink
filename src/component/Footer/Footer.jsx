@@ -9,7 +9,7 @@ function Footer() {
         <div className="container">
           <div className="row pt-3">
             <div className="col-sm-12 col-md-5">
-              <p className="judulDeskripsiEnvironthink">Environthink</p>
+              <h5 className="judulDeskripsiEnvironthink text-bold">Environthink</h5>
               <p className="deskripsiEnvironthink">
                 EnvironThink berfokus pada isu-isu lingkungan dan solusi untuk
                 menjaga keberlanjutan alam. Website ini mengingatkan keterkaitan
@@ -19,7 +19,7 @@ function Footer() {
               </p>
             </div>
             <div className="col-sm-12 col-md-4">
-              <p>Informasi Kontak</p>
+              <h6 className="text-bold text-white">Informasi Kontak</h6>
               <p className="mb-1">
                 <i className="bi bi-telephone"></i> 0351 2345 678
               </p>
@@ -32,7 +32,7 @@ function Footer() {
               </p>
             </div>
             <div id="medsos" className="col-sm-12 col-md-3">
-              <p>Media Sosial</p>
+              <h6 className="text-bold text-white">Media Sosial</h6>
 
               <Link
                 className="bg-white fs-4 text-dark  pb-1 ps-2 pe-2 m-1 border rounded"

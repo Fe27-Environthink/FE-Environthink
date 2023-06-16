@@ -1,7 +1,10 @@
 import { useEffect } from "react";
 import "./ArtikelAdmin.css";
-import { FaTrashAlt, FaPen } from "react-icons/fa";
-import { getArticle } from "../../../Redux/Action/articleAction";
+import { FaTrashAlt, FaPen, FaPlus } from "react-icons/fa";
+import {
+  deleteArticleAdmin,
+  getArticle,
+} from "../../../Redux/Action/articleAction";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "react-bootstrap/Spinner";
 import { Link, useNavigate } from "react-router-dom";
@@ -17,41 +20,45 @@ function ArtikelAdmin() {
   const { article, isLoading } = useSelector((state) => state.articleReducer);
   const { totalArticle } = useSelector((state) => state.HomepageAdminReducer);
 
+  const handleDeleteArticle = (id) => {
+    dispatch(deleteArticleAdmin(id));
+  };
+
   useEffect(() => {
     dispatch(getAPI());
   }, []);
-  useEffect(() => {
 
-      if (localStorage.getItem("role") == null) {
-        Swal.fire({
-          icon: "error",
-          title: "Terjadi Kesalahan !",
-          text: "Anda Harus Login Terlebih Dahulu",
-          confirm: {
-            text: "OK",
-            value: true,
-          },
-        }).then((value) => {
-          if (value) {
-            navigate("/login");
-          }
-        });
-      } else if (localStorage.getItem("role") === "user") {
-        Swal.fire({
-          icon: "error",
-          title: "Anda Bukan Admin !",
-          text: "User Tidak Bisa Akses Ke Halaman Admin!",
-          confirm: {
-            text: "OK",
-            value: true,
-          },
-        }).then((value) => {
-          if (value) {
-            navigate("/");
-          }
-        });
-      }
-    
+  useEffect(() => {
+    if (localStorage.getItem("role") == null) {
+      Swal.fire({
+        icon: "error",
+        title: "Terjadi Kesalahan !",
+        text: "Anda Harus Login Terlebih Dahulu",
+        confirm: {
+          text: "OK",
+          value: true,
+        },
+      }).then((value) => {
+        if (value) {
+          navigate("/login");
+        }
+      });
+    } else if (localStorage.getItem("role") === "user") {
+      Swal.fire({
+        icon: "error",
+        title: "Anda Bukan Admin !",
+        text: "User Tidak Bisa Akses Ke Halaman Admin!",
+        confirm: {
+          text: "OK",
+          value: true,
+        },
+      }).then((value) => {
+        if (value) {
+          navigate("/");
+        }
+      });
+    }
+
     if (localStorage.getItem("role") == "admin") {
       dispatch(getArticle());
     }
@@ -64,7 +71,7 @@ function ArtikelAdmin() {
         <h2>Article</h2>
         <div className="row gx-4 gy-2 justify-content-start">
           <div className="col-6 w-auto">
-            <div className="card mb-3" style={{ maxWidth: "30em" }}>
+            <div className="card card-total mb-3" style={{ maxWidth: "30em" }}>
               <div className="row g-0">
                 <div className="col-md-4">
                   <img
@@ -102,13 +109,14 @@ function ArtikelAdmin() {
               to="/admin/article/add-article"
               className="btn bg-primary text-white text-sm px-5 py-2"
             >
-              Add Artikel
+              {" "}
+              <FaPlus /> Tambah Artikel
             </Link>
           </div>
         </div>
 
         <div
-          className="card mt-4"
+          className="card mt-4 my-5"
           style={{
             boxShadow: "0px 8px 24px rgba(112, 144, 176, 0.25)",
             borderRadius: 9,
@@ -119,14 +127,14 @@ function ArtikelAdmin() {
               <table className="table">
                 <thead>
                   <tr>
-                    <th scope="col-md-2" className="imagesAdmin">
+                    <th scope="col" className="imagesAdmin">
                       Image
                     </th>
-                    <th scope="col-md-2">Title Article</th>
-                    <th scope="col-md-2">Cathegory</th>
-                    <th scope="col-md-2">Author</th>
-                    <th scope="col-md-2">Date</th>
-                    <th scope="col-md-2" className="text-center">
+                    <th scope="col">Title Article</th>
+                    <th scope="col">Cathegory</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Date</th>
+                    <th scope="col" className="text-center">
                       Action
                     </th>
                   </tr>
@@ -145,35 +153,29 @@ function ArtikelAdmin() {
                     article.map((item) => (
                       <tr
                         key={item.id}
-                        onClick={() => {
-                          navigate(`/admin/article/${item.id}`);
-                        }}
                       >
-                        <td className="me-5">
+                        <th scope="row" className="me-5" style={{cursor: "pointer"}}>
                           <img
                             src={item.url}
                             alt="name"
                             className="img-artikel w-100"
                           />
-                        </td>
-                        <td>{item.titleArticle}</td>
+                        </th>
+                        <td style={{cursor: "pointer"}}>{item.titleArticle}</td>
                         <td>{item.category}</td>
                         <td>{item.author}</td>
                         <td>{item.date}</td>
                         <td>
-                          <div className="row">
+                          <div className="row justify-content-center gy-4">
                             <div className="col-4 px-1">
-                              <Link
-                                to="/"
-                                className="btn bg-success btn-update text-sm me-4 text-white w-100 px-2"
-                              >
+                              <button className="btn p-0 text-success w-100 ">
                                 <FaPen />
-                              </Link>
+                              </button>
                             </div>
                             <div className="col-4 px-1">
                               <button
-                                to="/"
-                                className="btn bg-danger btn-delete text-sm me-4 text-white w-100 px-2"
+                                onClick={() => handleDeleteArticle(item.id)}
+                                className="btn p-0 text-danger w-100"
                               >
                                 <FaTrashAlt />
                               </button>
