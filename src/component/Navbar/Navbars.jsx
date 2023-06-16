@@ -102,10 +102,10 @@ function Navbars() {
                           variant="transparent"
                           id="dropdown-avatar"
                         >
-                          {localStorage.getItem("admin") != "" ? (
+                          {localStorage.getItem("role") === "admin" ? (
                             // INI AVATAR ADMIN
                             <img
-                              src="https://i.ibb.co/Lz14knd/photo-1535713875002-d1d0cf377fde.jpg"
+                              src="https://i.ibb.co/2WzhMwb/img-561913.png"
                               alt="User Avatar"
                               className="avatar rounded-circle"
                               style={{ width: "30px" }}
@@ -113,7 +113,7 @@ function Navbars() {
                           ) : (
                             // INI AVATAR USER
                             <img
-                              src="https://i.ibb.co/Lz14knd/photo-1535713875002-d1d0cf377fde.jpg"
+                              src="https://i.ibb.co/QFgFrnW/download-2.png"
                               alt="User Avatar"
                               className="avatar rounded-circle"
                               style={{ width: "30px" }}
