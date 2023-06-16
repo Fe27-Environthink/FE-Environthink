@@ -22,7 +22,6 @@ export const getInfografis = () => {
     const url = import.meta.env.VITE_API_INFOGRAFIS;
     const result = await axios(url);
 
-    // console.log(result);
     dispatch(successGetInfografis(result.data));
   };
 };
@@ -46,4 +45,26 @@ export const addInfografis = (newData, token) => async (dispatch) => {
     });
     console.log(error);
   }
+};
+
+export const deleteInfografis = (id) => {
+  return async (dispatch) => {
+    const token = localStorage.getItem("accessToken");
+
+    try {
+      await axios
+        .delete(`${import.meta.env.VITE_API_INFOGRAFIS}/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          console.log(res);
+        });
+      // console.log(response);
+      dispatch(getInfografis());
+    } catch (error) {
+      console.log(error);
+    }
+  };
 };

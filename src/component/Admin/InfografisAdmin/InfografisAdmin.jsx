@@ -4,7 +4,10 @@ import { Link } from "react-router-dom";
 import { FaPen, FaTrashAlt } from "react-icons/fa";
 import "./InfografisAdmin.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getInfografis } from "../../../Redux/Action/infografisAction";
+import {
+  deleteInfografis,
+  getInfografis,
+} from "../../../Redux/Action/infografisAction";
 import { Spinner } from "react-bootstrap";
 
 function InfografisAdmin() {
@@ -14,9 +17,11 @@ function InfografisAdmin() {
   );
 
   console.log(infografis);
+
   useEffect(() => {
     dispatch(getInfografis());
   }, []);
+
   return (
     <>
       <NavbarAdmin />
@@ -81,16 +86,15 @@ function InfografisAdmin() {
                         <td>
                           <div className="row d-flex justify-content-center">
                             <div className="col-2 w-50">
-                              <Link
-                                to="/"
-                                className="btn bg-success btn-update text-sm text-white"
-                              >
+                              <button className="btn bg-success btn-update text-sm text-white">
                                 <FaPen />
-                              </Link>
+                              </button>
                             </div>
                             <div className="col-2 w-50">
                               <button
-                                to="/"
+                                onClick={() =>
+                                  dispatch(deleteInfografis(item.id))
+                                }
                                 className="btn bg-danger btn-delete text-sm  text-white "
                               >
                                 <FaTrashAlt />
