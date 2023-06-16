@@ -1,52 +1,27 @@
-import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import NavbarAdmin from "../Sidebar/NavbarAdmin";
-import { useDispatch, useSelector } from "react-redux";
-import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
-import { addInfografis } from "../../../Redux/Action/infografisAction";
 
-function AddInfografisAdmin() {
-  const dispatch = useDispatch();
+const UpdateInfografisAdmin = () => {
   const navigate = useNavigate();
 
-  const [judulInfografis, setJudulInfografis] = useState("");
-  const [gambar, setGambar] = useState(null);
-
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    setGambar(file);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    let newData = {
-      title: judulInfografis,
-      file: gambar,
-    };
-    dispatch(addInfografis(newData, localStorage.getItem("accessToken")));
-    navigate("/admin/infografis");
-    setJudulInfografis("");
-    setGambar("");
-  };
-
   return (
-    <>
+    <div>
       <NavbarAdmin />
       <div className="container pt-4">
         <div className="addArtikel">
-          <h3>Add Article</h3>
+          <h3>Edit Article</h3>
           <div className="card mt-3 mb-5">
             <div className="card-header text-center  h4">
-              FORM DATA INFOGRAFIS
+              FORM DATA EDIT INFOGRAFIS
             </div>
             <div className="card-body">
-              <form onSubmit={handleSubmit}>
+              <form>
                 <div className="form-group row pt-3">
                   <label
                     htmlFor="judulInfografis"
                     className="col-sm-2 col-form-label"
                   >
-                    Judul Infografis
+                    Update Judul Infografis
                   </label>
                   <div className="col-md-5">
                     <input
@@ -54,15 +29,15 @@ function AddInfografisAdmin() {
                       type="text"
                       className="form-control"
                       id="judulInfografis"
-                      value={judulInfografis}
-                      onChange={(e) => setJudulInfografis(e.target.value)}
+                      //   value={judulInfografis}
+                      //   onChange={(e) => setJudulInfografis(e.target.value)}
                     />
                   </div>
                 </div>
 
                 <div className="form-group row pt-3">
                   <label htmlFor="gambar" className="col-sm-2 col-form-label">
-                    Gambar
+                    Update Gambar
                   </label>
                   <div className="col-md-5">
                     <input
@@ -70,7 +45,7 @@ function AddInfografisAdmin() {
                       className="form-control-file"
                       id="gambar"
                       accept="image/*"
-                      onChange={handleImageChange}
+                      //   onChange={handleImageChange}
                     />
                   </div>
                 </div>
@@ -92,8 +67,8 @@ function AddInfografisAdmin() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
-}
+};
 
-export default AddInfografisAdmin;
+export default UpdateInfografisAdmin;

@@ -69,3 +69,9 @@ export const deleteInfografis = (id) => {
     }
   };
 };
+
+export const updateInfografis = (idInfografis) => {
+  return async (dispatch) => {
+    console.log("masuk ke update infografis");
+  };
+};

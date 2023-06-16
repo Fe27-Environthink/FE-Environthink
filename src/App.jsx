@@ -2,7 +2,6 @@ import "./App.css";
 import Footer from "./component/Footer/Footer";
 import HomePage from "./component/HomePage/HomePage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Navbars from "./component/Navbar/Navbars";
 import Aksi from "./component/Aksi/Aksi";
 import DetailAksi from "./component/Aksi/DetailAksi";
 import AksiTerkait from "./component/Aksi/AksiTerkait";
@@ -10,7 +9,6 @@ import Search from "./component/Searchpage/Search";
 import Donasi from "./component/Donasi/Donasi";
 import Article from "./component/Article/Article";
 import DetailArticle from "./component/Article/DetailArticle";
-import NavbarAdmin from "./component/Admin/Sidebar/NavbarAdmin";
 import ArtikelAdmin from "./component/Admin/ArtikelAdmin/ArtikelAdmin";
 import HomepageAdmin from "./component/Admin/HomepageAdmin/HomepageAdmin";
 import DetailArtikelAdmin from "./component/Admin/ArtikelAdmin/DetailArtikelAdmin";
@@ -25,11 +23,10 @@ import AksiAdmin from "./component/Admin/AksiAdmin/AksiAdmin";
 import NotFound from "./component/NotFound/NotFound";
 import InfografisAdmin from "./component/Admin/InfografisAdmin/InfografisAdmin";
 import AddInfografisAdmin from "./component/Admin/InfografisAdmin/AddInfografisAdmin";
+import UpdateInfografisAdmin from "./component/Admin/InfografisAdmin/UpdateInfografisAdmin";
 
 function App() {
   const isAdminRoute = window.location.pathname === "/admin";
-
-  const roleLocalStorage = localStorage.getItem("role");
 
   return (
     <div className="d-flex flex-column min-vh-100">
@@ -54,24 +51,23 @@ function App() {
           {/* {roleLocalStorage === "admin" && (
             <> */}
 
-              <Route path="/admin" element={<HomepageAdmin />} />
-              <Route path="/admin/aksi" element={<AksiAdmin />} />
-              <Route path="/admin/article" element={<ArtikelAdmin />} />
-              <Route path="/admin/donasi" element={<DonasiAdmin />} />
-              <Route
-                path="/admin/article/:key"
-                element={<DetailArtikelAdmin />}
-              />
-              <Route path="/admin/infografis" element={<InfografisAdmin />} />
-              <Route path="/admin/infografis/add-infografis" element={<AddInfografisAdmin />} />
-               <Route
-
+          <Route path="/admin" element={<HomepageAdmin />} />
+          <Route path="/admin/aksi" element={<AksiAdmin />} />
+          <Route path="/admin/article" element={<ArtikelAdmin />} />
+          <Route path="/admin/donasi" element={<DonasiAdmin />} />
+          <Route path="/admin/article/:key" element={<DetailArtikelAdmin />} />
+          <Route path="/admin/infografis" element={<InfografisAdmin />} />
+          <Route
+            path="/admin/infografis/add-infografis"
+            element={<AddInfografisAdmin />}
+          />
+          <Route
             path="/admin/article/add-article"
             element={<AddArtikelAdmin />}
           />
           <Route
-            path="/admin/infografis/add-infografis"
-            element={<AddInfografisAdmin />}
+            path="/admin/infografis/update-infografis"
+            element={<UpdateInfografisAdmin />}
           />
 
           {/* )} */}

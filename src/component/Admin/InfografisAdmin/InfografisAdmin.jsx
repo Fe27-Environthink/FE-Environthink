@@ -7,9 +7,12 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   deleteInfografis,
   getInfografis,
+  updateInfografis,
 } from "../../../Redux/Action/infografisAction";
 import { Spinner } from "react-bootstrap";
 import InfografisVector from "../../../assets/InfografisVector.jpg";
+import UpdateInfografisAdmin from "./UpdateInfografisAdmin";
+import { getAPI } from "../../../Redux/Action/HomepageAdminAction";
 
 function InfografisAdmin() {
   const dispatch = useDispatch();
@@ -20,10 +23,11 @@ function InfografisAdmin() {
     (state) => state.HomepageAdminReducer
   );
 
-  console.log(totalInfografis);
+  const handleUpdateInfografis = () => {};
 
   useEffect(() => {
     dispatch(getInfografis());
+    dispatch(getAPI());
   }, []);
 
   return (
@@ -119,7 +123,10 @@ function InfografisAdmin() {
                         <td>
                           <div className="row d-flex justify-content-center">
                             <div className="col-2 w-50">
-                              <button className="btn bg-success btn-update text-sm text-white">
+                              <button
+                                className="btn bg-success btn-update text-sm text-white"
+                                onClick={() => dispatch(updateInfografis())}
+                              >
                                 <FaPen />
                               </button>
                             </div>
