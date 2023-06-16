@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import NavbarAdmin from "../Sidebar/NavbarAdmin";
 import { Link, useNavigate } from "react-router-dom";
-import { FaPen, FaTrashAlt } from "react-icons/fa";
+import { FaPen, FaPlus, FaTrashAlt } from "react-icons/fa";
 import "./InfografisAdmin.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -109,7 +109,7 @@ function InfografisAdmin() {
               to="/admin/infografis/add-infografis"
               className="btn bg-primary text-white text-sm px-5 py-2"
             >
-              Add Infografis
+              <FaPlus /> Tambah Infografis
             </Link>
           </div>
         </div>
