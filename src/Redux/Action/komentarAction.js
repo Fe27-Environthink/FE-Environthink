@@ -26,7 +26,7 @@ export const getKomentar = (id) => {
 };
 
 export const addKomentar = (newData, id, token) => async (dispatch) => {
-  const url = `https://api-fe27be9-environthink.cyclic.app/komentar?artikelId=${id}`;
+  const url = `https://be-environthink-production-f876.up.railway.app/komentar?artikelId=${id}`;
   try {
     await axios.post(url, newData, {
       headers: {
@@ -44,7 +44,7 @@ export const addKomentar = (newData, id, token) => async (dispatch) => {
 };
 
 export const deleteKomentar = (komentar_id, id, token) => async (dispatch) => {
-  const url = `https://api-fe27be9-environthink.cyclic.app/komentar/${komentar_id}`;
+  const url = `https://be-environthink-production-f876.up.railway.app/komentar/${komentar_id}`;
 
   try {
     await axios.delete(url, {
@@ -63,7 +63,7 @@ export const deleteKomentar = (komentar_id, id, token) => async (dispatch) => {
 };
 
 export const editKomentar = (data, id, token) => async (dispatch) => {
-  const url = `https://api-fe27be9-environthink.cyclic.app/komentar/${data.komentar_id}`;
+  const url = `https://be-environthink-production-f876.up.railway.app/komentar/${data.komentar_id}`;
 
   try {
     await axios.patch(url, data, {

@@ -18,12 +18,9 @@ function Komentar() {
   const [inputKomentar, setInputKomentar] = useState("");
   const [inputEmail, setInputEmail] = useState("");
   const [inputName, setInputName] = useState("");
-
-  //   console.log(komentar);
-
   const [editingId, setEditingId] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     if (localStorage.length == 0) {
@@ -40,7 +37,7 @@ function Komentar() {
           navigate("/login");
         }
       });
-    }else{
+    } else {
       if (editingId) {
         let editedKomentar = {
           komentar_id: editingId,
@@ -65,7 +62,9 @@ function Komentar() {
           email: inputEmail,
           komentar: inputKomentar,
         };
-        dispatch(addKomentar(newData, key, localStorage.getItem("accessToken")));
+        dispatch(
+          addKomentar(newData, key, localStorage.getItem("accessToken"))
+        );
         Swal.fire({
           position: "top",
           icon: "success",
@@ -75,7 +74,7 @@ function Komentar() {
         });
       }
     }
-   
+
     setInputName("");
     setInputEmail("");
     setInputKomentar("");
@@ -124,19 +123,21 @@ function Komentar() {
 
   useEffect(() => {
     dispatch(getKomentar(key));
-    
   }, []);
-  useEffect(()=>{
-    console.log(komentar);
-  },[komentar])
   const handleInputKomentar = () => {
     setInputEmail(localStorage.getItem("email"));
     setInputName(localStorage.getItem("username"));
   };
 
   const formatDate = (dateString) => {
-    const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
-    return new Date(dateString).toLocaleString('en-US', options);
+    const options = {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+    };
+    return new Date(dateString).toLocaleString("en-US", options);
   };
   return (
     <>
@@ -208,29 +209,28 @@ function Komentar() {
                   <div className="card-body">
                     <h5 className="card-title">{item.name}</h5>
                     <h6 className="card-subtitle mb-2 text-body-secondary">
-                        {formatDate(item.createdAt)}
+                      {formatDate(item.createdAt)}
                       <span id="dot2"></span>
                       <span> {item.email}</span>
                     </h6>
                     <p className="card-text text-dark">{item.komentar}</p>
+                    {item.user_id == localStorage.getItem("id") && (
+                      <>
+                        <Link
+                          onClick={() => handleEdit(item.komentar_id)}
+                          className="card-link text-decoration-none"
+                        >
+                          Edit
+                        </Link>
+                        <Link
+                          onClick={() => deleteHandler(item.komentar_id)}
+                          className="card-link text-decoration-none"
+                        >
+                          Delete
+                        </Link>
+                      </>
+                    )}
 
-                    {console.log("cekuserid",item.user_id)}
-                    {console.log("cek idd",localStorage.getItem('id'))}
-                    {item.user_id==localStorage.getItem('id') &&(<>
-                      <Link
-                      onClick={() => handleEdit(item.komentar_id)}
-                      className="card-link text-decoration-none"
-                    >
-                      Edit
-                    </Link>
-                    <Link
-                      onClick={() => deleteHandler(item.komentar_id)}
-                      className="card-link text-decoration-none"
-                    >
-                      Delete
-                    </Link>
-                    </>)}
-                    
                     {/* Modal */}
                     {showModal && (
                       <div
