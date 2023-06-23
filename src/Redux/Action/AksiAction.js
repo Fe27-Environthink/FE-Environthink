@@ -14,7 +14,7 @@ export const success = (payload) => ({
   type: SUCCESS,
   payload,
 });
-export const successGetDetail = (payload,payload2) => ({
+export const successGetDetail = (payload, payload2) => ({
   type: SUCCESS_GET_DETAIL,
   payload,
   payload2,
@@ -22,7 +22,7 @@ export const successGetDetail = (payload,payload2) => ({
 
 export const getDataAksi = () => async (dispatch) => {
   dispatch(fatchingAksi());
-  const url =import.meta.env.VITE_API_AKSI
+  const url = import.meta.env.VITE_API_AKSI;
   const result = await axios(url);
   dispatch(success(result.data));
 };
@@ -47,60 +47,39 @@ export const submitFailure = () => {
 };
 
 export const getDetail = (id) => async (dispatch) => {
-  console.log("id", id);
   dispatch(fatchingAksi());
   const url = `${import.meta.env.VITE_API_AKSI}/${id}`;
 
   const result = await axios(url);
-  console.log("result get",result.data.result);
-  const result1=[]
-  if(localStorage.length!=0){
-  const url1 = `${import.meta.env.VITE_API_KONTRIBUTOR}?aksiId=${id}`;
-  const token =localStorage.getItem('accessToken')
-  const result1 = await axios(url1, {
-    headers: {
-      Authorization: `Bearer ${token} `,
-    },
-  });
-  
-  dispatch(successGetDetail(result.data.result,result1.data));
-}else{
-  dispatch(successGetDetail(result.data.result,result1));
-}
-  
+  const result1 = [];
+  if (localStorage.length != 0) {
+    const url1 = `${import.meta.env.VITE_API_KONTRIBUTOR}?aksiId=${id}`;
+    const token = localStorage.getItem("accessToken");
+    const result1 = await axios(url1, {
+      headers: {
+        Authorization: `Bearer ${token} `,
+      },
+    });
+
+    dispatch(successGetDetail(result.data.result, result1.data));
+  } else {
+    dispatch(successGetDetail(result.data.result, result1));
+  }
 };
-export const submitPetisi = (data, id,token) => async (dispatch) => {
-
+export const submitPetisi = (data, id, token) => async (dispatch) => {
   const url = `${import.meta.env.VITE_API_KONTRIBUTOR}?aksiId=${id}`;
-  // const result = await axios(urlDetail);
-  console.log(data);
 
-  console.log(data);
-try {
-  await axios.post(url, data, {
-    headers: {
-      'Authorization':`Bearer ${token} `
-    }
-  })
-  dispatch(getDetail(id));
-  dispatch(submitSuccess());
-} catch (error) {
-  console.log(error);
-  Swal.fire("Submit Failed", `${error.response.data.message}`, "error");
-}
-  // validasi email yang sama
-  // const cekEmail = await axios(url);
-  // const emailData = cekEmail.data.find((item) => item.email === data.email);
-  // if (emailData) {
-  //   dispatch(submitFailure());
-  // } else {
-  //   //    mengupdate jumlah orang yang mendukung
-  //   const dataUpdate = {
-  //     numberOfSupport: result.data.numberOfSupport + 1,
-  //   };
-  //   // mensubmit ke kontributor
-  //   await axios.put(urlDetail, dataUpdate);
-  //   console.log("cek result", result);
+  try {
+    await axios.post(url, data, {
+      headers: {
+        Authorization: `Bearer ${token} `,
+      },
+    });
+    dispatch(getDetail(id));
+    dispatch(submitSuccess());
+  } catch (error) {
+    Swal.fire("Submit Failed", `${error.response.data.message}`, "error");
+  }
 };
 
 export const deleteAksi = (id, token) => async (dispatch) => {

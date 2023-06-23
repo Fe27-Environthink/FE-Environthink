@@ -42,7 +42,6 @@ export const addInfografis = (newData, token) => async (dispatch) => {
       title: "Terjadi Kesalahan!",
       text: `${error}`,
     });
-    console.log(error);
   }
 };
 
@@ -51,16 +50,12 @@ export const deleteInfografis = (id) => {
     const token = localStorage.getItem("accessToken");
 
     try {
-      await axios
-        .delete(`${import.meta.env.VITE_API_INFOGRAFIS}/${id}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        .then((res) => {
-          console.log(res);
-        });
-      // console.log(response);
+      await axios.delete(`${import.meta.env.VITE_API_INFOGRAFIS}/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
       dispatch(getInfografis());
     } catch (error) {
       console.log(error);

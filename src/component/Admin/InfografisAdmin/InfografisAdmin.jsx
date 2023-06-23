@@ -27,7 +27,6 @@ function InfografisAdmin() {
 
   const handleUpdateInfografis = () => {};
 
-  console.log(totalInfografis);
   const navigate = useNavigate();
   useEffect(() => {
     if (localStorage.getItem("role") == null) {

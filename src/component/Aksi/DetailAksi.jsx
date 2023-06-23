@@ -8,15 +8,22 @@ import { getDataAksi, getDetail } from "../../Redux/Action/AksiAction";
 import FormPetisi from "./FormPetisi";
 import { FaUsers } from "react-icons/fa";
 import Navbars from "../Navbar/Navbars";
-import { FacebookIcon, FacebookShareButton, TwitterIcon, TwitterShareButton, WhatsappIcon, WhatsappShareButton } from "react-share";
+import {
+  FacebookIcon,
+  FacebookShareButton,
+  TwitterIcon,
+  TwitterShareButton,
+  WhatsappIcon,
+  WhatsappShareButton,
+} from "react-share";
 
 function DetailAksi() {
   const { key } = useParams();
   const dispatch = useDispatch();
   const [aksiLainnya, setAkasiLainnya] = useState([]);
   const navigate = useNavigate();
-  const [showForm,setShowForm]=useState(true)
-  const { detailAksi, listAksi, isLoading,kontributor } = useSelector(
+  const [showForm, setShowForm] = useState(true);
+  const { detailAksi, listAksi, isLoading, kontributor } = useSelector(
     (state) => state.AksiReducer
   );
 
@@ -45,19 +52,22 @@ function DetailAksi() {
   };
   let renderTextPetisi = () => {
     if (detailAksi.numberofsupport < detailAksi.target) {
-      if(showForm){
-      return (
-        <p className="fw-semibold paragraf" id="paragarfPetisi">
-          {detailAksi.teks}
-        </p>
-      );
-      }else{
+      if (showForm) {
+        return (
+          <p className="fw-semibold paragraf" id="paragarfPetisi">
+            {detailAksi.teks}
+          </p>
+        );
+      } else {
         return (
           <div>
-            <h3 className="heading-form"> Terima Kasih Sudah Berkontribusi 🎉</h3>
-          <p className="fw-semibold paragraf" id="paragarfPetisi">
-            jadilah Aktivis Digital Dengan membagikan petisi ini
-          </p>
+            <h3 className="heading-form">
+              {" "}
+              Terima Kasih Sudah Berkontribusi 🎉
+            </h3>
+            <p className="fw-semibold paragraf" id="paragarfPetisi">
+              jadilah Aktivis Digital Dengan membagikan petisi ini
+            </p>
           </div>
         );
       }
@@ -75,34 +85,29 @@ function DetailAksi() {
   const renderBar = () => {
     let Persentase =
       (detailAksi.numberofsupport / detailAksi.target) * 100 + "%";
-
-    console.log("cek presentasi", Persentase);
     return { width: Persentase };
   };
   useEffect(() => {
     dispatch(getDetail(key));
     dispatch(getDataAksi());
+  }, [key, getDetail]);
 
-  }, [key,getDetail]);
-
- 
   useEffect(() => {
     setAkasiLainnya(listAksi.filter((item) => item.id != key));
   }, [listAksi, key]);
 
   useEffect(() => {
-      const cekPetisi  = kontributor.find(user => user.email === localStorage.getItem('email')&&user.aksi_id === key);
+    const cekPetisi = kontributor.find(
+      (user) =>
+        user.email === localStorage.getItem("email") && user.aksi_id === key
+    );
 
-      if(cekPetisi){
-        setShowForm(false)
-        console.log("masuk ");
-        console.log(cekPetisi);
-      }
-      else{
-        setShowForm(true)
-      }
-    console.log(showForm);
-  }, [key,kontributor,detailAksi]);
+    if (cekPetisi) {
+      setShowForm(false);
+    } else {
+      setShowForm(true);
+    }
+  }, [key, kontributor, detailAksi]);
   const shareUrl = `https://final-environthink.netlify.app/aksi/${key}`;
   return (
     <>
@@ -149,7 +154,7 @@ function DetailAksi() {
                   <Link to={`/aksi/`} style={{ textDecoration: "none" }}>
                     <span id="cathegory">Petisi</span> <span id="dot"> </span>
                   </Link>
-                  {typeof detailAksi.hashtag !='undefined' &&
+                  {typeof detailAksi.hashtag != "undefined" &&
                     detailAksi.hashtag.map((item) => (
                       <Link
                         key="1"
@@ -162,9 +167,7 @@ function DetailAksi() {
                       </Link>
                     ))}
                 </p>
-                <div>
-                  
-                </div>
+                <div></div>
                 <h3 id="title">{detailAksi.title}</h3>
                 <img
                   className="img-fluid pt-3"
@@ -228,20 +231,19 @@ function DetailAksi() {
                     </button>
                   </Link>
                 ) : showForm ? (
-                  
                   <FormPetisi />
-                ):(
-                  <div className="d-flex gap-2" >
-                  <FacebookShareButton url={shareUrl}>
-                    <FacebookIcon size={32}/>
-                  </FacebookShareButton>
-                  <TwitterShareButton url={shareUrl}>
-                    <TwitterIcon size={32}/>
-                  </TwitterShareButton>
-                  <WhatsappShareButton url={shareUrl}>
-                    <WhatsappIcon size={32}/>
-                  </WhatsappShareButton>
-                </div>
+                ) : (
+                  <div className="d-flex gap-2">
+                    <FacebookShareButton url={shareUrl}>
+                      <FacebookIcon size={32} />
+                    </FacebookShareButton>
+                    <TwitterShareButton url={shareUrl}>
+                      <TwitterIcon size={32} />
+                    </TwitterShareButton>
+                    <WhatsappShareButton url={shareUrl}>
+                      <WhatsappIcon size={32} />
+                    </WhatsappShareButton>
+                  </div>
                 )}
               </div>
             </div>

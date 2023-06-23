@@ -29,7 +29,6 @@ function FormPetisi() {
 
   const handleSubmitPetisi = (e) => {
     e.preventDefault();
-    console.log("cek local storage", localStorage.length);
     if (localStorage.length == 0) {
       Swal.fire({
         icon: "error",
@@ -63,23 +62,17 @@ function FormPetisi() {
   };
 
   const submitDataPetisi = () => {
-    dispatch(submitPetisi(petisi, key,localStorage.getItem('accessToken')));
+    dispatch(submitPetisi(petisi, key, localStorage.getItem("accessToken")));
   };
   const handleInputPetisi = (event) => {
-    console.log("ini cek event:", event);
     setPetisi({
-      
-      name: localStorage.getItem('username'),
-      email: localStorage.getItem('email'),
-      telepon: localStorage.getItem('telepon'),
-      kota: localStorage.getItem('kota'),
+      name: localStorage.getItem("username"),
+      email: localStorage.getItem("email"),
+      telepon: localStorage.getItem("telepon"),
+      kota: localStorage.getItem("kota"),
     });
-    
   };
- 
-useEffect(()=>{
-  console.log(petisi);
-},[petisi])
+
   return (
     <>
       <form
