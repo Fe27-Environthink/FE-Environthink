@@ -22,13 +22,11 @@ export const successGetDetail = (payload) => ({
 });
 
 export const getArticle = () => {
-  console.log("masuk ke get artikel");
   return async (dispatch) => {
     dispatch(startFetching());
     const url = import.meta.env.VITE_API_ARTICLE;
     const result = await axios(url);
 
-    console.log(result);
     dispatch(successGetArticle(result.data));
   };
 };
@@ -44,7 +42,7 @@ export const getArticleDetail = (id) => {
 
 export const addArticle = (newData, id) => async (dispatch) => {
   const token = localStorage.getItem("accessToken");
-  console.log(newData);
+
   const url = `http://134.209.106.119:3000/artikel`;
   await axios.post(url, newData, {
     headers: {
@@ -52,7 +50,7 @@ export const addArticle = (newData, id) => async (dispatch) => {
       "Content-Type": "multipart/form-data",
     },
   });
-  // console.log(newData);
+
   dispatch(getArticle(id));
 };
 
@@ -70,7 +68,6 @@ export const deleteArticleAdmin = (id) => {
         }
       );
 
-      // console.log(response);
       dispatch(getArticle());
     } catch (error) {
       console.log(error);

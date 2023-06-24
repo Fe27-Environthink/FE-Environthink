@@ -3,7 +3,6 @@ import axios from "axios";
 export const SEARCH_ARTICLE = "SEARCH_ARTICLE";
 
 export const SearchAction = (payload, keyword) => {
-  console.log(payload);
   const searchResult = payload.filter(
     (obj) =>
       obj.titleArticle.includes(keyword.toLowerCase()) ||

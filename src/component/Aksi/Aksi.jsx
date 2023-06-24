@@ -23,16 +23,14 @@ function Aksi() {
 
   useEffect(() => {
     setFilterData(listAksi.slice(0, limit));
-    console.log("limit", limit, ",listaksi:", listAksi.length);
     if (listAksi.length > 0 && limit >= listAksi.length) {
-      console.log("berhasil");
       setShowButton(false);
     }
   }, [limit]);
 
   return (
     <>
-        <Navbars />
+      <Navbars />
       <div className="container mt-4">
         <div className="artikel" id="artikel">
           <h3 className="text-start ">Tanpa Aksi, Tidak Ada Perubahan </h3>
@@ -47,12 +45,36 @@ function Aksi() {
               <div className="text-center  d-flex justify-content-center align-items-center my-5 py-5">
                 {/* <span className="mx-2 h1">loading</span>
                 <Spinner animation="border" variant="dark" /> */}
-                <Spinner className="mx-4" animation="grow" size="sm" variant="success" />
-                <Spinner className="mx-4" animation="grow" size="sm" variant="success" />
-                <Spinner className="mx-4" animation="grow" size="sm" variant="success" />
-                <Spinner className="mx-4" animation="grow" size="sm" variant="success" />
-                <Spinner className="mx-4" animation="grow" size="sm" variant="success" />
-              
+                <Spinner
+                  className="mx-4"
+                  animation="grow"
+                  size="sm"
+                  variant="success"
+                />
+                <Spinner
+                  className="mx-4"
+                  animation="grow"
+                  size="sm"
+                  variant="success"
+                />
+                <Spinner
+                  className="mx-4"
+                  animation="grow"
+                  size="sm"
+                  variant="success"
+                />
+                <Spinner
+                  className="mx-4"
+                  animation="grow"
+                  size="sm"
+                  variant="success"
+                />
+                <Spinner
+                  className="mx-4"
+                  animation="grow"
+                  size="sm"
+                  variant="success"
+                />
               </div>
             ) : (
               filterData.map((item) => (
@@ -60,7 +82,7 @@ function Aksi() {
                   <div className="card card-aksi h-100">
                     <img
                       src={item.url}
-                      className="card-img-top h-100 sm-h-100" 
+                      className="card-img-top h-100 sm-h-100"
                       alt=" "
                     />
                     <div className="card-body">

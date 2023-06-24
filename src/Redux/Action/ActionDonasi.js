@@ -50,7 +50,6 @@ export const dataDonasi = (donationAmount, dataForm) => {
 
       Swal.fire("Cek email untuk instruksi pembayaran", "", "success");
     } catch (error) {
-      console.log(error);
       Swal.fire({
         icon: "error",
         title: "Terjadi Kesalahan!",

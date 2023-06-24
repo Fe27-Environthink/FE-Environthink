@@ -48,7 +48,6 @@ const DonasiAdmin = () => {
 
   useEffect(() => {
     if (roleLocalStorage === null) {
-      console.log(roleLocalStorage);
       if (localStorage.getItem("role") == null) {
         Swal.fire({
           icon: "error",
