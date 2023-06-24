@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useNavigate } from "react-router";
 import Swal from "sweetalert2";
 
 export const AUTH = "AUTH";
@@ -20,6 +19,7 @@ const register = (payload) => {
 };
 
 export const sigInUser = (data) => async (dispatch) => {
+  const json = JSON.stringify(data);
   const url = `${import.meta.env.VITE_API_LOGIN}/signin`;
 
   try {
@@ -33,6 +33,7 @@ export const sigInUser = (data) => async (dispatch) => {
 };
 
 export const sigUpUser = (data) => async (dispatch) => {
+  const json = JSON.stringify(data);
   const url = `${import.meta.env.VITE_API_LOGIN}/signup`;
 
   try {
