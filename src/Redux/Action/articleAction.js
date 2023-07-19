@@ -43,7 +43,7 @@ export const getArticleDetail = (id) => {
 export const addArticle = (newData, id) => async (dispatch) => {
   const token = localStorage.getItem("accessToken");
 
-  const url = `http://134.209.106.119:3000/artikel`;
+  const url = `https://be-environthink-production.up.railway.app/artikel`;
   await axios.post(url, newData, {
     headers: {
       Authorization: `Bearer ${token}`,
