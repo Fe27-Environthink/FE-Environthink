@@ -83,7 +83,7 @@ export const submitPetisi = (data, id, token) => async (dispatch) => {
 };
 
 export const deleteAksi = (id, token) => async (dispatch) => {
-  const url = `https://be-environthink-production.up.railway.app/aksi/${id}`;
+  const url = `https://be-environthink-e2cdc0f06fa6.herokuapp.com/aksi/${id}`;
   try {
     await axios.delete(url, {
       headers: {
