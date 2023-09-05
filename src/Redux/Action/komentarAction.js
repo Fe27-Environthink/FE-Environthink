@@ -26,7 +26,7 @@ export const getKomentar = (id) => {
 };
 
 export const addKomentar = (newData, id, token) => async (dispatch) => {
-  const url = `https://be-environthink-e2cdc0f06fa6.herokuapp.com/komentar?artikelId=${id}`;
+  const url = `https://be-environthink-production.up.railway.app/komentar?artikelId=${id}`;
   try {
     await axios.post(url, newData, {
       headers: {
@@ -63,7 +63,7 @@ export const deleteKomentar = (komentar_id, id, token) => async (dispatch) => {
 };
 
 export const editKomentar = (data, id, token) => async (dispatch) => {
-  const url = `https://be-environthink-e2cdc0f06fa6.herokuapp.com/komentar/${data.komentar_id}`;
+  const url = `https://be-environthink-production.up.railway.app/komentar/${data.komentar_id}`;
 
   try {
     await axios.patch(url, data, {
