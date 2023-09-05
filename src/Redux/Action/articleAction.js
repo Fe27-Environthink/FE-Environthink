@@ -43,7 +43,7 @@ export const getArticleDetail = (id) => {
 export const addArticle = (newData, id) => async (dispatch) => {
   const token = localStorage.getItem("accessToken");
 
-  const url = `https://api-fe27be9-environthink.cyclic.app/artikel`;
+  const url = `https://be-environthink-e2cdc0f06fa6.herokuapp.com/artikel`;
   await axios.post(url, newData, {
     headers: {
       Authorization: `Bearer ${token}`,
