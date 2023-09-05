@@ -87,8 +87,8 @@ const HomePage = () => {
                       >
                         #{hashtag}
                       </a>
-                    ))} */}
-                  {/* </p> */}
+                    ))}
+                  </p> */}
                   <a
                     className="wrapperLinkTitleArticles"
                     onClick={() => navigate(`/article/${item.id}`)}

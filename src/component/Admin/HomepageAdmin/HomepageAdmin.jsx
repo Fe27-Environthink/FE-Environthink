@@ -1,7 +1,7 @@
-import "./HomeAdmin.css";
+import "./HomepageAdmin.css";
 import { Container } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
-import { getAPI } from "../../../Redux/Action/HomeAdminAction";
+import { getAPI } from "../../../Redux/Action/HomepageAdminAction";
 import { useEffect } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import { Link, useNavigate } from "react-router-dom";
@@ -12,11 +12,11 @@ import DonationVector from "../../../assets/DonationVector.jpg";
 import NavbarAdmin from "../Sidebar/NavbarAdmin";
 import Swal from "sweetalert2";
 
-function HomeAdmin() {
+function HomepageAdmin() {
   const { totalAksi, totalArticle, totalInfografis, totalDonasi } = useSelector(
-    (state) => state.HomeAdminReducer
+    (state) => state.HomepageAdminReducer
   );
-  const roleLocalStorage = localStorage.getItem("role");
+  // const roleLocalStorage = localStorage.getItem("role");
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -88,7 +88,7 @@ function HomeAdmin() {
                         >
                           {totalArticle}
                         </Link>
-                        <p className="totalHomeAdmin card-text text-dark m-0">
+                        <p className="totalHomepageAdmin card-text text-dark m-0">
                           Total Artikel
                         </p>
                       </div>
@@ -115,7 +115,7 @@ function HomeAdmin() {
                         <p className="total card-text text-dark m-0 fs-3">
                           {totalAksi}
                         </p>
-                        <p className="totalHomeAdmin card-text text-dark m-0">
+                        <p className="totalHomepageAdmin card-text text-dark m-0">
                           Total Aksi
                         </p>
                       </div>
@@ -142,7 +142,7 @@ function HomeAdmin() {
                         <p className="total card-text text-dark m-0 fs-3">
                           {totalInfografis}
                         </p>
-                        <p className="totalHomeAdmin card-text text-dark m-0">
+                        <p className="totalHomepageAdmin card-text text-dark m-0">
                           Total Infografis
                         </p>
                       </div>
@@ -169,7 +169,7 @@ function HomeAdmin() {
                         <p className="total card-text text-dark m-0 fs-3">
                           {totalDonasi}
                         </p>
-                        <p className="totalHomeAdmin card-text text-dark m-0">
+                        <p className="totalHomepageAdmin card-text text-dark m-0">
                           Total Donasi
                         </p>
                       </div>
@@ -198,4 +198,4 @@ function HomeAdmin() {
   );
 }
 
-export default HomeAdmin;
+export default HomepageAdmin;
