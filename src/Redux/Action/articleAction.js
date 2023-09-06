@@ -51,7 +51,7 @@ export const addArticle = (newData, id) => async (dispatch) => {
     },
   });
 
-  dispatch(getArticle(id));
+  dispatch(getArticle());
 };
 
 export const deleteArticleAdmin = (id) => {
